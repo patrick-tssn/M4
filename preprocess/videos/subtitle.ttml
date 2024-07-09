@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/ns/ttml" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:profile="http://www.w3.org/TR/profile/sdp-us" >
+<head>
+<styling>
+<style xml:id="s1" tts:textAlign="center" tts:extent="90% 90%" tts:origin="5% 5%" tts:displayAlign="after"/>
+<style xml:id="s2" tts:fontSize=".72c" tts:backgroundColor="black" tts:color="white"/>
+</styling>
+<layout>
+<region xml:id="r1" style="s1"/>
+</layout>
+</head>
+<body region="r1">
+<div>
+<p begin="00:00:00.000" end="00:00:05.520" style="s2">Making money by trading in share market is</p>
+<p begin="00:00:02.460" end="00:00:08.160" style="s2">not easy but if you follow simple steps</p>
+<p begin="00:00:05.520" end="00:00:10.320" style="s2">then you can become a successful trader.</p>
+<p begin="00:00:08.160" end="00:00:12.900" style="s2">Number one you have to learn the</p>
+<p begin="00:00:10.320" end="00:00:15.059" style="s2">basics of trading. Once you learn the basic</p>
+<p begin="00:00:12.900" end="00:00:17.699" style="s2">then the second step is to</p>
+<p begin="00:00:15.059" end="00:00:20.460" style="s2">learn the strategies.  You have to learn strategies and</p>
+<p begin="00:00:17.699" end="00:00:22.380" style="s2">on number three you bake them. Now after</p>
+<p begin="00:00:20.460" end="00:00:25.560" style="s2">backtesting, see which</p>
+<p begin="00:00:22.380" end="00:00:28.260" style="s2">streets have been more profitable.</p>
+<p begin="00:00:25.560" end="00:00:30.720" style="s2">After that you pick a strategy. Date</p>
+<p begin="00:00:28.260" end="00:00:33.300" style="s2">this point number four. After picking the streets,</p>
+<p begin="00:00:30.720" end="00:00:35.700" style="s2">on number five.  You</p>
+<p begin="00:00:33.300" end="00:00:37.380" style="s2">start demo trading. Now in demo trading,</p>
+<p begin="00:00:35.700" end="00:00:39.840" style="s2">when the results are seen, the</p>
+<p begin="00:00:37.380" end="00:00:43.559" style="s2">next step is to do live trading.</p>
+<p begin="00:00:39.840" end="00:00:45.899" style="s2">When you trade live, after that you</p>
+<p begin="00:00:43.559" end="00:00:48.600" style="s2">create a trading plan and</p>
+<p begin="00:00:45.899" end="00:00:50.879" style="s2">continuously review your plan and this.</p>
+<p begin="00:00:48.600" end="00:00:52.620" style="s2"></p>
+<p begin="00:00:50.879" end="00:00:54.600" style="s2">If you want to invest in stock market or</p>
+<p begin="00:00:52.620" end="00:00:55.739" style="s2">want to trade then</p>
+<p begin="00:00:54.600" end="00:00:57.239" style="s2">you will get the link of free demat account</p>
+<p begin="00:00:55.739" end="00:00:59.760" style="s2">in the description comment box and in the bio.</p>
+<p begin="00:00:57.239" end="00:01:01.940" style="s2">Finally you can share this video and spread</p>
+<p begin="00:00:59.760" end="00:01:01.940" style="s2">it.</p>
+</div>
+</body>
+</tt>
