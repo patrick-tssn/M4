@@ -3,7 +3,28 @@
 
 Inspired by GPT-4o
 
-## Roadmap
+
+
+## Preprocess
+
+Segment-any-text: https://github.com/segment-any-text/wtpsplit
+    
+
+## Pilot-Experiment
+
+- long-context alignment
+
+LongVA replication
+
+
+
+
+
+
+
+
+
+## Trial (legacy)
 
 - data collection (with shenzhi)
     - data download: youtube with [100 keywords](preprocess/keywords.md)
@@ -12,5 +33,3 @@ Inspired by GPT-4o
     2. temporal sentence grouding in caption: (timestamp -> caption). f"{timestamp}: {caption}"
     3. caption to dialogue. f"When the description of the video clip is {caption}, what's the speech: {asr}"
     4. dialogue to caption. f"Please describe the video clip when someone is saying {asr}: {caption}"
-
-    

@@ -1,6 +1,9 @@
 # this project
 *.mp4
 *.webm
+inputs
+checkpoints
+preprocess/llava-next
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
