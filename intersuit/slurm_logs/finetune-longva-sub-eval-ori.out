@@ -1,0 +1,18 @@
+MID_RUN_NAME: LongVA-Qwen2-7B-Instruct
+Loaded LLaVA model: checkpoints/LongVA-Qwen2-7B-Instruct
+Loading vision tower: openai/clip-vit-large-patch14-336
+Loaded LLaVA model: checkpoints/LongVA-Qwen2-7B-Instruct
+Loading vision tower: openai/clip-vit-large-patch14-336
+Loaded LLaVA model: checkpoints/LongVA-Qwen2-7B-Instruct
+Loading vision tower: openai/clip-vit-large-patch14-336
+Loaded LLaVA model: checkpoints/LongVA-Qwen2-7B-Instruct
+Loading vision tower: openai/clip-vit-large-patch14-336
+Model Class: LlavaQwenForCausalLM
+Model Class: LlavaQwenForCausalLM
+Model Class: LlavaQwenForCausalLM
+Model Class: LlavaQwenForCausalLM
+C C
+Accuracy:  0.5348148148148149
+Accuraccy for Type medium: 0.53
+Accuraccy for Type long: 0.45666666666666667
+Accuraccy for Type short: 0.6177777777777778

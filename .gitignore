@@ -1,9 +1,15 @@
 # this project
 *.mp4
 *.webm
+*.mkv
+*.vtt
+*.jsonl
+videos
 inputs
 checkpoints
 preprocess/llava-next
+preprocess/llava-onevision
+LLaVA-NeXT
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
