@@ -10,6 +10,9 @@ checkpoints
 preprocess/llava-next
 preprocess/llava-onevision
 LLaVA-NeXT
+slurm_logs
+local_demo
+visualization
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

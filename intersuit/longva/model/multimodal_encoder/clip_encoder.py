@@ -32,6 +32,8 @@ class CLIPVisionTower(nn.Module):
         else:
             self.cfg_only = CLIPVisionConfig.from_pretrained(self.vision_tower_name)
 
+    # https://github.com/haotian-liu/LLaVA/issues/1122#issuecomment-2044055002
+    # def load_model(self, device_map="auto"):
     def load_model(self, device_map=None):
         if self.is_loaded:
             rank0_print("{} is already loaded, `load_model` called again, skipping.".format(self.vision_tower_name))

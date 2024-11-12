@@ -1,17 +1,17 @@
 #!/bin/bash
-#SBATCH --job-name=LV-FT
-#SBATCH --partition=HGX
+#SBATCH --job-name=revLVsub
+#SBATCH --partition=HGX,DGX
 #SBATCH --account=research
-#SBATCH --qos=lv2
-#SBATCH --time=5-00:00:00
-#SBATCH --nodes=2
+#SBATCH --qos=lv1
+#SBATCH --time=12:00:00
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/pretrain-qwen2-7b-llava.out
-#SBATCH --error=./slurm_logs/pretrain-qwen2-7b-llava.error.out
+#SBATCH --output=./slurm_logs/finetune-longva-sub10k.out
+#SBATCH --error=./slurm_logs/finetune-longva-sub10k.error.out
 
 
-export OMP_NUM_THREADS=8
+export OMP_NUM_THREADS=4
 export NCCL_IB_DISABLE=0
 export NCCL_IB_GID_INDEX=3
 # export NCCL_SOCKET_IFNAME=eth0
@@ -28,13 +28,18 @@ export NCCL_DEBUG=INFO
 # export PORT=$MASTER_PORT
 # export ADDR=$head_node_ip
 
-export NUM_GPUS=8
+export NUM_GPUS=4
 MASTER_PORT=$(expr $RANDOM + 1000)
 export PORT=$MASTER_PORT
 
 
-LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
+export PYTHONPATH=$(pwd)
+echo $PYTHONPATH
+
+# LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct"
+# LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
+LLM_VERSION="checkpoints/longva7b-llavanext-llama31"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
@@ -43,19 +48,20 @@ VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 
 # --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}"
 
-PROMPT_VERSION=qwen_1_5
+# PROMPT_VERSION=qwen_1_5
+PROMPT_VERSION=llava_llama_3
 
 BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-pretrain_blip558k_plain"
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
-MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext"
+# MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
+MID_RUN_NAME="longva7b-llavanextsub10k-llama31-ORNS1111"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
 CKPT_PATH=$LLM_VERSION # this could also be the previous stage checkpoint
-CKPT_PATH="checkpoints/LongVA-Qwen2-7B"
 
-# --pretrain_mm_mlp_adapter "checkpoints/projectors/${BASE_RUN_NAME}/mm_projector.bin" \
+module add cuda11.8
 
 # ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}" --master_port="${PORT}" \
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
@@ -63,9 +69,9 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next.json \
+    --data_path inputs/texts/llava-next-sub-10k-ONRS1111.json \
     --image_folder inputs/images/llava-next \
-    --mm_tunable_parts "mm_mlp_adapter,mm_language_model" \
+    --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
     --vision_tower ${VISION_MODEL_VERSION} \
     --mm_projector_type mlp2x_gelu \
@@ -80,12 +86,12 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --run_name $MID_RUN_NAME \
     --output_dir "checkpoints/${MID_RUN_NAME}" \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 2 \
+    --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 4 \
-    --gradient_accumulation_steps 2 \
+    --gradient_accumulation_steps 4 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 3000 \
+    --save_steps 500 \
     --save_total_limit 1 \
     --learning_rate 1e-5 \
     --weight_decay 0. \
@@ -100,10 +106,11 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --report_to tensorboard \
     --torch_compile True \
     --torch_compile_backend "inductor" \
-    --dataloader_drop_last True \
-    --attn_implementation sdpa
+    --dataloader_drop_last True 
+    # --attn_implementation sdpa
 
 # You can delete the sdpa attn_implementation if you want to use flash attn
 
 # --model_max_length 32768 \ # 8192
 # --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
+# --pretrain_mm_mlp_adapter "checkpoints/projectors/${BASE_RUN_NAME}/mm_projector.bin" \

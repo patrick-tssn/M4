@@ -27,6 +27,15 @@ from threading import Thread
 
 import requests
 
+from transformers.cache_utils import (
+    DynamicCache,
+    SinkCache,
+    StaticCache,
+    SlidingWindowCache,
+    QuantoQuantizedCache,
+    QuantizedCacheConfig,
+)
+
 torch.backends.cuda.matmul.allow_tf32 = True
 
 warnings.filterwarnings("ignore")
@@ -118,6 +127,7 @@ class LongVA:
             if model_name is not None
             else get_model_name_from_path(pretrained)
         )
+        self.model_name = model_name
 
         self.pretrained = pretrained
         self.token_strategy = token_strategy
@@ -352,7 +362,8 @@ class LongVA:
                     self._image_processor.preprocess(frames, return_tensors="pt")[
                         "pixel_values"
                     ]
-                    .half()
+                    # .half()
+                    .to(self.model.dtype)
                     .cuda()
                 )
                 image_tensor.append(frames)
@@ -404,6 +415,8 @@ class LongVA:
             conv.append_message(conv.roles[1], prev_conv[1])
 
         conv.append_message(conv.roles[0], question)
+        # conv.append_message(conv.roles[1], "yes")
+        # conv.append_message(conv.roles[0], context)
         conv.append_message(conv.roles[1], None)
 
         prompt_question = conv.get_prompt()
@@ -442,6 +455,12 @@ class LongVA:
         stopping_criteria = KeywordsStoppingCriteria(
             keywords, self.tokenizer, input_ids
         )
+        
+        # print("##"*20)
+        # print(stop_str)
+        # print(stopping_criteria)
+        # print("##"*20)
+        
         if task_type == "image":
             gen_kwargs["image_sizes"] = [
                 visual.size for visual in visuals
@@ -507,20 +526,49 @@ class LongVA:
             #     ).encode() + b"\0"
             
             with torch.inference_mode():
+                cont = self.model.generate(
+                    input_ids,
+                    attention_mask=attention_masks,
+                    pad_token_id=pad_token_ids,
+                    images=image_tensor,
+                    use_cache=self.use_cache,
+                    **gen_kwargs,
+                )
+
+            text_outputs = self.tokenizer.batch_decode(cont, skip_special_tokens=True)
+            
+            print("=="*20)
+            print(text_outputs)
+            print("=="*20)
+            
+            with torch.inference_mode():
                 print(input_ids)
+                if "llama" in self.model_name.lower():
+                    print(self.tokenizer.convert_ids_to_tokens(torch.where(input_ids[0]!=-200, input_ids[0], 0)))
+                else:
+                    print(self.tokenizer.convert_ids_to_tokens(input_ids[0]))
+                past_key_values = DynamicCache()
                 outputs = self.model.forward(
                     input_ids,
                     images=image_tensor,
                     modalities=["video"],
+                    past_key_values=past_key_values,
                     output_attentions=True,
                     output_hidden_states=True,
-                    return_dict=True
+                    return_dict=True,
                 )
+                
                 print(outputs.keys())
                 print(outputs["logits"].shape) # B L vocab_size
                 print(outputs["hidden_states"][-1].shape) # B L 3584
-                # print(outputs["attentions"][-1].mean(1)[:, -4, :]) # B NH L L
+                print(outputs["attentions"][-1].shape) # B NH L L
                 
+                # print("**"*20)
+                # past_key_values = outputs.past_key_values
+                # print("before: ", past_key_values.key_cache[-1].shape)
+                # past_key_values.crop(past_key_values.get_seq_length()-3)
+                # print("after: ", past_key_values.key_cache[-1].shape)
+                # print("**"*20)
 
                 def visualize_attention(attention_weights):
                     """
@@ -533,14 +581,17 @@ class LongVA:
                     attention_weights = torch.nan_to_num(attention_weights, nan=0.0)
 
                     # Convert to numpy array if needed
-                    attention = attention_weights.cpu().numpy()
+                    if attention_weights.dtype is torch.bfloat16:
+                        attention = attention_weights.cpu().float().numpy()
+                    else:
+                        attention = attention_weights.cpu().numpy()
                     attention = (attention - np.min(attention)) / (np.max(attention) - np.min(attention))
 
                     # downsample
                     # l = attention.shape[0]
                     # attention = attention.reshape(l//144, 144, l//144, 144).mean(axis=(1,3))
                     ql, kl = attention.shape
-                    attention = attention.reshape(ql, kl//144, 144).mean(axis=2)
+                    # attention = attention.reshape(ql, kl//144, 144).sum(axis=2)
 
                     # Set up the matplotlib figure
                     plt.figure(figsize=(10, 8))
@@ -557,9 +608,45 @@ class LongVA:
                     plt.tight_layout()
 
                     # plt.show()
-                    plt.savefig("attn_rev100k.png")
+                    plt.savefig("attn_longva_10krev_qwen.png")
                 # visualize_attention(outputs["attentions"][-1].squeeze(0).mean(0)[24:24+144*32, 24:24+144*32])
-                visualize_attention(outputs["attentions"][-1].squeeze(0).mean(0)[14+144*32:14+144*32+15, 14:14+144*32])
+                # visualize_attention(outputs["attentions"][-1].squeeze(0).mean(0)[14+144*32:, :])
+                # for o in outputs["attentions"][-1].squeeze(0)[:, 14+144*32+1:-5, :]:
+                #     start_index = 14
+                #     step = 144
+                #     end_index = start_index + 32 * 144
+                #     initial_col = o[:, :start_index]
+                #     remaining_col = o[:, end_index:]
+                #     selected_col = o[:, start_index:end_index]
+                #     l, r = selected_col.shape
+                #     avg_selected_col = selected_col.reshape(l, r//144, 144).mean(dim=2)
+                #     # selected_col = o[:, start_index:end_index:step]
+                #     # avg_selected_col = selected_col.mean(dim=1, keepdim=True)
+                #     # o = torch.cat((initial_col, avg_selected_col, remaining_col), dim=1)
+                #     o = avg_selected_col
+                #     print(o)
+                #     visualize_attention(o)
+                attentions = outputs["attentions"][-1].squeeze(0)
+                non_nan_mask = ~torch.isnan(attentions)
+                attentions = torch.where(non_nan_mask, attentions, torch.tensor(0.0))
+                # attentions = attentions.mean(0)[14+144*32+1:-5, :]
+                start_index = input_ids[0].tolist().index(-200)
+                attentions = attentions.mean(0)[start_index+144*32:, :]
+                print(attentions.shape)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                step = 144
+                end_index = start_index + 32 * 144
+                initial_col = attentions[:, :start_index]
+                remaining_col = attentions[:, end_index:]
+                selected_col = attentions[:, start_index:end_index]
+                l, r = selected_col.shape
+                avg_selected_col = selected_col.reshape(l, r//144, 144).mean(dim=2)
+                # selected_col = attentions[:, start_index:end_index:step]
+                # avg_selected_col = selected_col.mean(dim=1, keepdim=True)
+                # attentions = torch.cat((initial_col, avg_selected_col, remaining_col), dim=1)
+                attentions = avg_selected_col
+                # print(attentions)
+                visualize_attention(attentions)
             
             return outputs
             
@@ -643,7 +730,12 @@ if __name__ == "__main__":
     parser.add_argument("--question", type=str, required=True)
     parser.add_argument("--device", type=str, default="cuda:1")
     args = parser.parse_args()
-    model = LongVA(pretrained="checkpoints/longva7b-llavanextsub100k-qwen2-rev", model_name="llava_qwen", device_map=args.device)
+    model = LongVA(pretrained="checkpoints/longva7b-llavanextsub10k-qwen2-rev", model_name="llava_qwen", device_map=args.device, attn_implementation="eager")
+    # model = LongVA(pretrained="checkpoints/longva7b-llavanextsub10k-qwen2-rev", model_name="llava_qwen", device_map=args.device)
+    # model = LongVA(pretrained="checkpoints/LongVA-Qwen2-7B-Instruct", model_name="llava_qwen", device_map=args.device)
+    
+    # model = LongVA(pretrained="checkpoints/longva7b-llavanextsub10k-llama31-rev", conv_template="llava_llama_3", model_name="llava_llama3", device_map=args.device, attn_implementation="eager")
+    
     # if args.image_path:
     #     image_demo(model, args)
     # if args.video_path:

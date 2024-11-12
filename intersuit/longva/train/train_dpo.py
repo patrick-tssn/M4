@@ -567,7 +567,7 @@ def preprocess_gemma(sources: List[List[Dict[str, str]]], tokenizer: transformer
 def preprocess_qwen(sources, tokenizer: transformers.PreTrainedTokenizer, has_image: bool = False, max_len=2048, system_message: str = "You are a helpful assistant.") -> Dict:
     roles = {"human": "<|im_start|>user", "gpt": "<|im_start|>assistant"}
 
-    im_start, im_end = tokenizer.additional_special_tokens_ids
+    im_start, im_end = tokenizer.additional_special_tokens_ids[:2]
     nl_tokens = tokenizer("\n").input_ids
     _system = tokenizer("system").input_ids + nl_tokens
     _user = tokenizer("user").input_ids + nl_tokens
@@ -1207,6 +1207,8 @@ class DPODataCollator(DPODataCollatorWithPadding):
         #     labels=labels,
         #     attention_mask=input_ids.ne(self.tokenizer.pad_token_id),
         # )
+        if self.tokenizer.pad_token_id is None: # FIXME: adapt from train.py
+            self.tokenizer.pad_token_id = 0
         padded_batch = {}
         for k in batch[0].keys():
             if k.endswith("_input_ids") or k.endswith("_attention_mask") or k.endswith("_labels"):

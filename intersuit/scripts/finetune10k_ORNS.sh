@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=revLVsub
+#SBATCH --job-name=ORNSLVsub
 #SBATCH --partition=HGX,DGX
 #SBATCH --account=research
 #SBATCH --qos=lv1
@@ -7,8 +7,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-sub.out
-#SBATCH --error=./slurm_logs/finetune-longva-sub.error.out
+#SBATCH --output=./slurm_logs/finetune-longva-sub10k-ORNS2111.out
+#SBATCH --error=./slurm_logs/finetune-longva-sub10k-ORNS2111.error.out
 
 
 export OMP_NUM_THREADS=4
@@ -53,7 +53,7 @@ BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
-MID_RUN_NAME="longva7b-llavanextsub100k-qwen2-rev"
+MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-NRS211"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -67,7 +67,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-100k-rev.json \
+    --data_path inputs/texts/llava-next-sub-10k-NRS211.json \
     --image_folder inputs/images/llava-next \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
@@ -105,7 +105,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --torch_compile True \
     --torch_compile_backend "inductor" \
     --dataloader_drop_last True \
-    # --attn_implementation sdpa
+    --attn_implementation sdpa
 
 # You can delete the sdpa attn_implementation if you want to use flash attn
 

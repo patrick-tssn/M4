@@ -77,10 +77,22 @@ def get_model_output(model, image_processor, tokenizer, video, qs, args):
     image_tokens = DEFAULT_IMAGE_TOKEN
     qs = image_tokens + '\n' + qs
     # qs = qs + image_tokens + '\n'
-    conv = conv_templates["qwen_1_5"].copy()
-    conv.append_message(conv.roles[0], qs)
-    conv.append_message(conv.roles[1], None)
-    qs = conv.get_prompt()
+    if "qwen" in args.model_path.lower():
+        conv = conv_templates["qwen_1_5"].copy()
+        conv.append_message(conv.roles[0], qs)
+        conv.append_message(conv.roles[1], None)
+        qs = conv.get_prompt()
+    elif "llama3" in args.model_path.lower():
+        conv = conv_templates["llava_llama_3"].copy()
+        conv.append_message(conv.roles[0], qs)
+        conv.append_message(conv.roles[0], "##SPECIAL_START##")
+        qs = conv.get_prompt()
+        qs = qs.split("##SPECIAL_START##")[0]
+    else:
+        conv = conv_templates["plain"].copy()
+        conv.append_message(conv.roles[0], qs)
+        conv.append_message(conv.roles[1], None)
+        qs = conv.get_prompt()
     input_ids = tokenizer_image_token(qs, tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt").unsqueeze(0).to(model.device)
 
     stop_str = conv.sep if conv.sep_style != SeparatorStyle.TWO else conv.sep2
@@ -103,6 +115,9 @@ def get_model_output(model, image_processor, tokenizer, video, qs, args):
 
     outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0]
     outputs = outputs.strip()
+    
+    #HACK
+    outputs = outputs.split("\n")[-1]
 
     return outputs
 

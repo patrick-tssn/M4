@@ -1,18 +1,10 @@
 MID_RUN_NAME: longva7b-llavanextsub100k-qwen2-rev
 Loaded LLaVA model: checkpoints/longva7b-llavanextsub100k-qwen2-rev
-Loading vision tower: checkpoints/clip-vit-large-patch14-336
 Loaded LLaVA model: checkpoints/longva7b-llavanextsub100k-qwen2-rev
-Loading vision tower: checkpoints/clip-vit-large-patch14-336
 Loaded LLaVA model: checkpoints/longva7b-llavanextsub100k-qwen2-rev
-Loading vision tower: checkpoints/clip-vit-large-patch14-336
 Loaded LLaVA model: checkpoints/longva7b-llavanextsub100k-qwen2-rev
-Loading vision tower: checkpoints/clip-vit-large-patch14-336
-Model Class: LlavaQwenForCausalLM
-Model Class: LlavaQwenForCausalLM
-Model Class: LlavaQwenForCausalLM
-Model Class: LlavaQwenForCausalLM
-C C
-Accuracy:  0.5070370370370371
-Accuraccy for Type medium: 0.4955555555555556
-Accuraccy for Type long: 0.43
-Accuraccy for Type short: 0.5955555555555555
+D C
+Accuracy:  0.4444444444444444
+Accuraccy for Type medium: 0.4388888888888889
+Accuraccy for Type long: 0.39111111111111113
+Accuraccy for Type short: 0.5033333333333333

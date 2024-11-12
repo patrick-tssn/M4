@@ -104,8 +104,8 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --report_to tensorboard \
     --torch_compile True \
     --torch_compile_backend "inductor" \
-    --dataloader_drop_last True \
-    --attn_implementation sdpa
+    --dataloader_drop_last True 
+    # --attn_implementation sdpa
 
 # You can delete the sdpa attn_implementation if you want to use flash attn
 

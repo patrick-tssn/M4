@@ -31,6 +31,17 @@ from transformers import Qwen2Config, Qwen2Model, Qwen2ForCausalLM
 # from .qwen.modeling_qwen import QWenLMHeadModel, QWenModel
 # from .qwen.configuration_qwen import QWenConfig
 
+from transformers.cache_utils import (
+    DynamicCache,
+    SinkCache,
+    StaticCache,
+    SlidingWindowCache,
+    QuantoQuantizedCache,
+    QuantizedCacheConfig,
+)
+
+from torch.nn.attention.flex_attention import create_mask
+
 
 class LlavaQwenConfig(Qwen2Config):
     model_type = "llava_qwen"
@@ -143,24 +154,183 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         modalities: Optional[List[str]] = ["image"],
         **kwargs,
     ) -> Union[GenerateOutput, torch.LongTensor]:
+        streamer = kwargs.pop("streamer", None)
+        tokenizer = kwargs.pop("tokenizer", None)
         position_ids = kwargs.pop("position_ids", None)
         attention_mask = kwargs.pop("attention_mask", None)
         if "inputs_embeds" in kwargs:
             raise NotImplementedError("`inputs_embeds` is not supported")
+        
 
         if images is not None:
             (inputs, position_ids, attention_mask, _, inputs_embeds, _) = self.prepare_inputs_labels_for_multimodal(inputs, position_ids, attention_mask, None, None, images, modalities, image_sizes=image_sizes)
         else:
             inputs_embeds = self.get_model().embed_tokens(inputs)
-
-        # input channel and output channel: sync
         
+        new_query = kwargs.pop("new_query", None)
+        if new_query is not None:
+            new_inputs_embeds = self.get_model().embed_tokens(new_query)
+        else:
+            new_inputs_embeds = None
+        bsz, seq = inputs_embeds.shape[:-1]
 
-        # channel transition
+        # get channel ids 10: system; 14: 13: system+template
+        prefix_length = 13 + 32 * 144 + 1 # system + video
+        # channel = [0] * prefix_length + [1] * (seq - prefix_length)
         
-        output = super().generate(position_ids=position_ids, attention_mask=attention_mask, inputs_embeds=inputs_embeds, **kwargs)
+        
+        past_key_values = DynamicCache()
+        max_cache_length = past_key_values.get_max_length()
+        cache_position = torch.arange(seq, dtype=torch.int64, device=inputs_embeds.device)
+        max_new_tokens = kwargs.pop("max_new_tokens", 64)
+        for idx in range(max_new_tokens):
+            
+            # discern noise
+            if idx == 4:
+                # # encounter new query 
+                # # construct new attention masks by flexattention
+                # def prefix_mask(b, h, q_idx, kv_idx):
+                #     return kv_idx <= prefix_length
+                # def causal_mask(b, h, q_idx, kv_idx):
+                #     return q_idx >= kv_idx
+                # def transition_attention_mask(b, h, q_idx, kv_idx):
+                #     prefix_mask = kv_idx <= prefix_length
+                #     causal_mask = q_idx >= kv_idx
+                #     block_mask = channel[q_idx] == channel[kv_idx]
+                #     return prefix_mask | (causal_mask & block_mask)
+                # new_attention_mask = create_mask(transition_attention_mask, 1, 1, bsz, seq)
+                outputs_ids = torch.cat([outputs_ids, new_query], dim=-1)
+                
+                # print(new_inputs_embeds.shape)
+                attention_mask[:, prefix_length:] = 0 # mask prev attention
+                cur_length = attention_mask.shape[1] - prefix_length
+                # print(attention_mask.shape)
+                attention_mask = torch.cat([attention_mask[:,:-1], attention_mask.new_ones((new_inputs_embeds.shape[0], new_inputs_embeds.shape[1]))], dim=-1)
+                cache_position = torch.arange(cache_position[-1], cache_position[-1]+new_inputs_embeds.shape[1], dtype=torch.int64, device=inputs_embeds.device)
+                
+                outputs = super().forward(
+                    attention_mask=attention_mask,
+                    past_key_values=past_key_values,
+                    cache_position=cache_position,
+                    inputs_embeds=new_inputs_embeds,
+                    use_cache=True,
+                )
+                
+                
+                
+                temperature = 1
+                next_prob = torch.softmax(outputs.logits[:,-1]/temperature, dim=-1)
+                next_entropy = -torch.sum(next_prob*torch.log(next_prob+1e-5), dim=-1)
+                next_threshold = 0.09
+                next_alpha = 0.3
+                noise_threshold = torch.minimum(
+                    torch.ones_like(next_entropy) * next_threshold,
+                    torch.exp(-next_entropy) * next_alpha
+                )
+                noise_prob = next_prob[:, 151644] # |<im_start>|
+                # HACK batchsize must be 1
+                if noise_prob[0] > noise_threshold[0]:
+                    # if noise: continue generate, give up the query, revert attention
+                    attention_mask[:, prefix_length:prefix_length+cur_length] = 1 # revert prev attention
+                    attention_mask[:, prefix_length+cur_length:0] = 0 # mask noise attention
+                    attention_mask = torch.cat([attention_mask, attention_mask.new_ones((bsz, 1))], dim=-1)
+                    cache_position = cache_position[-1:] + 1
+                else:
+                    # if not noise: change channel
+                    print("*******start new topic*******")
+                    next_token_ids = outputs.logits[:, -1:].argmax(-1)
+                    outputs_ids = torch.cat([outputs_ids, next_token_ids], dim=-1)
+                    if tokenizer is not None:
+                        print(tokenizer.decode(next_token_ids.squeeze(0), skip_special_tokens=True), end='', flush=True)
+                    if streamer is not None:
+                        streamer.stream(output_ids=next_token_ids)
+                    inputs_embeds = self.get_model().embed_tokens(next_token_ids)
+                    attention_mask = torch.cat([attention_mask, attention_mask.new_ones((bsz, 1))], dim=-1)
+                    cache_position = cache_position[-1:] + 1
+                    
+            
+            else:
+                outputs = super().forward(
+                    attention_mask=attention_mask,
+                    past_key_values=past_key_values,
+                    cache_position=cache_position,
+                    inputs_embeds=inputs_embeds,
+                    use_cache=True,
+                )
+                
+                print("*"*50)
+                print(past_key_values.key_cache[-1].shape)
+                print("*"*50)
+                
+                # greedy sample
+                next_token_ids = outputs.logits[:, -1:].argmax(-1)
+                if idx == 0:
+                    outputs_ids = next_token_ids
+                else:
+                    outputs_ids = torch.cat([outputs_ids, next_token_ids], dim=-1)
+                if tokenizer is not None:
+                    print(tokenizer.decode(next_token_ids.squeeze(0), skip_special_tokens=True), end='', flush=True)
+                if streamer is not None:
+                    streamer.stream(output_ids=next_token_ids)
+                inputs_embeds = self.get_model().embed_tokens(next_token_ids)
+                # print(inputs_embeds.shape)
+                # inputs_embeds = torch.cat([inputs_embeds, next_inputs_embeds], dim=1)
+                attention_mask = torch.cat([attention_mask, attention_mask.new_ones((bsz, 1))], dim=-1)
+                cache_position = cache_position[-1:] + 1
+                # cache_position = torch.cat([cache_position, cache_position.new_])
+                
+            if next_token_ids.squeeze(0)[0].item() == tokenizer.eos_token_id:
+                print("="*20,"COMPLETE","="*20)
+                break
 
-        return output
+        return outputs_ids
+
+    @torch.no_grad()
+    def generate_streaming(
+        self,
+        inputs_embeds: Optional[torch.Tensor] = None,
+        past_key_values=None,
+        **kwargs,
+    ) -> Union[GenerateOutput, torch.LongTensor]:
+        
+        streamer = kwargs.pop("streamer", None)
+        tokenizer = kwargs.pop("tokenizer", None)
+        attention_mask = kwargs.pop("attention_mask", None)
+        
+        max_new_tokens = kwargs.pop("max_new_tokens", 64)
+        for idx in range(max_new_tokens):
+            
+            outputs = super().forward(
+                # attention_mask=attention_mask,
+                past_key_values=past_key_values,
+                # cache_position=cache_position,
+                inputs_embeds=inputs_embeds,
+                use_cache=True,
+            )
+            
+            # greedy sample
+            next_token_ids = outputs.logits[:, -1:].argmax(-1)
+            if idx == 0:
+                outputs_ids = next_token_ids
+            else:
+                outputs_ids = torch.cat([outputs_ids, next_token_ids], dim=-1)
+            # if tokenizer is not None:
+            #     print(tokenizer.decode(next_token_ids.squeeze(0), skip_special_tokens=True), end='', flush=True)
+            # if streamer is not None:
+            #     streamer.stream(output_ids=next_token_ids)
+            inputs_embeds = self.get_model().embed_tokens(next_token_ids)
+            # print(inputs_embeds.shape)
+            # inputs_embeds = torch.cat([inputs_embeds, next_inputs_embeds], dim=1)
+            # attention_mask = torch.cat([attention_mask, attention_mask.new_ones((bsz, 1))], dim=-1)
+            # cache_position = cache_position[-1:] + 1
+            # cache_position = torch.cat([cache_position, cache_position.new_])
+            
+            if next_token_ids.squeeze(0)[0].item() == tokenizer.eos_token_id:
+                # print("="*20,"COMPLETE","="*20)
+                break
+
+        return outputs_ids, past_key_values
+
 
     def prepare_inputs_for_generation(self, input_ids, past_key_values=None, inputs_embeds=None, **kwargs):
         images = kwargs.pop("images", None)

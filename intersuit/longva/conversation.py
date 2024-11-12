@@ -55,9 +55,11 @@ class Conversation:
                 messages[0] = (init_role, init_msg)
                 messages.insert(0, (self.roles[0], "<Image><image></Image>"))
                 messages.insert(1, (self.roles[1], "Received."))
-            elif not init_msg.startswith("<image>"):
-                init_msg = init_msg.replace("<image>", "").strip()
-                messages[0] = (init_role, "<image>\n" + init_msg)
+            # NOTE we allow the dialogue is not started with <image>
+            # elif not init_msg.startswith("<image>"):
+            #     # TODO maybe this should be changed for interleaved data?
+            #     init_msg = init_msg.replace("<image>", "").strip()
+            #     messages[0] = (init_role, "<image>\n" + init_msg)
             else:
                 messages[0] = (init_role, init_msg)
 
@@ -95,6 +97,8 @@ class Conversation:
             return ret
 
         elif self.sep_style == SeparatorStyle.LLAMA_3:
+            if self.tokenizer is None:
+                raise ValueError("Llama 3 tokenizer is not available. Make sure you have the necessary permissions.")
             chat_template_messages = [{"role": "system", "content": self.system}]
             for role, message in messages:
                 if message:
@@ -264,7 +268,7 @@ class Conversation:
         return ret
 
     def copy(self):
-        return Conversation(system=self.system, roles=self.roles, messages=[[x, y] for x, y in self.messages], offset=self.offset, sep_style=self.sep_style, sep=self.sep, sep2=self.sep2, version=self.version)
+        return Conversation(system=self.system, roles=self.roles, messages=[[x, y] for x, y in self.messages], offset=self.offset, sep_style=self.sep_style, sep=self.sep, sep2=self.sep2, version=self.version, tokenizer=self.tokenizer, stop_token_ids=self.stop_token_ids)
 
     def dict(self):
         if len(self.get_images()) > 0:
@@ -354,18 +358,28 @@ conv_llava_llama_2 = Conversation(
 )
 
 # This will lead to a bug when user can not access Meta-Llama-3-8B-Instruct
-# conv_llava_llama_3 = Conversation(
-#     system="You are a helpful language and vision assistant. " "You are able to understand the visual content that the user provides, " "and assist the user with a variety of tasks using natural language.",
-#     roles=("user", "assistant"),
-#     version="llama_v3",
-#     messages=[],
-#     offset=0,
-#     sep="<|eot_id|>",
-#     sep_style=SeparatorStyle.LLAMA_3,
-#     tokenizer_id="meta-llama/Meta-Llama-3-8B-Instruct",
-#     tokenizer=AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct"),
-#     stop_token_ids=[128009],
-# )
+def safe_load_tokenizer(tokenizer_id):
+    print("*"*20)
+    import os
+    print(os.getcwd())
+    print("*"*20)
+    try:
+        return AutoTokenizer.from_pretrained(tokenizer_id)
+    except Exception as e:
+        print(f"Encounter Error: {e}")
+        return None
+conv_llava_llama_3 = Conversation(
+    system="You are a helpful language and vision assistant. " "You are able to understand the visual content that the user provides, " "and assist the user with a variety of tasks using natural language.",
+    roles=("user", "assistant"),
+    version="llama_v3",
+    messages=[],
+    offset=0,
+    sep="<|eot_id|>",
+    sep_style=SeparatorStyle.LLAMA_3,
+    tokenizer_id="meta-llama/Meta-Llama-3-8B-Instruct",
+    tokenizer=safe_load_tokenizer("checkpoints/Meta-Llama-3.1-8B-Instruct"),
+    stop_token_ids=[128009],
+)
 
 conv_mistral_instruct = Conversation(
     system="",
@@ -541,6 +555,7 @@ conv_templates = {
     "llava_v1": conv_llava_v1,
     "llava_v1_mmtag": conv_llava_v1_mmtag,
     "llava_llama_2": conv_llava_llama_2,
+    "llava_llama_3": conv_llava_llama_3,
     "llava_llama_2_simple": conv_llava_llama_2_simple,
     "llava_llama_2_mmtag": conv_llava_llama_2_mmtag,
     "llava_mistral_instruct": conv_mistral_instruct,

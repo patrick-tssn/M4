@@ -140,6 +140,52 @@ class LlavaLlamaForCausalLM(LlamaForCausalLM, LlavaMetaForCausalLM):
             inputs_embeds = self.get_model().embed_tokens(inputs)
 
         return super().generate(position_ids=position_ids, attention_mask=attention_mask, inputs_embeds=inputs_embeds, **kwargs)
+    
+    @torch.no_grad()
+    def generate_streaming(
+        self,
+        inputs_embeds: Optional[torch.Tensor] = None,
+        past_key_values=None,
+        **kwargs,
+    ) -> Union[GenerateOutput, torch.LongTensor]:
+        
+        streamer = kwargs.pop("streamer", None)
+        tokenizer = kwargs.pop("tokenizer", None)
+        attention_mask = kwargs.pop("attention_mask", None)
+        
+        max_new_tokens = kwargs.pop("max_new_tokens", 64)
+        for idx in range(max_new_tokens):
+            
+            outputs = super().forward(
+                # attention_mask=attention_mask,
+                past_key_values=past_key_values,
+                # cache_position=cache_position,
+                inputs_embeds=inputs_embeds,
+                use_cache=True,
+            )
+            
+            # greedy sample
+            next_token_ids = outputs.logits[:, -1:].argmax(-1)
+            if idx == 0:
+                outputs_ids = next_token_ids
+            else:
+                outputs_ids = torch.cat([outputs_ids, next_token_ids], dim=-1)
+            # if tokenizer is not None:
+            #     print(tokenizer.decode(next_token_ids.squeeze(0), skip_special_tokens=True), end='', flush=True)
+            # if streamer is not None:
+            #     streamer.stream(output_ids=next_token_ids)
+            inputs_embeds = self.get_model().embed_tokens(next_token_ids)
+            # print(inputs_embeds.shape)
+            # inputs_embeds = torch.cat([inputs_embeds, next_inputs_embeds], dim=1)
+            # attention_mask = torch.cat([attention_mask, attention_mask.new_ones((bsz, 1))], dim=-1)
+            # cache_position = cache_position[-1:] + 1
+            # cache_position = torch.cat([cache_position, cache_position.new_])
+            
+            if next_token_ids.squeeze(0)[0].item() == tokenizer.eos_token_id:
+                # print("="*20,"COMPLETE","="*20)
+                break
+
+        return outputs_ids, past_key_values
 
     def prepare_inputs_for_generation(self, input_ids, past_key_values=None, inputs_embeds=None, **kwargs):
         images = kwargs.pop("images", None)

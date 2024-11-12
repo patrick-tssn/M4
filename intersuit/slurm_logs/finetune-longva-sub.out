@@ -1,17 +1,19 @@
 /home/wangyuxuan1/codes/OminousLLM/intersuit
 BASE_RUN_NAME: llavanext-checkpoints_clip-vit-large-patch14-336-checkpoints_LongVA-Qwen2-7B-Instruct-mlp2x_gelu-pretrain_blip558k_plain
 MID_RUN_NAME: longva7b-llavanextsub100k-qwen2-rev
-[2024-10-23 15:55:11,810] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-23 15:55:11,812] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-23 15:55:11,812] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-23 15:55:11,812] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2024-10-24 23:00:45,355] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-24 23:00:45,356] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-24 23:00:45,356] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-24 23:00:45,357] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+
 Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
 Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyuxuan1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
 [93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
 [93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
 [93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
 [93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
 [93m [WARNING] [0m async_io: please install the libaio-dev package with apt
 [93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
@@ -19,290 +21,1415 @@ Warning: The default cache directory for DeepSpeed Triton autotune, /home/wangyu
 [93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
 [93m [WARNING] [0m async_io: please install the libaio-dev package with apt
 [93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
-[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
-[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
-[2024-10-23 15:55:15,187] [INFO] [comm.py:637:init_distributed] cdb=None
-[2024-10-23 15:55:15,188] [INFO] [comm.py:637:init_distributed] cdb=None
-[2024-10-23 15:55:15,188] [INFO] [comm.py:637:init_distributed] cdb=None
-[2024-10-23 15:55:15,188] [INFO] [comm.py:637:init_distributed] cdb=None
-[2024-10-23 15:55:15,188] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2024-10-24 23:00:48,230] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-10-24 23:00:48,230] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-10-24 23:00:48,233] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-10-24 23:00:48,282] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-10-24 23:00:48,283] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
 Rank 0:  Overwriting config with {'use_pos_skipping': False, 'pos_skipping_range': 4096}
-hgx-hyperplane04:3581403:3581403 [0] NCCL INFO Bootstrap : Using enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581403:3581403 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-hgx-hyperplane04:3581403:3581403 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-hgx-hyperplane04:3581403:3581403 [0] NCCL INFO NET/Plugin: Using internal network plugin.
-hgx-hyperplane04:3581403:3581403 [0] NCCL INFO cudaDriverVersion 12010
+dgx-hyperplane12:4136482:4136482 [0] NCCL INFO Bootstrap : Using enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136482:4136482 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+dgx-hyperplane12:4136482:4136482 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+dgx-hyperplane12:4136482:4136482 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+dgx-hyperplane12:4136482:4136482 [0] NCCL INFO cudaDriverVersion 12010
 NCCL version 2.21.5+cuda11.0
-hgx-hyperplane04:3581406:3581406 [3] NCCL INFO cudaDriverVersion 12010
-hgx-hyperplane04:3581406:3581406 [3] NCCL INFO Bootstrap : Using enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581406:3581406 [3] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-hgx-hyperplane04:3581406:3581406 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-hgx-hyperplane04:3581406:3581406 [3] NCCL INFO NET/Plugin: Using internal network plugin.
-hgx-hyperplane04:3581404:3581404 [1] NCCL INFO cudaDriverVersion 12010
-hgx-hyperplane04:3581404:3581404 [1] NCCL INFO Bootstrap : Using enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581404:3581404 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-hgx-hyperplane04:3581404:3581404 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-hgx-hyperplane04:3581404:3581404 [1] NCCL INFO NET/Plugin: Using internal network plugin.
-hgx-hyperplane04:3581405:3581405 [2] NCCL INFO cudaDriverVersion 12010
-hgx-hyperplane04:3581405:3581405 [2] NCCL INFO Bootstrap : Using enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581405:3581405 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
-hgx-hyperplane04:3581405:3581405 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
-hgx-hyperplane04:3581405:3581405 [2] NCCL INFO NET/Plugin: Using internal network plugin.
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [4]mlx5_5:1/IB [5]mlx5_6:1/RoCE [6]mlx5_8:1/IB [7]mlx5_9:1/IB [RO]; OOB enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Using non-device net plugin version 0
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Using network IB
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [4]mlx5_5:1/IB [5]mlx5_6:1/RoCE [6]mlx5_8:1/IB [7]mlx5_9:1/IB [RO]; OOB enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [4]mlx5_5:1/IB [5]mlx5_6:1/RoCE [6]mlx5_8:1/IB [7]mlx5_9:1/IB [RO]; OOB enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Using non-device net plugin version 0
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Using network IB
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Using non-device net plugin version 0
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Using network IB
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_3:1/IB [3]mlx5_4:1/IB [4]mlx5_5:1/IB [5]mlx5_6:1/RoCE [6]mlx5_8:1/IB [7]mlx5_9:1/IB [RO]; OOB enp168s0f0np0:10.141.0.104<0>
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Using non-device net plugin version 0
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Using network IB
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO ncclCommInitRank comm 0x9e038230 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 83000 commId 0xe6227138990075a0 - Init START
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO ncclCommInitRank comm 0x9802e090 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 89000 commId 0xe6227138990075a0 - Init START
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO ncclCommInitRank comm 0x96c4e3f0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c3000 commId 0xe6227138990075a0 - Init START
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO ncclCommInitRank comm 0x9821e410 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId c0000 commId 0xe6227138990075a0 - Init START
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Setting affinity for GPU 3 to ffffffff,ffffffff,00000000,00000000,ffffffff,ffffffff,00000000,00000000
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff,ffffffff,00000000,00000000,ffffffff,ffffffff,00000000,00000000
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff,ffffffff,00000000,00000000,ffffffff,ffffffff,00000000,00000000
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff,ffffffff,00000000,00000000,ffffffff,ffffffff,00000000,00000000
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO comm 0x96c4e3f0 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO comm 0x9821e410 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO comm 0x9802e090 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO comm 0x9e038230 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 00/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 01/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 02/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 03/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 04/24 :    0   1   2   3
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 05/24 :    0   1   2   3
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO P2P Chunksize set to 524288
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 06/24 :    0   1   2   3
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO P2P Chunksize set to 524288
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 07/24 :    0   1   2   3
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO P2P Chunksize set to 524288
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 08/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 09/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 10/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 11/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 12/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 13/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 14/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 15/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 16/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 17/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 18/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 19/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 20/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 21/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 22/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 23/24 :    0   1   2   3
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO P2P Chunksize set to 524288
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Connected all rings
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Connected all rings
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Connected all rings
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Connected all rings
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/IPC/read
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO Connected all trees
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO Connected all trees
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO Connected all trees
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO Connected all trees
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-hgx-hyperplane04:3581405:3581573 [2] NCCL INFO ncclCommInitRank comm 0x9821e410 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId c0000 commId 0xe6227138990075a0 - Init COMPLETE
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-hgx-hyperplane04:3581403:3581568 [0] NCCL INFO ncclCommInitRank comm 0x9e038230 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 83000 commId 0xe6227138990075a0 - Init COMPLETE
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
-hgx-hyperplane04:3581406:3581569 [3] NCCL INFO ncclCommInitRank comm 0x96c4e3f0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c3000 commId 0xe6227138990075a0 - Init COMPLETE
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
-hgx-hyperplane04:3581404:3581570 [1] NCCL INFO ncclCommInitRank comm 0x9802e090 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 89000 commId 0xe6227138990075a0 - Init COMPLETE
+dgx-hyperplane12:4136484:4136484 [2] NCCL INFO cudaDriverVersion 12010
+dgx-hyperplane12:4136483:4136483 [1] NCCL INFO cudaDriverVersion 12010
+dgx-hyperplane12:4136485:4136485 [3] NCCL INFO cudaDriverVersion 12010
+dgx-hyperplane12:4136484:4136484 [2] NCCL INFO Bootstrap : Using enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136483:4136483 [1] NCCL INFO Bootstrap : Using enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136485:4136485 [3] NCCL INFO Bootstrap : Using enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136483:4136483 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+dgx-hyperplane12:4136483:4136483 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+dgx-hyperplane12:4136483:4136483 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+dgx-hyperplane12:4136485:4136485 [3] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+dgx-hyperplane12:4136484:4136484 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+dgx-hyperplane12:4136485:4136485 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+dgx-hyperplane12:4136485:4136485 [3] NCCL INFO NET/Plugin: Using internal network plugin.
+dgx-hyperplane12:4136484:4136484 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+dgx-hyperplane12:4136484:4136484 [2] NCCL INFO NET/Plugin: Using internal network plugin.
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_6:1/IB [5]mlx5_7:1/IB [6]mlx5_8:1/IB [7]mlx5_9:1/IB [8]mlx5_10:1/RoCE [RO]; OOB enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Using network IB
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_6:1/IB [5]mlx5_7:1/IB [6]mlx5_8:1/IB [7]mlx5_9:1/IB [8]mlx5_10:1/RoCE [RO]; OOB enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Using network IB
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_6:1/IB [5]mlx5_7:1/IB [6]mlx5_8:1/IB [7]mlx5_9:1/IB [8]mlx5_10:1/RoCE [RO]; OOB enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_6:1/IB [5]mlx5_7:1/IB [6]mlx5_8:1/IB [7]mlx5_9:1/IB [8]mlx5_10:1/RoCE [RO]; OOB enp225s0f0np0:10.141.0.112<0>
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Using network IB
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Using network IB
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO ncclCommInitRank comm 0xa15eb910 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId b7000 commId 0x5486a16f9bb22cb1 - Init START
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO ncclCommInitRank comm 0xa15eb3b0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 90000 commId 0x5486a16f9bb22cb1 - Init START
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO ncclCommInitRank comm 0xa0f8b410 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 87000 commId 0x5486a16f9bb22cb1 - Init START
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO ncclCommInitRank comm 0x9e0d3060 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId bd000 commId 0x5486a16f9bb22cb1 - Init START
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Setting affinity for GPU 2 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Setting affinity for GPU 3 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Setting affinity for GPU 1 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000,00000000
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Setting affinity for GPU 0 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000,00000000
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO comm 0xa0f8b410 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO comm 0x9e0d3060 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO comm 0xa15eb3b0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO comm 0xa15eb910 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 00/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 01/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 02/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 03/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 04/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 05/16 :    0   1   2   3
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 06/16 :    0   1   2   3
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 07/16 :    0   1   2   3
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 08/16 :    0   1   2   3
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 09/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 10/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 11/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 12/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 13/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 14/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 15/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Connected all rings
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Connected all rings
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Connected all rings
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Connected all rings
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO Connected all trees
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO Connected all trees
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO Connected all trees
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO Connected all trees
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+dgx-hyperplane12:4136484:4136871 [2] NCCL INFO ncclCommInitRank comm 0xa15eb910 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId b7000 commId 0x5486a16f9bb22cb1 - Init COMPLETE
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+dgx-hyperplane12:4136485:4136869 [3] NCCL INFO ncclCommInitRank comm 0x9e0d3060 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId bd000 commId 0x5486a16f9bb22cb1 - Init COMPLETE
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+dgx-hyperplane12:4136482:4136870 [0] NCCL INFO ncclCommInitRank comm 0xa0f8b410 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 87000 commId 0x5486a16f9bb22cb1 - Init COMPLETE
+dgx-hyperplane12:4136483:4136872 [1] NCCL INFO ncclCommInitRank comm 0xa15eb3b0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 90000 commId 0x5486a16f9bb22cb1 - Init COMPLETE
 Rank 0:  Loading vision tower: openai/clip-vit-large-patch14-336
-[2024-10-23 15:55:25,477] [INFO] [partition_parameters.py:345:__exit__] finished initializing model - num_params = 1073, num_elems = 15.55B
+[2024-10-24 23:01:08,417] [INFO] [partition_parameters.py:345:__exit__] finished initializing model - num_params = 1073, num_elems = 15.55B
+Rank 0:  Prompt version: qwen_1_5
+Rank 0:  openai/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Rank 0:  Using mm_tunable_parts: mm_vision_tower,mm_mlp_adapter,mm_language_model
+Rank 0:  Total parameters: ~7935.65 MB)
+Rank 0:  Trainable parameters: ~7935.65 MB)
+Rank 0:  Loading inputs/texts/llava-next-sub-100k-rev.json
+Rank 0:  Loaded 100000 samples from inputs/texts/llava-next-sub-100k-rev.json
+Rank 0:  Formatting inputs...Skip in lazy mode
+Rank 0:  Setting NCCL timeout to INF to avoid running errors.
+Parameter Offload: Total persistent parameters: 665088 in 388 params
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Using network IB
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Using non-device net plugin version 0
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Using network IB
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Using network IB
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Using network IB
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO bootstrapSplit: comm 0x154f18028c40 parent 0x9e0d3060 rank 3 nranks 4 color 116666945 key 3 prev 2 next 0 - DONE
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO bootstrapSplit: comm 0x155020028130 parent 0xa0f8b410 rank 0 nranks 4 color 116666945 key 0 prev 3 next 1 - DONE
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO bootstrapSplit: comm 0x154f140284f0 parent 0xa15eb910 rank 2 nranks 4 color 116666945 key 2 prev 1 next 3 - DONE
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO ncclCommSplit comm 0x154f18028c40 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId bd000 parent 0x9e0d3060 color 116666945 key 3 commId 0x13261093338fcd37 - Init START
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO ncclCommSplit comm 0x155020028130 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 87000 parent 0xa0f8b410 color 116666945 key 0 commId 0x13261093338fcd37 - Init START
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO ncclCommSplit comm 0x154f140284f0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId b7000 parent 0xa15eb910 color 116666945 key 2 commId 0x13261093338fcd37 - Init START
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO bootstrapSplit: comm 0x155078029630 parent 0xa15eb3b0 rank 1 nranks 4 color 116666945 key 1 prev 0 next 2 - DONE
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO ncclCommSplit comm 0x155078029630 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 90000 parent 0xa15eb3b0 color 116666945 key 1 commId 0x13261093338fcd37 - Init START
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Setting affinity for GPU 3 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Setting affinity for GPU 2 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Setting affinity for GPU 0 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000,00000000
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Setting affinity for GPU 1 to ffff0000,00000000,00000000,00000000,ffff0000,00000000,00000000,00000000
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO comm 0x155078029630 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO comm 0x154f18028c40 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO comm 0x154f140284f0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO comm 0x155020028130 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 00/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 01/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 02/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 03/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 04/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 05/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 06/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 07/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 08/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 09/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 10/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 11/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 12/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 13/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 14/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 15/16 :    0   1   2   3
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO P2P Chunksize set to 524288
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Connected all rings
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Connected all rings
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Connected all rings
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Connected all rings
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/IPC/read
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO Connected all trees
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO Connected all trees
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO Connected all trees
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO Connected all trees
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO 16 coll channels, 16 collnet channels, 0 nvls channels, 16 p2p channels, 16 p2p channels per peer
+dgx-hyperplane12:4136482:4149618 [0] NCCL INFO ncclCommSplit comm 0x155020028130 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 87000 parent 0xa0f8b410 color 116666945 key 0 commId 0x13261093338fcd37 - Init COMPLETE
+dgx-hyperplane12:4136484:4149623 [2] NCCL INFO ncclCommSplit comm 0x154f140284f0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId b7000 parent 0xa15eb910 color 116666945 key 2 commId 0x13261093338fcd37 - Init COMPLETE
+dgx-hyperplane12:4136483:4149625 [1] NCCL INFO ncclCommSplit comm 0x155078029630 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 90000 parent 0xa15eb3b0 color 116666945 key 1 commId 0x13261093338fcd37 - Init COMPLETE
+dgx-hyperplane12:4136485:4149624 [3] NCCL INFO ncclCommSplit comm 0x154f18028c40 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId bd000 parent 0x9e0d3060 color 116666945 key 3 commId 0x13261093338fcd37 - Init COMPLETE
+{'loss': 0.4773, 'grad_norm': 39.08211781832227, 'learning_rate': 5.319148936170213e-08, 'epoch': 0.0}
+{'loss': 0.5385, 'grad_norm': 37.98541785143026, 'learning_rate': 1.0638297872340426e-07, 'epoch': 0.0}
+{'loss': 0.3713, 'grad_norm': 34.13846899939668, 'learning_rate': 1.5957446808510638e-07, 'epoch': 0.0}
+{'loss': 0.4305, 'grad_norm': 2.249291824608803, 'learning_rate': 2.1276595744680852e-07, 'epoch': 0.0}
+{'loss': 0.4065, 'grad_norm': 203.84441577149042, 'learning_rate': 2.6595744680851066e-07, 'epoch': 0.0}
+{'loss': 0.6419, 'grad_norm': 43.50462054981484, 'learning_rate': 3.1914893617021275e-07, 'epoch': 0.0}
+{'loss': 0.4214, 'grad_norm': 101.12700290412455, 'learning_rate': 3.723404255319149e-07, 'epoch': 0.0}
+{'loss': 0.638, 'grad_norm': 40.278810847997384, 'learning_rate': 4.2553191489361704e-07, 'epoch': 0.0}
+{'loss': 0.4298, 'grad_norm': 103.35256705562817, 'learning_rate': 4.787234042553192e-07, 'epoch': 0.0}
+{'loss': 0.3907, 'grad_norm': 69.68099412427844, 'learning_rate': 5.319148936170213e-07, 'epoch': 0.0}
+{'loss': 0.4795, 'grad_norm': 134.46863305025244, 'learning_rate': 5.851063829787235e-07, 'epoch': 0.0}
+{'loss': 0.5918, 'grad_norm': 38.6511718409369, 'learning_rate': 6.382978723404255e-07, 'epoch': 0.0}
+{'loss': 0.5881, 'grad_norm': 119.92325620170945, 'learning_rate': 6.914893617021278e-07, 'epoch': 0.0}
+{'loss': 0.5069, 'grad_norm': 63.84649684057992, 'learning_rate': 7.446808510638298e-07, 'epoch': 0.0}
+{'loss': 0.3261, 'grad_norm': 36.98817710025381, 'learning_rate': 7.97872340425532e-07, 'epoch': 0.0}
+{'loss': 0.5397, 'grad_norm': 3.026112616775582, 'learning_rate': 8.510638297872341e-07, 'epoch': 0.0}
+{'loss': 0.4964, 'grad_norm': 21.378793946237764, 'learning_rate': 9.042553191489363e-07, 'epoch': 0.0}
+{'loss': 0.4455, 'grad_norm': 15.133007192045152, 'learning_rate': 9.574468085106384e-07, 'epoch': 0.0}
+{'loss': 0.3764, 'grad_norm': 14.428905556786706, 'learning_rate': 1.0106382978723404e-06, 'epoch': 0.0}
+{'loss': 0.5059, 'grad_norm': 23.35495990477652, 'learning_rate': 1.0638297872340427e-06, 'epoch': 0.0}
+{'loss': 0.5246, 'grad_norm': 16.93478612394119, 'learning_rate': 1.1170212765957447e-06, 'epoch': 0.0}
+{'loss': 0.2897, 'grad_norm': 19.953343720583106, 'learning_rate': 1.170212765957447e-06, 'epoch': 0.0}
+{'loss': 0.4937, 'grad_norm': 12.453451281736664, 'learning_rate': 1.223404255319149e-06, 'epoch': 0.0}
+{'loss': 0.5065, 'grad_norm': 23.4159677321277, 'learning_rate': 1.276595744680851e-06, 'epoch': 0.0}
+{'loss': 0.5338, 'grad_norm': 10.179307110876985, 'learning_rate': 1.3297872340425533e-06, 'epoch': 0.0}
+{'loss': 0.3348, 'grad_norm': 13.26794571722755, 'learning_rate': 1.3829787234042555e-06, 'epoch': 0.0}
+{'loss': 0.3324, 'grad_norm': 12.13113190189468, 'learning_rate': 1.4361702127659578e-06, 'epoch': 0.0}
+{'loss': 0.3778, 'grad_norm': 48.624250518662585, 'learning_rate': 1.4893617021276596e-06, 'epoch': 0.0}
+{'loss': 0.6453, 'grad_norm': 18.010508034536862, 'learning_rate': 1.5425531914893618e-06, 'epoch': 0.0}
+{'loss': 0.303, 'grad_norm': 24.616419271260686, 'learning_rate': 1.595744680851064e-06, 'epoch': 0.0}
+{'loss': 0.3849, 'grad_norm': 23.24750821928303, 'learning_rate': 1.648936170212766e-06, 'epoch': 0.0}
+{'loss': 0.5498, 'grad_norm': 23.2687054363107, 'learning_rate': 1.7021276595744682e-06, 'epoch': 0.01}
+{'loss': 0.3295, 'grad_norm': 30.415417276649627, 'learning_rate': 1.7553191489361704e-06, 'epoch': 0.01}
+{'loss': 0.2764, 'grad_norm': 21.024546731915432, 'learning_rate': 1.8085106382978727e-06, 'epoch': 0.01}
+{'loss': 0.42, 'grad_norm': 10.68391557728232, 'learning_rate': 1.8617021276595745e-06, 'epoch': 0.01}
+{'loss': 0.3302, 'grad_norm': 11.869152124642977, 'learning_rate': 1.9148936170212767e-06, 'epoch': 0.01}
+{'loss': 0.3823, 'grad_norm': 15.513036235599447, 'learning_rate': 1.968085106382979e-06, 'epoch': 0.01}
+{'loss': 0.4293, 'grad_norm': 3.3279135419204415, 'learning_rate': 2.021276595744681e-06, 'epoch': 0.01}
+{'loss': 0.2619, 'grad_norm': 21.719768696220388, 'learning_rate': 2.074468085106383e-06, 'epoch': 0.01}
+{'loss': 0.4077, 'grad_norm': 11.993203702491519, 'learning_rate': 2.1276595744680853e-06, 'epoch': 0.01}
+{'loss': 0.4874, 'grad_norm': 14.516419195650277, 'learning_rate': 2.1808510638297876e-06, 'epoch': 0.01}
+{'loss': 0.3692, 'grad_norm': 17.963936738143524, 'learning_rate': 2.2340425531914894e-06, 'epoch': 0.01}
+{'loss': 0.3373, 'grad_norm': 13.720511252702853, 'learning_rate': 2.2872340425531916e-06, 'epoch': 0.01}
+{'loss': 0.4613, 'grad_norm': 2.9569753144892803, 'learning_rate': 2.340425531914894e-06, 'epoch': 0.01}
+{'loss': 0.246, 'grad_norm': 19.631380448591504, 'learning_rate': 2.393617021276596e-06, 'epoch': 0.01}
+{'loss': 0.3216, 'grad_norm': 20.058633405010564, 'learning_rate': 2.446808510638298e-06, 'epoch': 0.01}
+{'loss': 0.4235, 'grad_norm': 11.812725597904734, 'learning_rate': 2.5e-06, 'epoch': 0.01}
+{'loss': 0.4682, 'grad_norm': 12.58082435617736, 'learning_rate': 2.553191489361702e-06, 'epoch': 0.01}
+{'loss': 0.4697, 'grad_norm': 48.650231952298995, 'learning_rate': 2.6063829787234047e-06, 'epoch': 0.01}
+{'loss': 0.451, 'grad_norm': 8.762909918551559, 'learning_rate': 2.6595744680851065e-06, 'epoch': 0.01}
+{'loss': 0.411, 'grad_norm': 7.820853256895459, 'learning_rate': 2.7127659574468084e-06, 'epoch': 0.01}
+{'loss': 0.5787, 'grad_norm': 113.79899623081943, 'learning_rate': 2.765957446808511e-06, 'epoch': 0.01}
+{'loss': 0.2704, 'grad_norm': 29.66778877435516, 'learning_rate': 2.819148936170213e-06, 'epoch': 0.01}
+{'loss': 0.3521, 'grad_norm': 15.018701292359196, 'learning_rate': 2.8723404255319155e-06, 'epoch': 0.01}
+{'loss': 0.4002, 'grad_norm': 12.436841374304201, 'learning_rate': 2.9255319148936174e-06, 'epoch': 0.01}
+{'loss': 0.5809, 'grad_norm': 80.82674768235421, 'learning_rate': 2.978723404255319e-06, 'epoch': 0.01}
+{'loss': 0.4427, 'grad_norm': 43.34847365192893, 'learning_rate': 3.031914893617022e-06, 'epoch': 0.01}
+{'loss': 0.4507, 'grad_norm': 24.87346727574105, 'learning_rate': 3.0851063829787237e-06, 'epoch': 0.01}
+{'loss': 0.4417, 'grad_norm': 11.311903738238623, 'learning_rate': 3.1382978723404255e-06, 'epoch': 0.01}
+{'loss': 0.3265, 'grad_norm': 10.968058193109986, 'learning_rate': 3.191489361702128e-06, 'epoch': 0.01}
+{'loss': 0.4275, 'grad_norm': 23.265066381848168, 'learning_rate': 3.24468085106383e-06, 'epoch': 0.01}
+{'loss': 0.2582, 'grad_norm': 19.773238212933485, 'learning_rate': 3.297872340425532e-06, 'epoch': 0.01}
+{'loss': 0.3654, 'grad_norm': 172.84922267762897, 'learning_rate': 3.3510638297872345e-06, 'epoch': 0.01}
+{'loss': 0.4137, 'grad_norm': 10.87777107332148, 'learning_rate': 3.4042553191489363e-06, 'epoch': 0.01}
+{'loss': 0.344, 'grad_norm': 28.84839569386253, 'learning_rate': 3.457446808510639e-06, 'epoch': 0.01}
+{'loss': 0.3798, 'grad_norm': 15.776898160970282, 'learning_rate': 3.510638297872341e-06, 'epoch': 0.01}
+{'loss': 0.2672, 'grad_norm': 20.983729501958024, 'learning_rate': 3.5638297872340426e-06, 'epoch': 0.01}
+{'loss': 0.4791, 'grad_norm': 16.737203108089066, 'learning_rate': 3.6170212765957453e-06, 'epoch': 0.01}
+{'loss': 0.4094, 'grad_norm': 26.879546026229164, 'learning_rate': 3.670212765957447e-06, 'epoch': 0.01}
+{'loss': 0.3202, 'grad_norm': 11.879833096325063, 'learning_rate': 3.723404255319149e-06, 'epoch': 0.01}
+{'loss': 0.5467, 'grad_norm': 14.310502805917574, 'learning_rate': 3.7765957446808516e-06, 'epoch': 0.01}
+{'loss': 0.4827, 'grad_norm': 13.791090204477161, 'learning_rate': 3.8297872340425535e-06, 'epoch': 0.01}
+{'loss': 0.4279, 'grad_norm': 49.78097341545812, 'learning_rate': 3.882978723404256e-06, 'epoch': 0.01}
+{'loss': 0.4453, 'grad_norm': 2.2538201571974765, 'learning_rate': 3.936170212765958e-06, 'epoch': 0.01}
+{'loss': 0.3372, 'grad_norm': 86.58230074105889, 'learning_rate': 3.98936170212766e-06, 'epoch': 0.01}
+{'loss': 0.402, 'grad_norm': 25.383264955472548, 'learning_rate': 4.042553191489362e-06, 'epoch': 0.01}
+{'loss': 0.5474, 'grad_norm': 10.665226260476715, 'learning_rate': 4.095744680851064e-06, 'epoch': 0.01}
+{'loss': 0.4428, 'grad_norm': 34.511762948285764, 'learning_rate': 4.148936170212766e-06, 'epoch': 0.01}
+{'loss': 0.4183, 'grad_norm': 19.28270266545761, 'learning_rate': 4.202127659574468e-06, 'epoch': 0.01}
+{'loss': 0.3733, 'grad_norm': 16.855796577113395, 'learning_rate': 4.255319148936171e-06, 'epoch': 0.01}
+{'loss': 0.4542, 'grad_norm': 17.058366083215958, 'learning_rate': 4.308510638297873e-06, 'epoch': 0.01}
+{'loss': 0.3992, 'grad_norm': 14.467139547320562, 'learning_rate': 4.361702127659575e-06, 'epoch': 0.01}
+{'loss': 0.4108, 'grad_norm': 22.895884018945488, 'learning_rate': 4.414893617021277e-06, 'epoch': 0.01}
+{'loss': 0.3596, 'grad_norm': 2.653882458812944, 'learning_rate': 4.468085106382979e-06, 'epoch': 0.01}
+{'loss': 0.2524, 'grad_norm': 19.507345701749777, 'learning_rate': 4.521276595744681e-06, 'epoch': 0.01}
+{'loss': 0.3818, 'grad_norm': 19.089163356355442, 'learning_rate': 4.574468085106383e-06, 'epoch': 0.01}
+{'loss': 0.4282, 'grad_norm': 40.8958650710859, 'learning_rate': 4.6276595744680855e-06, 'epoch': 0.01}
+{'loss': 0.3241, 'grad_norm': 27.181115286201592, 'learning_rate': 4.680851063829788e-06, 'epoch': 0.01}
+{'loss': 0.2429, 'grad_norm': 40.64912760729802, 'learning_rate': 4.73404255319149e-06, 'epoch': 0.01}
+{'loss': 0.3301, 'grad_norm': 130.68251667462187, 'learning_rate': 4.787234042553192e-06, 'epoch': 0.01}
+{'loss': 0.4252, 'grad_norm': 17.63911079825187, 'learning_rate': 4.840425531914894e-06, 'epoch': 0.01}
+{'loss': 0.3652, 'grad_norm': 49.092089327049564, 'learning_rate': 4.893617021276596e-06, 'epoch': 0.01}
+{'loss': 0.3483, 'grad_norm': 42.71570235920971, 'learning_rate': 4.946808510638298e-06, 'epoch': 0.01}
+{'loss': 0.2945, 'grad_norm': 16.10047923879906, 'learning_rate': 5e-06, 'epoch': 0.02}
+{'loss': 0.3189, 'grad_norm': 17.55361712547725, 'learning_rate': 5.053191489361703e-06, 'epoch': 0.02}
+{'loss': 0.266, 'grad_norm': 13.044234065014372, 'learning_rate': 5.106382978723404e-06, 'epoch': 0.02}
+{'loss': 0.5047, 'grad_norm': 43.832882477455286, 'learning_rate': 5.159574468085107e-06, 'epoch': 0.02}
+{'loss': 0.2363, 'grad_norm': 9.138147739937024, 'learning_rate': 5.212765957446809e-06, 'epoch': 0.02}
+{'loss': 0.2234, 'grad_norm': 29.399738746847277, 'learning_rate': 5.265957446808511e-06, 'epoch': 0.02}
+{'loss': 0.5398, 'grad_norm': 22.741268671434096, 'learning_rate': 5.319148936170213e-06, 'epoch': 0.02}
+{'loss': 0.3401, 'grad_norm': 159.7163112422561, 'learning_rate': 5.372340425531915e-06, 'epoch': 0.02}
+{'loss': 0.4108, 'grad_norm': 13.615183994480196, 'learning_rate': 5.425531914893617e-06, 'epoch': 0.02}
+{'loss': 0.7243, 'grad_norm': 17.516684131876808, 'learning_rate': 5.47872340425532e-06, 'epoch': 0.02}
+{'loss': 0.3983, 'grad_norm': 17.498048226491253, 'learning_rate': 5.531914893617022e-06, 'epoch': 0.02}
+{'loss': 0.3843, 'grad_norm': 14.394802806335763, 'learning_rate': 5.5851063829787235e-06, 'epoch': 0.02}
+{'loss': 0.338, 'grad_norm': 13.937516622362224, 'learning_rate': 5.638297872340426e-06, 'epoch': 0.02}
+{'loss': 0.4604, 'grad_norm': 15.946505937608432, 'learning_rate': 5.691489361702128e-06, 'epoch': 0.02}
+{'loss': 0.5165, 'grad_norm': 9.284382172300575, 'learning_rate': 5.744680851063831e-06, 'epoch': 0.02}
+{'loss': 0.6782, 'grad_norm': 13.599093724377491, 'learning_rate': 5.7978723404255325e-06, 'epoch': 0.02}
+{'loss': 0.4902, 'grad_norm': 46.70259221351848, 'learning_rate': 5.851063829787235e-06, 'epoch': 0.02}
+{'loss': 0.536, 'grad_norm': 49.81119888465526, 'learning_rate': 5.904255319148937e-06, 'epoch': 0.02}
+{'loss': 0.2928, 'grad_norm': 9.150410311152498, 'learning_rate': 5.957446808510638e-06, 'epoch': 0.02}
+{'loss': 0.4225, 'grad_norm': 55.7182809411403, 'learning_rate': 6.010638297872341e-06, 'epoch': 0.02}
+{'loss': 0.5584, 'grad_norm': 14.241359356068479, 'learning_rate': 6.063829787234044e-06, 'epoch': 0.02}
+{'loss': 0.4577, 'grad_norm': 11.1751415134771, 'learning_rate': 6.117021276595745e-06, 'epoch': 0.02}
+{'loss': 0.5104, 'grad_norm': 17.52903932407454, 'learning_rate': 6.170212765957447e-06, 'epoch': 0.02}
+{'loss': 0.2626, 'grad_norm': 34.77960068890216, 'learning_rate': 6.22340425531915e-06, 'epoch': 0.02}
+{'loss': 0.5628, 'grad_norm': 100.67729301338433, 'learning_rate': 6.276595744680851e-06, 'epoch': 0.02}
+{'loss': 0.4405, 'grad_norm': 22.837722289250895, 'learning_rate': 6.329787234042554e-06, 'epoch': 0.02}
+{'loss': 0.3622, 'grad_norm': 19.341588309999388, 'learning_rate': 6.382978723404256e-06, 'epoch': 0.02}
+{'loss': 0.5851, 'grad_norm': 19.871430383255916, 'learning_rate': 6.436170212765958e-06, 'epoch': 0.02}
+{'loss': 0.4466, 'grad_norm': 17.79881578990266, 'learning_rate': 6.48936170212766e-06, 'epoch': 0.02}
+{'loss': 0.3607, 'grad_norm': 9.028296031261823, 'learning_rate': 6.542553191489362e-06, 'epoch': 0.02}
+{'loss': 0.5096, 'grad_norm': 17.984855675303997, 'learning_rate': 6.595744680851064e-06, 'epoch': 0.02}
+{'loss': 0.551, 'grad_norm': 13.213471007293487, 'learning_rate': 6.648936170212767e-06, 'epoch': 0.02}
+{'loss': 0.2778, 'grad_norm': 15.65069902822332, 'learning_rate': 6.702127659574469e-06, 'epoch': 0.02}
+{'loss': 0.4245, 'grad_norm': 20.759501656346437, 'learning_rate': 6.75531914893617e-06, 'epoch': 0.02}
+{'loss': 0.3924, 'grad_norm': 19.54197649758648, 'learning_rate': 6.808510638297873e-06, 'epoch': 0.02}
+{'loss': 0.4773, 'grad_norm': 16.489450565764404, 'learning_rate': 6.861702127659575e-06, 'epoch': 0.02}
+{'loss': 0.4933, 'grad_norm': 21.377994811398697, 'learning_rate': 6.914893617021278e-06, 'epoch': 0.02}
+{'loss': 0.3818, 'grad_norm': 31.860278574863862, 'learning_rate': 6.968085106382979e-06, 'epoch': 0.02}
+{'loss': 0.4758, 'grad_norm': 22.724658285504287, 'learning_rate': 7.021276595744682e-06, 'epoch': 0.02}
+{'loss': 0.4992, 'grad_norm': 10.949179948822772, 'learning_rate': 7.074468085106384e-06, 'epoch': 0.02}
+{'loss': 0.6442, 'grad_norm': 10.134821382718053, 'learning_rate': 7.127659574468085e-06, 'epoch': 0.02}
+{'loss': 0.4329, 'grad_norm': 12.584126108509043, 'learning_rate': 7.1808510638297875e-06, 'epoch': 0.02}
+{'loss': 0.433, 'grad_norm': 32.39871760359671, 'learning_rate': 7.234042553191491e-06, 'epoch': 0.02}
+{'loss': 0.5582, 'grad_norm': 6.378825523272661, 'learning_rate': 7.287234042553192e-06, 'epoch': 0.02}
+{'loss': 0.4779, 'grad_norm': 36.94435387725056, 'learning_rate': 7.340425531914894e-06, 'epoch': 0.02}
+{'loss': 0.3545, 'grad_norm': 31.94395377250529, 'learning_rate': 7.3936170212765965e-06, 'epoch': 0.02}
+{'loss': 0.4328, 'grad_norm': 79.44557595565523, 'learning_rate': 7.446808510638298e-06, 'epoch': 0.02}
+{'loss': 0.604, 'grad_norm': 11.058446400164467, 'learning_rate': 7.500000000000001e-06, 'epoch': 0.02}
+{'loss': 0.3163, 'grad_norm': 22.555075908415173, 'learning_rate': 7.553191489361703e-06, 'epoch': 0.02}
+{'loss': 0.3851, 'grad_norm': 9.374088778632881, 'learning_rate': 7.606382978723405e-06, 'epoch': 0.02}
+{'loss': 0.2849, 'grad_norm': 12.447794529254562, 'learning_rate': 7.659574468085107e-06, 'epoch': 0.02}
+{'loss': 0.4551, 'grad_norm': 11.200731393314182, 'learning_rate': 7.71276595744681e-06, 'epoch': 0.02}
+{'loss': 0.2494, 'grad_norm': 39.78324236840466, 'learning_rate': 7.765957446808511e-06, 'epoch': 0.02}
+{'loss': 0.3958, 'grad_norm': 81.20272115435806, 'learning_rate': 7.819148936170213e-06, 'epoch': 0.02}
+{'loss': 0.4891, 'grad_norm': 11.829778422607756, 'learning_rate': 7.872340425531916e-06, 'epoch': 0.02}
+{'loss': 0.4049, 'grad_norm': 5.932778595804673, 'learning_rate': 7.925531914893617e-06, 'epoch': 0.02}
+{'loss': 0.3352, 'grad_norm': 70.75448768514916, 'learning_rate': 7.97872340425532e-06, 'epoch': 0.02}
+{'loss': 0.4002, 'grad_norm': 12.52576013790895, 'learning_rate': 8.031914893617022e-06, 'epoch': 0.02}
+{'loss': 0.4001, 'grad_norm': 7.340478778785577, 'learning_rate': 8.085106382978723e-06, 'epoch': 0.02}
+{'loss': 0.6188, 'grad_norm': 16.73247624487107, 'learning_rate': 8.138297872340426e-06, 'epoch': 0.02}
+{'loss': 0.2777, 'grad_norm': 13.966804686332571, 'learning_rate': 8.191489361702128e-06, 'epoch': 0.02}
+{'loss': 0.5505, 'grad_norm': 50.92933835411826, 'learning_rate': 8.24468085106383e-06, 'epoch': 0.02}
+{'loss': 0.2648, 'grad_norm': 10.483404787150214, 'learning_rate': 8.297872340425532e-06, 'epoch': 0.02}
+{'loss': 0.4373, 'grad_norm': 17.240733973336745, 'learning_rate': 8.351063829787235e-06, 'epoch': 0.03}
+{'loss': 0.4649, 'grad_norm': 11.836421473138882, 'learning_rate': 8.404255319148937e-06, 'epoch': 0.03}
+{'loss': 0.2842, 'grad_norm': 9.646518338588757, 'learning_rate': 8.457446808510638e-06, 'epoch': 0.03}
+{'loss': 0.3516, 'grad_norm': 12.839968566278095, 'learning_rate': 8.510638297872341e-06, 'epoch': 0.03}
+{'loss': 0.4238, 'grad_norm': 7.291691544588826, 'learning_rate': 8.563829787234044e-06, 'epoch': 0.03}
+{'loss': 0.4342, 'grad_norm': 52.90775663390001, 'learning_rate': 8.617021276595746e-06, 'epoch': 0.03}
+{'loss': 0.2923, 'grad_norm': 15.822583105122252, 'learning_rate': 8.670212765957447e-06, 'epoch': 0.03}
+{'loss': 0.4003, 'grad_norm': 39.67525021202248, 'learning_rate': 8.72340425531915e-06, 'epoch': 0.03}
+{'loss': 0.4848, 'grad_norm': 15.52951738974665, 'learning_rate': 8.776595744680852e-06, 'epoch': 0.03}
+{'loss': 0.7376, 'grad_norm': 9.505381720470364, 'learning_rate': 8.829787234042555e-06, 'epoch': 0.03}
+{'loss': 0.3817, 'grad_norm': 2.875839519613028, 'learning_rate': 8.882978723404256e-06, 'epoch': 0.03}
+{'loss': 0.3374, 'grad_norm': 23.16554615813932, 'learning_rate': 8.936170212765958e-06, 'epoch': 0.03}
+{'loss': 0.4349, 'grad_norm': 9.932476049040908, 'learning_rate': 8.98936170212766e-06, 'epoch': 0.03}
+{'loss': 0.3558, 'grad_norm': 77.93184395630712, 'learning_rate': 9.042553191489362e-06, 'epoch': 0.03}
+{'loss': 0.4324, 'grad_norm': 333.54109964420934, 'learning_rate': 9.095744680851063e-06, 'epoch': 0.03}
+{'loss': 0.533, 'grad_norm': 11.978564405901116, 'learning_rate': 9.148936170212767e-06, 'epoch': 0.03}
+{'loss': 0.5879, 'grad_norm': 6.302734166642903, 'learning_rate': 9.20212765957447e-06, 'epoch': 0.03}
+{'loss': 0.5649, 'grad_norm': 11.475060896339262, 'learning_rate': 9.255319148936171e-06, 'epoch': 0.03}
+{'loss': 0.3336, 'grad_norm': 46.54477928567959, 'learning_rate': 9.308510638297872e-06, 'epoch': 0.03}
+{'loss': 0.6686, 'grad_norm': 72.43743472953093, 'learning_rate': 9.361702127659576e-06, 'epoch': 0.03}
+{'loss': 0.6109, 'grad_norm': 9.007681151938941, 'learning_rate': 9.414893617021279e-06, 'epoch': 0.03}
+{'loss': 0.527, 'grad_norm': 38.23397253211941, 'learning_rate': 9.46808510638298e-06, 'epoch': 0.03}
+{'loss': 0.4949, 'grad_norm': 2.696583065775799, 'learning_rate': 9.521276595744681e-06, 'epoch': 0.03}
+{'loss': 0.3712, 'grad_norm': 24.113232810766412, 'learning_rate': 9.574468085106385e-06, 'epoch': 0.03}
+{'loss': 0.4229, 'grad_norm': 25.85423505165033, 'learning_rate': 9.627659574468086e-06, 'epoch': 0.03}
+{'loss': 0.4365, 'grad_norm': 2.78466310889672, 'learning_rate': 9.680851063829787e-06, 'epoch': 0.03}
+{'loss': 0.4519, 'grad_norm': 12.599463226027952, 'learning_rate': 9.73404255319149e-06, 'epoch': 0.03}
+{'loss': 0.4091, 'grad_norm': 629.9593446712245, 'learning_rate': 9.787234042553192e-06, 'epoch': 0.03}
+{'loss': 0.34, 'grad_norm': 13.170992900747837, 'learning_rate': 9.840425531914895e-06, 'epoch': 0.03}
+{'loss': 0.3397, 'grad_norm': 32.22352015752945, 'learning_rate': 9.893617021276596e-06, 'epoch': 0.03}
+{'loss': 0.3874, 'grad_norm': 3.902464368117293, 'learning_rate': 9.946808510638298e-06, 'epoch': 0.03}
+{'loss': 0.5017, 'grad_norm': 111.39303185730185, 'learning_rate': 1e-05, 'epoch': 0.03}
+{'loss': 0.3302, 'grad_norm': 10.395118432545322, 'learning_rate': 9.999999328558964e-06, 'epoch': 0.03}
+{'loss': 0.3955, 'grad_norm': 15.511875502171529, 'learning_rate': 9.999997314236036e-06, 'epoch': 0.03}
+{'loss': 0.3475, 'grad_norm': 11.115986055569165, 'learning_rate': 9.999993957031758e-06, 'epoch': 0.03}
+{'loss': 0.4854, 'grad_norm': 7.02586529867277, 'learning_rate': 9.999989256947029e-06, 'epoch': 0.03}
+{'loss': 0.4764, 'grad_norm': 52.859204858945915, 'learning_rate': 9.999983213983114e-06, 'epoch': 0.03}
+{'loss': 0.3764, 'grad_norm': 29.343143012941333, 'learning_rate': 9.999975828141635e-06, 'epoch': 0.03}
+{'loss': 0.3191, 'grad_norm': 44.30134610595375, 'learning_rate': 9.999967099424577e-06, 'epoch': 0.03}
+{'loss': 0.4682, 'grad_norm': 8.747358639333335, 'learning_rate': 9.999957027834282e-06, 'epoch': 0.03}
+{'loss': 0.4283, 'grad_norm': 17.13668371713005, 'learning_rate': 9.999945613373456e-06, 'epoch': 0.03}
+{'loss': 0.5323, 'grad_norm': 30.367322077707275, 'learning_rate': 9.999932856045164e-06, 'epoch': 0.03}
+{'loss': 0.2707, 'grad_norm': 15.430538366857224, 'learning_rate': 9.999918755852834e-06, 'epoch': 0.03}
+{'loss': 0.5448, 'grad_norm': 3.467227184236715, 'learning_rate': 9.99990331280025e-06, 'epoch': 0.03}
+{'loss': 0.4214, 'grad_norm': 15.717881192521226, 'learning_rate': 9.999886526891565e-06, 'epoch': 0.03}
+{'loss': 0.281, 'grad_norm': 8.337615145320122, 'learning_rate': 9.999868398131282e-06, 'epoch': 0.03}
+{'loss': 0.4089, 'grad_norm': 55.82887498892514, 'learning_rate': 9.999848926524272e-06, 'epoch': 0.03}
+{'loss': 0.6347, 'grad_norm': 3.023653608491445, 'learning_rate': 9.999828112075764e-06, 'epoch': 0.03}
+{'loss': 0.5364, 'grad_norm': 23.199291076896362, 'learning_rate': 9.999805954791351e-06, 'epoch': 0.03}
+{'loss': 0.4936, 'grad_norm': 30.61142338822791, 'learning_rate': 9.99978245467698e-06, 'epoch': 0.03}
+{'loss': 0.5185, 'grad_norm': 123.8832112918887, 'learning_rate': 9.999757611738964e-06, 'epoch': 0.03}
+{'loss': 0.4633, 'grad_norm': 10.9808861226949, 'learning_rate': 9.999731425983975e-06, 'epoch': 0.03}
+{'loss': 0.4222, 'grad_norm': 32.347210436861204, 'learning_rate': 9.999703897419048e-06, 'epoch': 0.03}
+{'loss': 0.4205, 'grad_norm': 334.6717251778603, 'learning_rate': 9.999675026051576e-06, 'epoch': 0.03}
+{'loss': 0.4476, 'grad_norm': 15.211657802003163, 'learning_rate': 9.99964481188931e-06, 'epoch': 0.03}
+{'loss': 0.5959, 'grad_norm': 17.013217760926608, 'learning_rate': 9.999613254940368e-06, 'epoch': 0.03}
+{'loss': 0.4781, 'grad_norm': 34.221133793245016, 'learning_rate': 9.999580355213223e-06, 'epoch': 0.03}
+{'loss': 0.475, 'grad_norm': 43.65343711275558, 'learning_rate': 9.999546112716715e-06, 'epoch': 0.03}
+{'loss': 0.3651, 'grad_norm': 21.73932595997725, 'learning_rate': 9.999510527460036e-06, 'epoch': 0.03}
+{'loss': 0.4736, 'grad_norm': 31.550828873310152, 'learning_rate': 9.999473599452746e-06, 'epoch': 0.03}
+{'loss': 0.2733, 'grad_norm': 22.485119024726206, 'learning_rate': 9.999435328704763e-06, 'epoch': 0.03}
+{'loss': 0.4282, 'grad_norm': 37.886733506896654, 'learning_rate': 9.999395715226365e-06, 'epoch': 0.03}
+{'loss': 0.4076, 'grad_norm': 9.98578642876731, 'learning_rate': 9.99935475902819e-06, 'epoch': 0.04}
+{'loss': 0.5747, 'grad_norm': 3.1670663813438873, 'learning_rate': 9.999312460121242e-06, 'epoch': 0.04}
+{'loss': 0.4122, 'grad_norm': 3.3814427405118113, 'learning_rate': 9.999268818516877e-06, 'epoch': 0.04}
+{'loss': 0.3595, 'grad_norm': 12.877831034061053, 'learning_rate': 9.999223834226817e-06, 'epoch': 0.04}
+{'loss': 0.7101, 'grad_norm': 15.42764877075143, 'learning_rate': 9.999177507263146e-06, 'epoch': 0.04}
+{'loss': 0.4244, 'grad_norm': 2.4751688197832005, 'learning_rate': 9.999129837638303e-06, 'epoch': 0.04}
+{'loss': 0.4203, 'grad_norm': 25.321406300440223, 'learning_rate': 9.999080825365095e-06, 'epoch': 0.04}
+{'loss': 0.4374, 'grad_norm': 13.24886511418232, 'learning_rate': 9.999030470456684e-06, 'epoch': 0.04}
+{'loss': 0.5274, 'grad_norm': 10.778307537506189, 'learning_rate': 9.998978772926592e-06, 'epoch': 0.04}
+{'loss': 0.4826, 'grad_norm': 28.747501627119934, 'learning_rate': 9.998925732788706e-06, 'epoch': 0.04}
+{'loss': 0.6356, 'grad_norm': 8.041525883243605, 'learning_rate': 9.99887135005727e-06, 'epoch': 0.04}
+{'loss': 0.5755, 'grad_norm': 18.57823339200888, 'learning_rate': 9.99881562474689e-06, 'epoch': 0.04}
+{'loss': 0.2636, 'grad_norm': 16.098138231306578, 'learning_rate': 9.998758556872534e-06, 'epoch': 0.04}
+{'loss': 0.4498, 'grad_norm': 13.975813321868943, 'learning_rate': 9.998700146449528e-06, 'epoch': 0.04}
+{'loss': 0.588, 'grad_norm': 8.059853427591083, 'learning_rate': 9.998640393493559e-06, 'epoch': 0.04}
+{'loss': 0.6235, 'grad_norm': 14.998492378780172, 'learning_rate': 9.998579298020676e-06, 'epoch': 0.04}
+{'loss': 0.4275, 'grad_norm': 13.37597218112862, 'learning_rate': 9.99851686004729e-06, 'epoch': 0.04}
+{'loss': 0.5717, 'grad_norm': 16.993953795775216, 'learning_rate': 9.998453079590167e-06, 'epoch': 0.04}
+{'loss': 0.2595, 'grad_norm': 5.456794328067626, 'learning_rate': 9.998387956666438e-06, 'epoch': 0.04}
+{'loss': 0.5247, 'grad_norm': 368.43327534842143, 'learning_rate': 9.998321491293592e-06, 'epoch': 0.04}
+{'loss': 0.3829, 'grad_norm': 7.222632241519071, 'learning_rate': 9.998253683489483e-06, 'epoch': 0.04}
+{'loss': 0.4758, 'grad_norm': 6.584877050566687, 'learning_rate': 9.998184533272321e-06, 'epoch': 0.04}
+{'loss': 0.4115, 'grad_norm': 9.520081642354373, 'learning_rate': 9.998114040660678e-06, 'epoch': 0.04}
+{'loss': 0.4916, 'grad_norm': 8.21527000175657, 'learning_rate': 9.998042205673489e-06, 'epoch': 0.04}
+[2024-10-24 23:30:38,591] [WARNING] [stage3.py:2070:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 0.3302, 'grad_norm': 10.550370213402504, 'learning_rate': 9.997969028330042e-06, 'epoch': 0.04}
+{'loss': 0.507, 'grad_norm': 9.958852255613486, 'learning_rate': 9.997894508649995e-06, 'epoch': 0.04}
+{'loss': 0.3628, 'grad_norm': 8.553489330075076, 'learning_rate': 9.997818646653362e-06, 'epoch': 0.04}
+{'loss': 0.4534, 'grad_norm': 12.376059164559996, 'learning_rate': 9.997741442360515e-06, 'epoch': 0.04}
+{'loss': 0.4135, 'grad_norm': 14.317244329813652, 'learning_rate': 9.997662895792192e-06, 'epoch': 0.04}
+{'loss': 0.3195, 'grad_norm': 6.0640953815063074, 'learning_rate': 9.99758300696949e-06, 'epoch': 0.04}
+{'loss': 0.5349, 'grad_norm': 2.379279318605787, 'learning_rate': 9.99750177591386e-06, 'epoch': 0.04}
+{'loss': 0.3794, 'grad_norm': 8.154771879455478, 'learning_rate': 9.997419202647124e-06, 'epoch': 0.04}
+{'loss': 0.6881, 'grad_norm': 22.50316542255069, 'learning_rate': 9.997335287191456e-06, 'epoch': 0.04}
+{'loss': 0.3205, 'grad_norm': 7.70580892937402, 'learning_rate': 9.997250029569395e-06, 'epoch': 0.04}
+{'loss': 0.6184, 'grad_norm': 14.246018874314316, 'learning_rate': 9.997163429803838e-06, 'epoch': 0.04}
+{'loss': 0.6514, 'grad_norm': 10.143535388459231, 'learning_rate': 9.997075487918047e-06, 'epoch': 0.04}
+{'loss': 0.743, 'grad_norm': 17.6036544628238, 'learning_rate': 9.996986203935636e-06, 'epoch': 0.04}
+{'loss': 0.3796, 'grad_norm': 9.15057898395211, 'learning_rate': 9.99689557788059e-06, 'epoch': 0.04}
+{'loss': 0.4086, 'grad_norm': 121.58870021040924, 'learning_rate': 9.996803609777244e-06, 'epoch': 0.04}
+{'loss': 0.453, 'grad_norm': 40.31171243688834, 'learning_rate': 9.996710299650302e-06, 'epoch': 0.04}
+{'loss': 0.4024, 'grad_norm': 10.107666894194098, 'learning_rate': 9.996615647524824e-06, 'epoch': 0.04}
+{'loss': 0.4836, 'grad_norm': 22.909690406168938, 'learning_rate': 9.996519653426229e-06, 'epoch': 0.04}
+{'loss': 0.5522, 'grad_norm': 35.57632701912248, 'learning_rate': 9.996422317380303e-06, 'epoch': 0.04}
+{'loss': 0.3764, 'grad_norm': 13.570843628675222, 'learning_rate': 9.996323639413185e-06, 'epoch': 0.04}
+{'loss': 0.4849, 'grad_norm': 9.062072566059253, 'learning_rate': 9.996223619551377e-06, 'epoch': 0.04}
+{'loss': 0.5279, 'grad_norm': 31.512622752530227, 'learning_rate': 9.996122257821746e-06, 'epoch': 0.04}
+{'loss': 0.5908, 'grad_norm': 19.881332847115736, 'learning_rate': 9.996019554251512e-06, 'epoch': 0.04}
+{'loss': 0.4614, 'grad_norm': 11.634860986133969, 'learning_rate': 9.99591550886826e-06, 'epoch': 0.04}
+{'loss': 0.4503, 'grad_norm': 3.041159026988433, 'learning_rate': 9.995810121699933e-06, 'epoch': 0.04}
+{'loss': 0.3981, 'grad_norm': 10.297141631058192, 'learning_rate': 9.995703392774836e-06, 'epoch': 0.04}
+{'loss': 0.4575, 'grad_norm': 6.629028344078773, 'learning_rate': 9.995595322121633e-06, 'epoch': 0.04}
+{'loss': 0.5513, 'grad_norm': 11.671528189118037, 'learning_rate': 9.995485909769354e-06, 'epoch': 0.04}
+{'loss': 0.4832, 'grad_norm': 22.224950087900947, 'learning_rate': 9.995375155747378e-06, 'epoch': 0.04}
+{'loss': 0.4784, 'grad_norm': 20.702701300320285, 'learning_rate': 9.995263060085456e-06, 'epoch': 0.04}
+{'loss': 0.3283, 'grad_norm': 14.885765670371836, 'learning_rate': 9.99514962281369e-06, 'epoch': 0.04}
+{'loss': 0.445, 'grad_norm': 26.498501341805106, 'learning_rate': 9.99503484396255e-06, 'epoch': 0.04}
+{'loss': 0.5316, 'grad_norm': 25.08782658429349, 'learning_rate': 9.994918723562861e-06, 'epoch': 0.04}
+{'loss': 0.7282, 'grad_norm': 12.444045197175392, 'learning_rate': 9.99480126164581e-06, 'epoch': 0.04}
+{'loss': 0.5647, 'grad_norm': 15.375100472314704, 'learning_rate': 9.994682458242946e-06, 'epoch': 0.04}
+{'loss': 0.4473, 'grad_norm': 25.097103092591762, 'learning_rate': 9.994562313386177e-06, 'epoch': 0.04}
+{'loss': 0.5684, 'grad_norm': 17.93605562612584, 'learning_rate': 9.99444082710777e-06, 'epoch': 0.04}
+{'loss': 0.4277, 'grad_norm': 54.695890273593065, 'learning_rate': 9.994317999440351e-06, 'epoch': 0.04}
+{'loss': 0.3034, 'grad_norm': 24.672057832854755, 'learning_rate': 9.994193830416915e-06, 'epoch': 0.04}
+{'loss': 0.4452, 'grad_norm': 58.26542735286743, 'learning_rate': 9.994068320070805e-06, 'epoch': 0.05}
+{'loss': 0.5604, 'grad_norm': 25.77934712418413, 'learning_rate': 9.99394146843573e-06, 'epoch': 0.05}
+{'loss': 0.4074, 'grad_norm': 20.079685341727043, 'learning_rate': 9.993813275545764e-06, 'epoch': 0.05}
+{'loss': 0.4463, 'grad_norm': 8.026564344144655, 'learning_rate': 9.993683741435334e-06, 'epoch': 0.05}
+{'loss': 0.6584, 'grad_norm': 61.72338081226861, 'learning_rate': 9.99355286613923e-06, 'epoch': 0.05}
+{'loss': 0.4359, 'grad_norm': 8.527976428491554, 'learning_rate': 9.9934206496926e-06, 'epoch': 0.05}
+{'loss': 0.2838, 'grad_norm': 16.281347059329526, 'learning_rate': 9.993287092130956e-06, 'epoch': 0.05}
+{'loss': 0.5068, 'grad_norm': 153.43324945715926, 'learning_rate': 9.99315219349017e-06, 'epoch': 0.05}
+{'loss': 0.4617, 'grad_norm': 32.62281632364092, 'learning_rate': 9.993015953806472e-06, 'epoch': 0.05}
+{'loss': 0.4572, 'grad_norm': 74.50506747708752, 'learning_rate': 9.99287837311645e-06, 'epoch': 0.05}
+{'loss': 0.4907, 'grad_norm': 12.891110661986232, 'learning_rate': 9.992739451457058e-06, 'epoch': 0.05}
+{'loss': 0.504, 'grad_norm': 10.700506352292397, 'learning_rate': 9.992599188865605e-06, 'epoch': 0.05}
+{'loss': 0.4031, 'grad_norm': 33.059583781838825, 'learning_rate': 9.992457585379764e-06, 'epoch': 0.05}
+{'loss': 0.5604, 'grad_norm': 15.540116967477756, 'learning_rate': 9.992314641037564e-06, 'epoch': 0.05}
+{'loss': 0.7735, 'grad_norm': 11.717982656939487, 'learning_rate': 9.992170355877398e-06, 'epoch': 0.05}
+{'loss': 0.3339, 'grad_norm': 9.62292916930807, 'learning_rate': 9.992024729938019e-06, 'epoch': 0.05}
+{'loss': 0.3944, 'grad_norm': 21.512174095826893, 'learning_rate': 9.991877763258538e-06, 'epoch': 0.05}
+{'loss': 0.2936, 'grad_norm': 32.09288731359709, 'learning_rate': 9.991729455878423e-06, 'epoch': 0.05}
+{'loss': 0.3287, 'grad_norm': 17.321622464321493, 'learning_rate': 9.991579807837511e-06, 'epoch': 0.05}
+{'loss': 0.1271, 'grad_norm': 30.283107746744115, 'learning_rate': 9.99142881917599e-06, 'epoch': 0.05}
+{'loss': 0.3113, 'grad_norm': 20.62322674186186, 'learning_rate': 9.991276489934416e-06, 'epoch': 0.05}
+{'loss': 0.4245, 'grad_norm': 2.864612249885893, 'learning_rate': 9.991122820153695e-06, 'epoch': 0.05}
+{'loss': 0.6512, 'grad_norm': 3.2912142164642995, 'learning_rate': 9.990967809875107e-06, 'epoch': 0.05}
+{'loss': 0.4042, 'grad_norm': 19.719963174257725, 'learning_rate': 9.99081145914028e-06, 'epoch': 0.05}
+{'loss': 0.4504, 'grad_norm': 26.995971478386895, 'learning_rate': 9.990653767991203e-06, 'epoch': 0.05}
+{'loss': 0.5797, 'grad_norm': 6.383603460759869, 'learning_rate': 9.990494736470234e-06, 'epoch': 0.05}
+{'loss': 0.4691, 'grad_norm': 16.40234473887029, 'learning_rate': 9.99033436462008e-06, 'epoch': 0.05}
+{'loss': 0.6028, 'grad_norm': 8.403259727679623, 'learning_rate': 9.990172652483818e-06, 'epoch': 0.05}
+{'loss': 0.3891, 'grad_norm': 2.2927927734908016, 'learning_rate': 9.990009600104875e-06, 'epoch': 0.05}
+{'loss': 0.5193, 'grad_norm': 12.208387792209273, 'learning_rate': 9.989845207527047e-06, 'epoch': 0.05}
+{'loss': 0.5187, 'grad_norm': 10.422120772657218, 'learning_rate': 9.989679474794484e-06, 'epoch': 0.05}
+{'loss': 0.4531, 'grad_norm': 10.010359511921374, 'learning_rate': 9.9895124019517e-06, 'epoch': 0.05}
+{'loss': 0.3847, 'grad_norm': 15.347326655622199, 'learning_rate': 9.989343989043563e-06, 'epoch': 0.05}
+{'loss': 0.6545, 'grad_norm': 9.567719539009856, 'learning_rate': 9.98917423611531e-06, 'epoch': 0.05}
+{'loss': 0.4124, 'grad_norm': 10.165197953230274, 'learning_rate': 9.989003143212526e-06, 'epoch': 0.05}
+{'loss': 0.347, 'grad_norm': 11.388797290793834, 'learning_rate': 9.988830710381168e-06, 'epoch': 0.05}
+{'loss': 0.5376, 'grad_norm': 10.388300585038287, 'learning_rate': 9.988656937667544e-06, 'epoch': 0.05}
+{'loss': 0.5436, 'grad_norm': 5.594055743355868, 'learning_rate': 9.988481825118329e-06, 'epoch': 0.05}
+{'loss': 0.4749, 'grad_norm': 12.687867436730206, 'learning_rate': 9.98830537278055e-06, 'epoch': 0.05}
+{'loss': 0.5979, 'grad_norm': 26.69921883210999, 'learning_rate': 9.988127580701601e-06, 'epoch': 0.05}
+{'loss': 0.5115, 'grad_norm': 4.798165316609367, 'learning_rate': 9.987948448929232e-06, 'epoch': 0.05}
+{'loss': 0.3366, 'grad_norm': 11.295628807059403, 'learning_rate': 9.987767977511552e-06, 'epoch': 0.05}
+{'loss': 0.4864, 'grad_norm': 3.0114861471617593, 'learning_rate': 9.987586166497032e-06, 'epoch': 0.05}
+{'loss': 0.4848, 'grad_norm': 39.0951752433709, 'learning_rate': 9.987403015934504e-06, 'epoch': 0.05}
+{'loss': 0.5904, 'grad_norm': 9.200320849805665, 'learning_rate': 9.987218525873155e-06, 'epoch': 0.05}
+{'loss': 0.3867, 'grad_norm': 3.2443755491272963, 'learning_rate': 9.987032696362537e-06, 'epoch': 0.05}
+{'loss': 0.5486, 'grad_norm': 22.568987100603625, 'learning_rate': 9.98684552745256e-06, 'epoch': 0.05}
+{'loss': 0.411, 'grad_norm': 10.575696455178049, 'learning_rate': 9.986657019193492e-06, 'epoch': 0.05}
+{'loss': 0.717, 'grad_norm': 10.645077793671183, 'learning_rate': 9.98646717163596e-06, 'epoch': 0.05}
+{'loss': 0.6714, 'grad_norm': 17.287869915446496, 'learning_rate': 9.986275984830955e-06, 'epoch': 0.05}
+{'loss': 0.2665, 'grad_norm': 70.77239539231859, 'learning_rate': 9.986083458829824e-06, 'epoch': 0.05}
+{'loss': 0.4932, 'grad_norm': 9.169783146957661, 'learning_rate': 9.985889593684277e-06, 'epoch': 0.05}
+{'loss': 0.5926, 'grad_norm': 16.119665639984753, 'learning_rate': 9.985694389446378e-06, 'epoch': 0.05}
+{'loss': 0.4716, 'grad_norm': 10.201173283264813, 'learning_rate': 9.985497846168557e-06, 'epoch': 0.05}
+{'loss': 0.5514, 'grad_norm': 7.667818707562869, 'learning_rate': 9.9852999639036e-06, 'epoch': 0.05}
+{'loss': 0.5167, 'grad_norm': 82.01838883961437, 'learning_rate': 9.985100742704655e-06, 'epoch': 0.05}
+{'loss': 0.4684, 'grad_norm': 13.609960000174398, 'learning_rate': 9.984900182625226e-06, 'epoch': 0.05}
+{'loss': 0.5282, 'grad_norm': 20.893854488491773, 'learning_rate': 9.98469828371918e-06, 'epoch': 0.05}
+{'loss': 0.5027, 'grad_norm': 20.250555295293413, 'learning_rate': 9.98449504604074e-06, 'epoch': 0.05}
+{'loss': 0.4557, 'grad_norm': 20.63915701441656, 'learning_rate': 9.984290469644495e-06, 'epoch': 0.05}
+{'loss': 0.3036, 'grad_norm': 10.224807368932893, 'learning_rate': 9.984084554585387e-06, 'epoch': 0.05}
+{'loss': 0.2851, 'grad_norm': 15.678285752070627, 'learning_rate': 9.98387730091872e-06, 'epoch': 0.05}
+{'loss': 0.4982, 'grad_norm': 6.766933448227857, 'learning_rate': 9.983668708700156e-06, 'epoch': 0.06}
+{'loss': 0.689, 'grad_norm': 9.465548404538465, 'learning_rate': 9.983458777985722e-06, 'epoch': 0.06}
+{'loss': 0.3999, 'grad_norm': 10.656406568479976, 'learning_rate': 9.983247508831795e-06, 'epoch': 0.06}
+{'loss': 0.4692, 'grad_norm': 11.793857814093586, 'learning_rate': 9.983034901295122e-06, 'epoch': 0.06}
+{'loss': 0.3908, 'grad_norm': 17.084381887273643, 'learning_rate': 9.9828209554328e-06, 'epoch': 0.06}
+{'loss': 0.4175, 'grad_norm': 7.828827869693871, 'learning_rate': 9.982605671302293e-06, 'epoch': 0.06}
+{'loss': 0.4474, 'grad_norm': 10.609414408099969, 'learning_rate': 9.982389048961421e-06, 'epoch': 0.06}
+{'loss': 0.5024, 'grad_norm': 15.151610469058905, 'learning_rate': 9.982171088468363e-06, 'epoch': 0.06}
+{'loss': 0.2632, 'grad_norm': 34.052148397970235, 'learning_rate': 9.981951789881657e-06, 'epoch': 0.06}
+{'loss': 0.4197, 'grad_norm': 8.947829618288225, 'learning_rate': 9.981731153260201e-06, 'epoch': 0.06}
+{'loss': 0.5115, 'grad_norm': 3.992521144156002, 'learning_rate': 9.981509178663256e-06, 'epoch': 0.06}
+{'loss': 0.5891, 'grad_norm': 5.228802276733484, 'learning_rate': 9.981285866150436e-06, 'epoch': 0.06}
+{'loss': 0.3653, 'grad_norm': 4.4256652491332655, 'learning_rate': 9.98106121578172e-06, 'epoch': 0.06}
+{'loss': 0.3556, 'grad_norm': 14.958511908740416, 'learning_rate': 9.980835227617443e-06, 'epoch': 0.06}
+{'loss': 0.5689, 'grad_norm': 5.531233904215621, 'learning_rate': 9.980607901718297e-06, 'epoch': 0.06}
+{'loss': 0.4985, 'grad_norm': 6.214692786232933, 'learning_rate': 9.980379238145342e-06, 'epoch': 0.06}
+{'loss': 0.3101, 'grad_norm': 9.515161464825734, 'learning_rate': 9.980149236959986e-06, 'epoch': 0.06}
+{'loss': 0.5168, 'grad_norm': 26.24104974784123, 'learning_rate': 9.979917898224006e-06, 'epoch': 0.06}
+{'loss': 0.3596, 'grad_norm': 4.433699496070303, 'learning_rate': 9.979685221999532e-06, 'epoch': 0.06}
+{'loss': 0.6377, 'grad_norm': 6.053016071292075, 'learning_rate': 9.979451208349055e-06, 'epoch': 0.06}
+{'loss': 0.5642, 'grad_norm': 34.03386077902666, 'learning_rate': 9.97921585733543e-06, 'epoch': 0.06}
+{'loss': 0.6135, 'grad_norm': 21.667497918430296, 'learning_rate': 9.97897916902186e-06, 'epoch': 0.06}
+{'loss': 0.4921, 'grad_norm': 177.18210843209607, 'learning_rate': 9.97874114347192e-06, 'epoch': 0.06}
+{'loss': 0.396, 'grad_norm': 5.081620382908287, 'learning_rate': 9.978501780749531e-06, 'epoch': 0.06}
+{'loss': 0.6114, 'grad_norm': 10.42796734419406, 'learning_rate': 9.978261080918988e-06, 'epoch': 0.06}
+{'loss': 0.3707, 'grad_norm': 9.885077147822592, 'learning_rate': 9.978019044044933e-06, 'epoch': 0.06}
+{'loss': 0.6147, 'grad_norm': 6.653502723071088, 'learning_rate': 9.977775670192373e-06, 'epoch': 0.06}
+{'loss': 0.6467, 'grad_norm': 7.76493597663443, 'learning_rate': 9.977530959426668e-06, 'epoch': 0.06}
+{'loss': 0.6465, 'grad_norm': 6.965261473028487, 'learning_rate': 9.977284911813549e-06, 'epoch': 0.06}
+{'loss': 0.6731, 'grad_norm': 11.441900540939066, 'learning_rate': 9.977037527419094e-06, 'epoch': 0.06}
+{'loss': 0.3615, 'grad_norm': 15.206311796874846, 'learning_rate': 9.976788806309742e-06, 'epoch': 0.06}
+{'loss': 0.4308, 'grad_norm': 9.248828261443222, 'learning_rate': 9.976538748552302e-06, 'epoch': 0.06}
+{'loss': 0.5544, 'grad_norm': 7.824966083470992, 'learning_rate': 9.976287354213924e-06, 'epoch': 0.06}
+{'loss': 0.622, 'grad_norm': 3.439621738452943, 'learning_rate': 9.976034623362134e-06, 'epoch': 0.06}
+{'loss': 0.231, 'grad_norm': 9.926915987610041, 'learning_rate': 9.975780556064806e-06, 'epoch': 0.06}
+{'loss': 0.5413, 'grad_norm': 20.19309143728391, 'learning_rate': 9.975525152390178e-06, 'epoch': 0.06}
+{'loss': 0.5111, 'grad_norm': 17.330613413299158, 'learning_rate': 9.975268412406842e-06, 'epoch': 0.06}
+{'loss': 0.4034, 'grad_norm': 4.136655183630704, 'learning_rate': 9.975010336183757e-06, 'epoch': 0.06}
+{'loss': 0.4029, 'grad_norm': 6.0056250659967985, 'learning_rate': 9.974750923790234e-06, 'epoch': 0.06}
+{'loss': 0.5224, 'grad_norm': 19.17911009786103, 'learning_rate': 9.974490175295945e-06, 'epoch': 0.06}
+{'loss': 0.5921, 'grad_norm': 8.835350098482365, 'learning_rate': 9.97422809077092e-06, 'epoch': 0.06}
+{'loss': 0.4543, 'grad_norm': 6.370638692985585, 'learning_rate': 9.97396467028555e-06, 'epoch': 0.06}
+{'loss': 0.5207, 'grad_norm': 5.980139765671139, 'learning_rate': 9.973699913910584e-06, 'epoch': 0.06}
+{'loss': 0.6472, 'grad_norm': 8.856438740071125, 'learning_rate': 9.973433821717128e-06, 'epoch': 0.06}
+{'loss': 0.3885, 'grad_norm': 10.819028869479386, 'learning_rate': 9.97316639377665e-06, 'epoch': 0.06}
+{'loss': 0.3598, 'grad_norm': 2.316471836152059, 'learning_rate': 9.972897630160972e-06, 'epoch': 0.06}
+{'loss': 0.4114, 'grad_norm': 11.105123209322091, 'learning_rate': 9.97262753094228e-06, 'epoch': 0.06}
+{'loss': 0.4791, 'grad_norm': 2.917588600778667, 'learning_rate': 9.972356096193115e-06, 'epoch': 0.06}
+{'loss': 0.4312, 'grad_norm': 7.048161972501934, 'learning_rate': 9.972083325986377e-06, 'epoch': 0.06}
+{'loss': 0.2975, 'grad_norm': 12.633138159649354, 'learning_rate': 9.971809220395328e-06, 'epoch': 0.06}
+{'loss': 0.4576, 'grad_norm': 12.79432905686773, 'learning_rate': 9.971533779493586e-06, 'epoch': 0.06}
+{'loss': 0.5247, 'grad_norm': 17.268930267883082, 'learning_rate': 9.971257003355128e-06, 'epoch': 0.06}
+{'loss': 0.3818, 'grad_norm': 37.82168528963739, 'learning_rate': 9.970978892054286e-06, 'epoch': 0.06}
+{'loss': 0.3946, 'grad_norm': 7.518734667055436, 'learning_rate': 9.970699445665758e-06, 'epoch': 0.06}
+{'loss': 0.531, 'grad_norm': 7.693624629549433, 'learning_rate': 9.970418664264596e-06, 'epoch': 0.06}
+{'loss': 0.6651, 'grad_norm': 37.904453252611646, 'learning_rate': 9.97013654792621e-06, 'epoch': 0.06}
+{'loss': 0.6147, 'grad_norm': 12.195780816380843, 'learning_rate': 9.969853096726372e-06, 'epoch': 0.06}
+{'loss': 0.4119, 'grad_norm': 60.13333430832479, 'learning_rate': 9.969568310741209e-06, 'epoch': 0.06}
+{'loss': 0.5899, 'grad_norm': 8.72371558575995, 'learning_rate': 9.969282190047207e-06, 'epoch': 0.06}
+{'loss': 0.6028, 'grad_norm': 12.592385551032212, 'learning_rate': 9.96899473472121e-06, 'epoch': 0.06}
+{'loss': 0.4542, 'grad_norm': 12.656801058661587, 'learning_rate': 9.968705944840428e-06, 'epoch': 0.06}
+{'loss': 0.5236, 'grad_norm': 12.114384680855487, 'learning_rate': 9.968415820482415e-06, 'epoch': 0.06}
+{'loss': 0.662, 'grad_norm': 3.6762485285839124, 'learning_rate': 9.968124361725098e-06, 'epoch': 0.06}
+{'loss': 0.3838, 'grad_norm': 6.717884057933322, 'learning_rate': 9.967831568646753e-06, 'epoch': 0.07}
+{'loss': 0.5748, 'grad_norm': 8.014798137677007, 'learning_rate': 9.967537441326018e-06, 'epoch': 0.07}
+{'loss': 0.3809, 'grad_norm': 12.958664159042838, 'learning_rate': 9.967241979841886e-06, 'epoch': 0.07}
+{'loss': 0.5345, 'grad_norm': 59.34830860966859, 'learning_rate': 9.966945184273716e-06, 'epoch': 0.07}
+{'loss': 0.4443, 'grad_norm': 19.46841668351531, 'learning_rate': 9.966647054701217e-06, 'epoch': 0.07}
+{'loss': 0.3724, 'grad_norm': 61.42248195982044, 'learning_rate': 9.966347591204459e-06, 'epoch': 0.07}
+{'loss': 0.3906, 'grad_norm': 18.59264983956197, 'learning_rate': 9.966046793863873e-06, 'epoch': 0.07}
+{'loss': 0.5721, 'grad_norm': 16.523413540901732, 'learning_rate': 9.965744662760246e-06, 'epoch': 0.07}
+{'loss': 0.5803, 'grad_norm': 29.085810218440777, 'learning_rate': 9.96544119797472e-06, 'epoch': 0.07}
+{'loss': 0.588, 'grad_norm': 23.740436053799748, 'learning_rate': 9.965136399588803e-06, 'epoch': 0.07}
+{'loss': 0.2324, 'grad_norm': 11.545555155433163, 'learning_rate': 9.964830267684355e-06, 'epoch': 0.07}
+{'loss': 0.5186, 'grad_norm': 9.999116218322584, 'learning_rate': 9.964522802343593e-06, 'epoch': 0.07}
+{'loss': 0.4971, 'grad_norm': 46.050099330787525, 'learning_rate': 9.9642140036491e-06, 'epoch': 0.07}
+{'loss': 0.4653, 'grad_norm': 4.007942805487297, 'learning_rate': 9.963903871683806e-06, 'epoch': 0.07}
+{'loss': 0.4842, 'grad_norm': 17.7976931246057, 'learning_rate': 9.96359240653101e-06, 'epoch': 0.07}
+{'loss': 0.4625, 'grad_norm': 9.192879790761491, 'learning_rate': 9.963279608274364e-06, 'epoch': 0.07}
+{'loss': 0.3452, 'grad_norm': 8.694231512621524, 'learning_rate': 9.962965476997877e-06, 'epoch': 0.07}
+{'loss': 0.4904, 'grad_norm': 10.876188185046667, 'learning_rate': 9.962650012785917e-06, 'epoch': 0.07}
+{'loss': 0.3813, 'grad_norm': 9.72469553687917, 'learning_rate': 9.962333215723208e-06, 'epoch': 0.07}
+{'loss': 0.4419, 'grad_norm': 90.09330029686471, 'learning_rate': 9.962015085894838e-06, 'epoch': 0.07}
+{'loss': 0.4843, 'grad_norm': 2.7381256277926007, 'learning_rate': 9.96169562338625e-06, 'epoch': 0.07}
+{'loss': 0.4667, 'grad_norm': 33.52970194142429, 'learning_rate': 9.961374828283239e-06, 'epoch': 0.07}
+{'loss': 0.5568, 'grad_norm': 7.380696121152692, 'learning_rate': 9.961052700671967e-06, 'epoch': 0.07}
+{'loss': 0.5247, 'grad_norm': 8.244964671665546, 'learning_rate': 9.960729240638947e-06, 'epoch': 0.07}
+{'loss': 0.5132, 'grad_norm': 7.705239327781649, 'learning_rate': 9.960404448271057e-06, 'epoch': 0.07}
+{'loss': 0.3582, 'grad_norm': 33.15200429657616, 'learning_rate': 9.960078323655524e-06, 'epoch': 0.07}
+{'loss': 0.4653, 'grad_norm': 7.139975806403758, 'learning_rate': 9.959750866879941e-06, 'epoch': 0.07}
+{'loss': 0.6837, 'grad_norm': 8.673425308801813, 'learning_rate': 9.959422078032253e-06, 'epoch': 0.07}
+{'loss': 0.341, 'grad_norm': 3.8443304407149164, 'learning_rate': 9.959091957200766e-06, 'epoch': 0.07}
+{'loss': 0.5748, 'grad_norm': 7.995439129216716, 'learning_rate': 9.958760504474144e-06, 'epoch': 0.07}
+{'loss': 0.4747, 'grad_norm': 48.45524334719539, 'learning_rate': 9.958427719941401e-06, 'epoch': 0.07}
+{'loss': 0.2829, 'grad_norm': 22.40656974607114, 'learning_rate': 9.958093603691923e-06, 'epoch': 0.07}
+{'loss': 0.606, 'grad_norm': 7.356349097213766, 'learning_rate': 9.957758155815443e-06, 'epoch': 0.07}
+{'loss': 0.3905, 'grad_norm': 9.352640055129212, 'learning_rate': 9.957421376402053e-06, 'epoch': 0.07}
+{'loss': 0.4198, 'grad_norm': 7.361671363453931, 'learning_rate': 9.957083265542202e-06, 'epoch': 0.07}
+{'loss': 0.705, 'grad_norm': 22.955839100052636, 'learning_rate': 9.956743823326704e-06, 'epoch': 0.07}
+{'loss': 0.5545, 'grad_norm': 11.61942816631279, 'learning_rate': 9.956403049846723e-06, 'epoch': 0.07}
+{'loss': 0.5375, 'grad_norm': 7.425706975046697, 'learning_rate': 9.956060945193781e-06, 'epoch': 0.07}
+{'loss': 0.4628, 'grad_norm': 54.79872953027518, 'learning_rate': 9.955717509459762e-06, 'epoch': 0.07}
+{'loss': 0.4501, 'grad_norm': 7.673998910506804, 'learning_rate': 9.955372742736903e-06, 'epoch': 0.07}
+{'loss': 0.5011, 'grad_norm': 23.75898816895167, 'learning_rate': 9.9550266451178e-06, 'epoch': 0.07}
+{'loss': 0.5021, 'grad_norm': 18.327374272062727, 'learning_rate': 9.954679216695406e-06, 'epoch': 0.07}
+{'loss': 0.4988, 'grad_norm': 6.819701085108054, 'learning_rate': 9.954330457563035e-06, 'epoch': 0.07}
+{'loss': 0.6414, 'grad_norm': 19.894162748334125, 'learning_rate': 9.953980367814354e-06, 'epoch': 0.07}
+{'loss': 0.3067, 'grad_norm': 22.62140847328925, 'learning_rate': 9.953628947543387e-06, 'epoch': 0.07}
+{'loss': 0.7894, 'grad_norm': 37.32770887935974, 'learning_rate': 9.953276196844519e-06, 'epoch': 0.07}
+{'loss': 0.3852, 'grad_norm': 20.205575791971317, 'learning_rate': 9.952922115812492e-06, 'epoch': 0.07}
+{'loss': 0.5144, 'grad_norm': 19.319134819434975, 'learning_rate': 9.9525667045424e-06, 'epoch': 0.07}
+{'loss': 0.5224, 'grad_norm': 6.656808958389035, 'learning_rate': 9.952209963129701e-06, 'epoch': 0.07}
+{'loss': 0.4492, 'grad_norm': 9.535541829096685, 'learning_rate': 9.951851891670206e-06, 'epoch': 0.07}
+{'loss': 0.6935, 'grad_norm': 11.43362133763867, 'learning_rate': 9.951492490260086e-06, 'epoch': 0.07}
+{'loss': 0.7289, 'grad_norm': 6.975322836076926, 'learning_rate': 9.951131758995866e-06, 'epoch': 0.07}
+{'loss': 0.47, 'grad_norm': 12.236773580621783, 'learning_rate': 9.950769697974432e-06, 'epoch': 0.07}
+{'loss': 0.6127, 'grad_norm': 5.817457573069298, 'learning_rate': 9.950406307293023e-06, 'epoch': 0.07}
+{'loss': 0.8282, 'grad_norm': 48.22031501636876, 'learning_rate': 9.950041587049237e-06, 'epoch': 0.07}
+{'loss': 0.6209, 'grad_norm': 7.590015805614781, 'learning_rate': 9.949675537341031e-06, 'epoch': 0.07}
+{'loss': 0.3306, 'grad_norm': 15.796703411316974, 'learning_rate': 9.949308158266717e-06, 'epoch': 0.07}
+{'loss': 0.8269, 'grad_norm': 16.524498913807594, 'learning_rate': 9.948939449924964e-06, 'epoch': 0.07}
+{'loss': 0.3473, 'grad_norm': 9.25067957622813, 'learning_rate': 9.948569412414797e-06, 'epoch': 0.07}
+{'loss': 0.2408, 'grad_norm': 20.59966239372704, 'learning_rate': 9.948198045835601e-06, 'epoch': 0.07}
+{'loss': 0.6074, 'grad_norm': 6.787862700595995, 'learning_rate': 9.947825350287118e-06, 'epoch': 0.07}
+{'loss': 0.4981, 'grad_norm': 6.039167356054131, 'learning_rate': 9.94745132586944e-06, 'epoch': 0.07}
+{'loss': 0.5046, 'grad_norm': 5.336352430922601, 'learning_rate': 9.947075972683024e-06, 'epoch': 0.08}
+{'loss': 0.516, 'grad_norm': 6.430597351401721, 'learning_rate': 9.946699290828683e-06, 'epoch': 0.08}
+{'loss': 0.5542, 'grad_norm': 6.630380857403231, 'learning_rate': 9.946321280407583e-06, 'epoch': 0.08}
+{'loss': 0.678, 'grad_norm': 4.984050240974742, 'learning_rate': 9.94594194152125e-06, 'epoch': 0.08}
+{'loss': 0.6008, 'grad_norm': 31.442099260795157, 'learning_rate': 9.94556127427156e-06, 'epoch': 0.08}
+{'loss': 0.5458, 'grad_norm': 7.523492882326578, 'learning_rate': 9.945179278760759e-06, 'epoch': 0.08}
+{'loss': 0.4335, 'grad_norm': 11.161282595829208, 'learning_rate': 9.944795955091439e-06, 'epoch': 0.08}
+{'loss': 0.3787, 'grad_norm': 7.998623610449719, 'learning_rate': 9.94441130336655e-06, 'epoch': 0.08}
+{'loss': 0.6637, 'grad_norm': 10.346953262323556, 'learning_rate': 9.9440253236894e-06, 'epoch': 0.08}
+{'loss': 0.3972, 'grad_norm': 8.201174839656085, 'learning_rate': 9.943638016163658e-06, 'epoch': 0.08}
+{'loss': 0.5508, 'grad_norm': 7.862131326876314, 'learning_rate': 9.943249380893343e-06, 'epoch': 0.08}
+{'loss': 0.5081, 'grad_norm': 6.641654675973532, 'learning_rate': 9.942859417982833e-06, 'epoch': 0.08}
+{'loss': 0.3419, 'grad_norm': 5.536384699671738, 'learning_rate': 9.942468127536864e-06, 'epoch': 0.08}
+{'loss': 0.518, 'grad_norm': 7.182810677761707, 'learning_rate': 9.942075509660527e-06, 'epoch': 0.08}
+{'loss': 0.4662, 'grad_norm': 6.919632791144153, 'learning_rate': 9.94168156445927e-06, 'epoch': 0.08}
+{'loss': 0.4416, 'grad_norm': 9.020632813423273, 'learning_rate': 9.941286292038894e-06, 'epoch': 0.08}
+{'loss': 0.475, 'grad_norm': 16.50853891281277, 'learning_rate': 9.940889692505565e-06, 'epoch': 0.08}
+{'loss': 0.7029, 'grad_norm': 7.791475781198704, 'learning_rate': 9.940491765965798e-06, 'epoch': 0.08}
+{'loss': 0.4062, 'grad_norm': 6.948284622078118, 'learning_rate': 9.940092512526468e-06, 'epoch': 0.08}
+{'loss': 0.4743, 'grad_norm': 8.180954751474133, 'learning_rate': 9.939691932294804e-06, 'epoch': 0.08}
+{'loss': 0.3673, 'grad_norm': 8.30505925642733, 'learning_rate': 9.93929002537839e-06, 'epoch': 0.08}
+{'loss': 0.2909, 'grad_norm': 8.09608747163694, 'learning_rate': 9.938886791885172e-06, 'epoch': 0.08}
+{'loss': 0.5788, 'grad_norm': 6.217757474232734, 'learning_rate': 9.938482231923449e-06, 'epoch': 0.08}
+{'loss': 0.2619, 'grad_norm': 8.201750199576008, 'learning_rate': 9.938076345601875e-06, 'epoch': 0.08}
+{'loss': 0.2934, 'grad_norm': 12.37111260595883, 'learning_rate': 9.937669133029462e-06, 'epoch': 0.08}
+{'loss': 0.3377, 'grad_norm': 7.006231692896823, 'learning_rate': 9.937260594315578e-06, 'epoch': 0.08}
+{'loss': 0.6206, 'grad_norm': 8.02590834993189, 'learning_rate': 9.936850729569945e-06, 'epoch': 0.08}
+{'loss': 0.642, 'grad_norm': 5.83586969247151, 'learning_rate': 9.936439538902644e-06, 'epoch': 0.08}
+{'loss': 0.2969, 'grad_norm': 5.420341750039208, 'learning_rate': 9.936027022424113e-06, 'epoch': 0.08}
+{'loss': 0.539, 'grad_norm': 12.161881805705457, 'learning_rate': 9.935613180245143e-06, 'epoch': 0.08}
+{'loss': 0.6746, 'grad_norm': 10.443224653877783, 'learning_rate': 9.93519801247688e-06, 'epoch': 0.08}
+{'loss': 0.4751, 'grad_norm': 3.7620019196520085, 'learning_rate': 9.934781519230832e-06, 'epoch': 0.08}
+{'loss': 0.3042, 'grad_norm': 5.754494733844948, 'learning_rate': 9.934363700618857e-06, 'epoch': 0.08}
+{'loss': 0.5827, 'grad_norm': 5.438063723076826, 'learning_rate': 9.933944556753173e-06, 'epoch': 0.08}
+{'loss': 0.5667, 'grad_norm': 8.913383027528788, 'learning_rate': 9.933524087746348e-06, 'epoch': 0.08}
+{'loss': 0.5697, 'grad_norm': 10.638334631239923, 'learning_rate': 9.933102293711314e-06, 'epoch': 0.08}
+{'loss': 0.3884, 'grad_norm': 8.510085103250981, 'learning_rate': 9.932679174761355e-06, 'epoch': 0.08}
+{'loss': 0.6376, 'grad_norm': 5.947229386407358, 'learning_rate': 9.932254731010108e-06, 'epoch': 0.08}
+{'loss': 0.2828, 'grad_norm': 8.963021011347717, 'learning_rate': 9.931828962571572e-06, 'epoch': 0.08}
+{'loss': 0.4207, 'grad_norm': 6.937013553348001, 'learning_rate': 9.931401869560096e-06, 'epoch': 0.08}
+{'loss': 0.4397, 'grad_norm': 2.8473154490110724, 'learning_rate': 9.930973452090386e-06, 'epoch': 0.08}
+{'loss': 0.3635, 'grad_norm': 9.468098403256992, 'learning_rate': 9.93054371027751e-06, 'epoch': 0.08}
+{'loss': 0.3502, 'grad_norm': 6.469802494095059, 'learning_rate': 9.93011264423688e-06, 'epoch': 0.08}
+{'loss': 0.4524, 'grad_norm': 12.886407898867608, 'learning_rate': 9.929680254084273e-06, 'epoch': 0.08}
+{'loss': 0.399, 'grad_norm': 3.118462253340756, 'learning_rate': 9.92924653993582e-06, 'epoch': 0.08}
+{'loss': 0.4413, 'grad_norm': 30.70376826011187, 'learning_rate': 9.928811501908006e-06, 'epoch': 0.08}
+{'loss': 0.7619, 'grad_norm': 10.306108109470275, 'learning_rate': 9.92837514011767e-06, 'epoch': 0.08}
+{'loss': 0.4071, 'grad_norm': 7.312174690658965, 'learning_rate': 9.92793745468201e-06, 'epoch': 0.08}
+{'loss': 0.4071, 'grad_norm': 7.972896419279122, 'learning_rate': 9.92749844571858e-06, 'epoch': 0.08}
+{'loss': 0.3894, 'grad_norm': 13.539662297189336, 'learning_rate': 9.927058113345282e-06, 'epoch': 0.08}
+{'loss': 0.5043, 'grad_norm': 10.230477044404639, 'learning_rate': 9.926616457680385e-06, 'epoch': 0.08}
+{'loss': 0.4984, 'grad_norm': 6.311553908521251, 'learning_rate': 9.926173478842502e-06, 'epoch': 0.08}
+{'loss': 0.6716, 'grad_norm': 6.1049096405972145, 'learning_rate': 9.925729176950612e-06, 'epoch': 0.08}
+{'loss': 0.3565, 'grad_norm': 20.137215376704862, 'learning_rate': 9.925283552124039e-06, 'epoch': 0.08}
+{'loss': 0.5864, 'grad_norm': 6.478455095606045, 'learning_rate': 9.92483660448247e-06, 'epoch': 0.08}
+{'loss': 0.5035, 'grad_norm': 13.046791450754203, 'learning_rate': 9.924388334145943e-06, 'epoch': 0.08}
+{'loss': 0.6661, 'grad_norm': 12.620235078213524, 'learning_rate': 9.923938741234855e-06, 'epoch': 0.08}
+{'loss': 0.6802, 'grad_norm': 8.624332760156143, 'learning_rate': 9.923487825869955e-06, 'epoch': 0.08}
+{'loss': 0.555, 'grad_norm': 6.799201745850256, 'learning_rate': 9.923035588172347e-06, 'epoch': 0.08}
+{'loss': 0.4971, 'grad_norm': 12.098180269157467, 'learning_rate': 9.922582028263495e-06, 'epoch': 0.08}
+{'loss': 0.4602, 'grad_norm': 3.185089584635907, 'learning_rate': 9.922127146265209e-06, 'epoch': 0.08}
+{'loss': 0.4915, 'grad_norm': 8.36245304674931, 'learning_rate': 9.921670942299664e-06, 'epoch': 0.08}
+{'loss': 0.313, 'grad_norm': 47.70985726400218, 'learning_rate': 9.921213416489383e-06, 'epoch': 0.08}
+{'loss': 0.6212, 'grad_norm': 12.917225106632483, 'learning_rate': 9.92075456895725e-06, 'epoch': 0.09}
+{'loss': 0.5225, 'grad_norm': 5.219107133144091, 'learning_rate': 9.920294399826498e-06, 'epoch': 0.09}
+{'loss': 0.4389, 'grad_norm': 8.774988947586436, 'learning_rate': 9.919832909220717e-06, 'epoch': 0.09}
+{'loss': 0.4116, 'grad_norm': 14.495553268261105, 'learning_rate': 9.919370097263855e-06, 'epoch': 0.09}
+{'loss': 0.5497, 'grad_norm': 3.411112181661114, 'learning_rate': 9.91890596408021e-06, 'epoch': 0.09}
+{'loss': 0.6981, 'grad_norm': 12.431295440479436, 'learning_rate': 9.918440509794437e-06, 'epoch': 0.09}
+{'loss': 0.5765, 'grad_norm': 7.722878050396562, 'learning_rate': 9.917973734531549e-06, 'epoch': 0.09}
+{'loss': 0.4664, 'grad_norm': 6.572092258669035, 'learning_rate': 9.91750563841691e-06, 'epoch': 0.09}
+{'loss': 0.4751, 'grad_norm': 12.847061761495256, 'learning_rate': 9.917036221576235e-06, 'epoch': 0.09}
+{'loss': 0.8136, 'grad_norm': 7.567847323535242, 'learning_rate': 9.916565484135605e-06, 'epoch': 0.09}
+{'loss': 0.5818, 'grad_norm': 6.629938973374661, 'learning_rate': 9.916093426221445e-06, 'epoch': 0.09}
+{'loss': 0.6927, 'grad_norm': 11.764449660181732, 'learning_rate': 9.915620047960539e-06, 'epoch': 0.09}
+{'loss': 0.4994, 'grad_norm': 9.62940892931831, 'learning_rate': 9.915145349480027e-06, 'epoch': 0.09}
+{'loss': 0.5564, 'grad_norm': 8.11782740878515, 'learning_rate': 9.914669330907399e-06, 'epoch': 0.09}
+{'loss': 0.4573, 'grad_norm': 11.449168599934517, 'learning_rate': 9.914191992370504e-06, 'epoch': 0.09}
+{'loss': 0.5077, 'grad_norm': 4.7862218703967585, 'learning_rate': 9.913713333997546e-06, 'epoch': 0.09}
+{'loss': 0.5105, 'grad_norm': 8.954642559192948, 'learning_rate': 9.913233355917075e-06, 'epoch': 0.09}
+{'loss': 0.3823, 'grad_norm': 8.698506837073122, 'learning_rate': 9.91275205825801e-06, 'epoch': 0.09}
+{'loss': 0.6075, 'grad_norm': 17.65289157559668, 'learning_rate': 9.91226944114961e-06, 'epoch': 0.09}
+{'loss': 0.2459, 'grad_norm': 7.976800893743409, 'learning_rate': 9.911785504721498e-06, 'epoch': 0.09}
+{'loss': 0.4504, 'grad_norm': 11.474493089173667, 'learning_rate': 9.911300249103646e-06, 'epoch': 0.09}
+{'loss': 0.6438, 'grad_norm': 18.832922010603845, 'learning_rate': 9.910813674426381e-06, 'epoch': 0.09}
+{'loss': 0.3694, 'grad_norm': 8.272586995788064, 'learning_rate': 9.910325780820391e-06, 'epoch': 0.09}
+{'loss': 0.4438, 'grad_norm': 35.658194944100835, 'learning_rate': 9.909836568416706e-06, 'epoch': 0.09}
+{'loss': 0.5087, 'grad_norm': 17.352236848714217, 'learning_rate': 9.90934603734672e-06, 'epoch': 0.09}
+{'loss': 0.6851, 'grad_norm': 11.230025173627627, 'learning_rate': 9.90885418774218e-06, 'epoch': 0.09}
+{'loss': 0.5391, 'grad_norm': 7.114232968065071, 'learning_rate': 9.908361019735181e-06, 'epoch': 0.09}
+{'loss': 0.4074, 'grad_norm': 24.17028580432988, 'learning_rate': 9.90786653345818e-06, 'epoch': 0.09}
+{'loss': 0.4365, 'grad_norm': 27.439263297158718, 'learning_rate': 9.907370729043984e-06, 'epoch': 0.09}
+{'loss': 0.6056, 'grad_norm': 115.34768115235805, 'learning_rate': 9.906873606625752e-06, 'epoch': 0.09}
+{'loss': 0.4348, 'grad_norm': 52.5555573346501, 'learning_rate': 9.906375166336998e-06, 'epoch': 0.09}
+{'loss': 0.5658, 'grad_norm': 9.287010951168606, 'learning_rate': 9.905875408311596e-06, 'epoch': 0.09}
+{'loss': 0.6914, 'grad_norm': 7.051040439500278, 'learning_rate': 9.905374332683768e-06, 'epoch': 0.09}
+{'loss': 0.5321, 'grad_norm': 7.227863415999676, 'learning_rate': 9.90487193958809e-06, 'epoch': 0.09}
+{'loss': 0.5013, 'grad_norm': 8.810665890378662, 'learning_rate': 9.904368229159494e-06, 'epoch': 0.09}
+{'loss': 0.4944, 'grad_norm': 16.54331321055322, 'learning_rate': 9.90386320153326e-06, 'epoch': 0.09}
+{'loss': 0.7577, 'grad_norm': 11.860615127669945, 'learning_rate': 9.903356856845035e-06, 'epoch': 0.09}
+{'loss': 0.4017, 'grad_norm': 8.550304727146338, 'learning_rate': 9.902849195230803e-06, 'epoch': 0.09}
+{'loss': 0.5716, 'grad_norm': 25.323042482308512, 'learning_rate': 9.902340216826915e-06, 'epoch': 0.09}
+{'loss': 0.3907, 'grad_norm': 45.769367035639064, 'learning_rate': 9.90182992177007e-06, 'epoch': 0.09}
+{'loss': 0.3742, 'grad_norm': 37.97127073691926, 'learning_rate': 9.90131831019732e-06, 'epoch': 0.09}
+{'loss': 0.6807, 'grad_norm': 16.154946458992224, 'learning_rate': 9.900805382246071e-06, 'epoch': 0.09}
+{'loss': 0.4767, 'grad_norm': 7.236977483356611, 'learning_rate': 9.900291138054086e-06, 'epoch': 0.09}
+{'loss': 0.6716, 'grad_norm': 10.808109901937225, 'learning_rate': 9.899775577759475e-06, 'epoch': 0.09}
+{'loss': 0.5422, 'grad_norm': 10.658203302533732, 'learning_rate': 9.899258701500712e-06, 'epoch': 0.09}
+{'loss': 0.4391, 'grad_norm': 2.864612896035095, 'learning_rate': 9.89874050941661e-06, 'epoch': 0.09}
+{'loss': 0.4573, 'grad_norm': 2.281000844705728, 'learning_rate': 9.89822100164635e-06, 'epoch': 0.09}
+{'loss': 0.4253, 'grad_norm': 235.44057747298936, 'learning_rate': 9.897700178329453e-06, 'epoch': 0.09}
+{'loss': 0.3165, 'grad_norm': 13.433514839534405, 'learning_rate': 9.897178039605803e-06, 'epoch': 0.09}
+{'loss': 0.5115, 'grad_norm': 19.253067217896692, 'learning_rate': 9.896654585615634e-06, 'epoch': 0.09}
+{'loss': 0.4072, 'grad_norm': 40.71635397838333, 'learning_rate': 9.896129816499535e-06, 'epoch': 0.09}
+{'loss': 0.3457, 'grad_norm': 14.613952526548706, 'learning_rate': 9.895603732398446e-06, 'epoch': 0.09}
+{'loss': 0.6515, 'grad_norm': 17.74962930361773, 'learning_rate': 9.89507633345366e-06, 'epoch': 0.09}
+{'loss': 0.3787, 'grad_norm': 8.241834590684201, 'learning_rate': 9.894547619806822e-06, 'epoch': 0.09}
+{'loss': 0.5168, 'grad_norm': 11.659165927755357, 'learning_rate': 9.894017591599934e-06, 'epoch': 0.09}
+{'loss': 0.6126, 'grad_norm': 19.33175433466801, 'learning_rate': 9.89348624897535e-06, 'epoch': 0.09}
+{'loss': 0.5689, 'grad_norm': 9.573349450695135, 'learning_rate': 9.892953592075776e-06, 'epoch': 0.09}
+{'loss': 0.3655, 'grad_norm': 2.5784609111311037, 'learning_rate': 9.89241962104427e-06, 'epoch': 0.09}
+{'loss': 0.3736, 'grad_norm': 12.756784244193566, 'learning_rate': 9.891884336024242e-06, 'epoch': 0.09}
+{'loss': 0.4581, 'grad_norm': 10.49738613064487, 'learning_rate': 9.89134773715946e-06, 'epoch': 0.09}
+{'loss': 0.5787, 'grad_norm': 63.464892218446465, 'learning_rate': 9.890809824594041e-06, 'epoch': 0.09}
+{'loss': 0.4274, 'grad_norm': 8.955851902839006, 'learning_rate': 9.890270598472457e-06, 'epoch': 0.09}
+{'loss': 0.422, 'grad_norm': 22.59004233111904, 'learning_rate': 9.889730058939529e-06, 'epoch': 0.1}
+{'loss': 0.4807, 'grad_norm': 22.992441505217936, 'learning_rate': 9.889188206140434e-06, 'epoch': 0.1}
+{'loss': 0.5377, 'grad_norm': 8.490924871503926, 'learning_rate': 9.8886450402207e-06, 'epoch': 0.1}
+{'loss': 0.5009, 'grad_norm': 31.55920587534987, 'learning_rate': 9.888100561326211e-06, 'epoch': 0.1}
+{'loss': 0.5639, 'grad_norm': 18.817453431126307, 'learning_rate': 9.8875547696032e-06, 'epoch': 0.1}
+{'loss': 0.4796, 'grad_norm': 4.352356798725464, 'learning_rate': 9.887007665198255e-06, 'epoch': 0.1}
+{'loss': 0.6074, 'grad_norm': 5.2294111801350445, 'learning_rate': 9.88645924825831e-06, 'epoch': 0.1}
+{'loss': 0.4559, 'grad_norm': 4.685600097944287, 'learning_rate': 9.885909518930664e-06, 'epoch': 0.1}
+{'loss': 0.5773, 'grad_norm': 9.718851724085294, 'learning_rate': 9.885358477362956e-06, 'epoch': 0.1}
+{'loss': 0.3833, 'grad_norm': 92.29147445611503, 'learning_rate': 9.884806123703186e-06, 'epoch': 0.1}
+{'loss': 0.4618, 'grad_norm': 3.0400911088733293, 'learning_rate': 9.8842524580997e-06, 'epoch': 0.1}
+{'loss': 0.4568, 'grad_norm': 11.933110083933768, 'learning_rate': 9.883697480701204e-06, 'epoch': 0.1}
+{'loss': 0.5402, 'grad_norm': 11.39971153726536, 'learning_rate': 9.883141191656748e-06, 'epoch': 0.1}
+{'loss': 0.426, 'grad_norm': 14.206507850731715, 'learning_rate': 9.882583591115741e-06, 'epoch': 0.1}
+{'loss': 0.4029, 'grad_norm': 7.079703531278498, 'learning_rate': 9.88202467922794e-06, 'epoch': 0.1}
+{'loss': 0.3767, 'grad_norm': 15.884453979242226, 'learning_rate': 9.881464456143454e-06, 'epoch': 0.1}
+{'loss': 0.5042, 'grad_norm': 8.222011398680182, 'learning_rate': 9.880902922012747e-06, 'epoch': 0.1}
+{'loss': 0.5659, 'grad_norm': 14.535103968701595, 'learning_rate': 9.880340076986633e-06, 'epoch': 0.1}
+{'loss': 0.5219, 'grad_norm': 9.81926698047439, 'learning_rate': 9.879775921216284e-06, 'epoch': 0.1}
+{'loss': 0.3552, 'grad_norm': 47.766828150393984, 'learning_rate': 9.87921045485321e-06, 'epoch': 0.1}
+{'loss': 0.4739, 'grad_norm': 10.006654005244275, 'learning_rate': 9.87864367804929e-06, 'epoch': 0.1}
+{'loss': 0.4747, 'grad_norm': 7.727126718928664, 'learning_rate': 9.878075590956742e-06, 'epoch': 0.1}
+{'loss': 0.4681, 'grad_norm': 10.93321019006737, 'learning_rate': 9.877506193728144e-06, 'epoch': 0.1}
+{'loss': 0.4511, 'grad_norm': 9.76252343323159, 'learning_rate': 9.876935486516419e-06, 'epoch': 0.1}
+{'loss': 0.461, 'grad_norm': 10.188779224571022, 'learning_rate': 9.876363469474848e-06, 'epoch': 0.1}
+{'loss': 0.5567, 'grad_norm': 70.80606340453488, 'learning_rate': 9.875790142757062e-06, 'epoch': 0.1}
+{'loss': 0.7666, 'grad_norm': 11.722310897821655, 'learning_rate': 9.87521550651704e-06, 'epoch': 0.1}
+{'loss': 0.3941, 'grad_norm': 18.841476742676534, 'learning_rate': 9.874639560909118e-06, 'epoch': 0.1}
+{'loss': 0.4436, 'grad_norm': 4.2473048102362325, 'learning_rate': 9.874062306087983e-06, 'epoch': 0.1}
+{'loss': 0.7419, 'grad_norm': 12.500734446976399, 'learning_rate': 9.873483742208668e-06, 'epoch': 0.1}
+{'loss': 0.4722, 'grad_norm': 5.141038327174706, 'learning_rate': 9.872903869426564e-06, 'epoch': 0.1}
+{'loss': 0.523, 'grad_norm': 9.264693335934606, 'learning_rate': 9.87232268789741e-06, 'epoch': 0.1}
+{'loss': 0.3139, 'grad_norm': 91.34134278883337, 'learning_rate': 9.8717401977773e-06, 'epoch': 0.1}
+{'loss': 0.5482, 'grad_norm': 6.09277224638577, 'learning_rate': 9.871156399222677e-06, 'epoch': 0.1}
+{'loss': 0.5604, 'grad_norm': 8.144662647627346, 'learning_rate': 9.870571292390331e-06, 'epoch': 0.1}
+{'loss': 0.4893, 'grad_norm': 18.726013938552526, 'learning_rate': 9.869984877437413e-06, 'epoch': 0.1}
+{'loss': 0.4086, 'grad_norm': 14.362354762781722, 'learning_rate': 9.869397154521418e-06, 'epoch': 0.1}
+{'loss': 0.3242, 'grad_norm': 17.629212044855894, 'learning_rate': 9.868808123800194e-06, 'epoch': 0.1}
+{'loss': 0.4411, 'grad_norm': 52.63482672083195, 'learning_rate': 9.868217785431942e-06, 'epoch': 0.1}
+{'loss': 0.5488, 'grad_norm': 23.222376720288715, 'learning_rate': 9.86762613957521e-06, 'epoch': 0.1}
+{'loss': 0.4004, 'grad_norm': 6.488159976807729, 'learning_rate': 9.867033186388906e-06, 'epoch': 0.1}
+{'loss': 0.4433, 'grad_norm': 7.014971224299355, 'learning_rate': 9.866438926032278e-06, 'epoch': 0.1}
+{'loss': 0.4267, 'grad_norm': 7.7837451879851525, 'learning_rate': 9.865843358664933e-06, 'epoch': 0.1}
+{'loss': 0.5, 'grad_norm': 16.11318572808445, 'learning_rate': 9.865246484446824e-06, 'epoch': 0.1}
+{'loss': 0.27, 'grad_norm': 10.190698435585402, 'learning_rate': 9.86464830353826e-06, 'epoch': 0.1}
+{'loss': 0.394, 'grad_norm': 17.331403709910912, 'learning_rate': 9.864048816099897e-06, 'epoch': 0.1}
+{'loss': 0.404, 'grad_norm': 8.777411148614902, 'learning_rate': 9.863448022292742e-06, 'epoch': 0.1}
+{'loss': 0.6172, 'grad_norm': 11.343251710213949, 'learning_rate': 9.862845922278156e-06, 'epoch': 0.1}
+{'loss': 0.5011, 'grad_norm': 10.520495113671506, 'learning_rate': 9.86224251621785e-06, 'epoch': 0.1}
+{'loss': 0.3234, 'grad_norm': 54.94357049658599, 'learning_rate': 9.861637804273882e-06, 'epoch': 0.1}
+{'loss': 0.3759, 'grad_norm': 5.606306720699116, 'learning_rate': 9.861031786608663e-06, 'epoch': 0.1}
+{'loss': 0.4751, 'grad_norm': 8.501810342001082, 'learning_rate': 9.860424463384956e-06, 'epoch': 0.1}
+{'loss': 0.4187, 'grad_norm': 32.35207946041856, 'learning_rate': 9.859815834765875e-06, 'epoch': 0.1}
+{'loss': 0.4087, 'grad_norm': 6.486765357173956, 'learning_rate': 9.859205900914884e-06, 'epoch': 0.1}
+{'loss': 0.6001, 'grad_norm': 6.911467660222379, 'learning_rate': 9.858594661995792e-06, 'epoch': 0.1}
+{'loss': 0.5768, 'grad_norm': 2.965459254574242, 'learning_rate': 9.857982118172768e-06, 'epoch': 0.1}
+{'loss': 0.5434, 'grad_norm': 10.783428305596246, 'learning_rate': 9.857368269610325e-06, 'epoch': 0.1}
+{'loss': 0.3508, 'grad_norm': 22.075580885598313, 'learning_rate': 9.856753116473327e-06, 'epoch': 0.1}
+{'loss': 0.4975, 'grad_norm': 10.224775386423357, 'learning_rate': 9.856136658926993e-06, 'epoch': 0.1}
+{'loss': 0.5452, 'grad_norm': 6.96608779705948, 'learning_rate': 9.855518897136886e-06, 'epoch': 0.1}
+{'loss': 0.4208, 'grad_norm': 9.521862114199475, 'learning_rate': 9.854899831268926e-06, 'epoch': 0.1}
+{'loss': 0.4799, 'grad_norm': 42.60476625427536, 'learning_rate': 9.854279461489373e-06, 'epoch': 0.1}
+{'loss': 0.3665, 'grad_norm': 10.438364086653106, 'learning_rate': 9.85365778796485e-06, 'epoch': 0.1}
+{'loss': 0.5234, 'grad_norm': 9.664725704520079, 'learning_rate': 9.853034810862321e-06, 'epoch': 0.11}
+{'loss': 0.3677, 'grad_norm': 6.890839095692954, 'learning_rate': 9.852410530349102e-06, 'epoch': 0.11}
+{'loss': 0.5031, 'grad_norm': 2.9311014647322873, 'learning_rate': 9.851784946592862e-06, 'epoch': 0.11}
+{'loss': 0.1835, 'grad_norm': 244.37827631073424, 'learning_rate': 9.851158059761617e-06, 'epoch': 0.11}
+{'loss': 0.4678, 'grad_norm': 3.989676327235409, 'learning_rate': 9.850529870023735e-06, 'epoch': 0.11}
+{'loss': 0.5653, 'grad_norm': 6.108858201707889, 'learning_rate': 9.849900377547933e-06, 'epoch': 0.11}
+{'loss': 0.5955, 'grad_norm': 6.8099723199516085, 'learning_rate': 9.849269582503276e-06, 'epoch': 0.11}
+{'loss': 0.5251, 'grad_norm': 6.17091505091739, 'learning_rate': 9.848637485059183e-06, 'epoch': 0.11}
+{'loss': 0.5431, 'grad_norm': 6.233310598101322, 'learning_rate': 9.84800408538542e-06, 'epoch': 0.11}
+{'loss': 0.434, 'grad_norm': 9.551232638706583, 'learning_rate': 9.8473693836521e-06, 'epoch': 0.11}
+{'loss': 0.4818, 'grad_norm': 6.91469298214645, 'learning_rate': 9.846733380029692e-06, 'epoch': 0.11}
+{'loss': 0.5682, 'grad_norm': 8.2961195212631, 'learning_rate': 9.846096074689012e-06, 'epoch': 0.11}
+{'loss': 0.3855, 'grad_norm': 30.446583077860804, 'learning_rate': 9.845457467801223e-06, 'epoch': 0.11}
+{'loss': 0.6283, 'grad_norm': 6.065093413003269, 'learning_rate': 9.844817559537841e-06, 'epoch': 0.11}
+{'loss': 0.399, 'grad_norm': 7.505617377770242, 'learning_rate': 9.84417635007073e-06, 'epoch': 0.11}
+{'loss': 0.6039, 'grad_norm': 80.49943211747323, 'learning_rate': 9.843533839572105e-06, 'epoch': 0.11}
+{'loss': 0.4405, 'grad_norm': 4.562814236120062, 'learning_rate': 9.84289002821453e-06, 'epoch': 0.11}
+{'loss': 0.4649, 'grad_norm': 4.462551580780427, 'learning_rate': 9.842244916170913e-06, 'epoch': 0.11}
+{'loss': 0.6709, 'grad_norm': 8.217302397768984, 'learning_rate': 9.841598503614518e-06, 'epoch': 0.11}
+{'loss': 0.6144, 'grad_norm': 6.692082218767748, 'learning_rate': 9.840950790718959e-06, 'epoch': 0.11}
+{'loss': 0.3647, 'grad_norm': 6.02272471182222, 'learning_rate': 9.840301777658192e-06, 'epoch': 0.11}
+{'loss': 0.4156, 'grad_norm': 7.575645802258187, 'learning_rate': 9.83965146460653e-06, 'epoch': 0.11}
+{'loss': 0.4592, 'grad_norm': 50.4736577081526, 'learning_rate': 9.838999851738631e-06, 'epoch': 0.11}
+{'loss': 0.4406, 'grad_norm': 12.637902906385856, 'learning_rate': 9.838346939229501e-06, 'epoch': 0.11}
+{'loss': 0.4669, 'grad_norm': 8.756207682665373, 'learning_rate': 9.837692727254498e-06, 'epoch': 0.11}
+{'loss': 0.5158, 'grad_norm': 2.3157369391000278, 'learning_rate': 9.83703721598933e-06, 'epoch': 0.11}
+{'loss': 0.4783, 'grad_norm': 16.212078546303534, 'learning_rate': 9.836380405610048e-06, 'epoch': 0.11}
+{'loss': 0.4531, 'grad_norm': 6.605044035069271, 'learning_rate': 9.835722296293058e-06, 'epoch': 0.11}
+{'loss': 0.5077, 'grad_norm': 107.51280034866646, 'learning_rate': 9.835062888215114e-06, 'epoch': 0.11}
+{'loss': 0.7012, 'grad_norm': 4.522369897003294, 'learning_rate': 9.834402181553314e-06, 'epoch': 0.11}
+{'loss': 0.4647, 'grad_norm': 12.855377612132655, 'learning_rate': 9.833740176485111e-06, 'epoch': 0.11}
+{'loss': 0.4459, 'grad_norm': 4.873094580744314, 'learning_rate': 9.833076873188303e-06, 'epoch': 0.11}
+{'loss': 0.4738, 'grad_norm': 33.59012860291912, 'learning_rate': 9.832412271841037e-06, 'epoch': 0.11}
+{'loss': 0.3063, 'grad_norm': 22.208129187904884, 'learning_rate': 9.831746372621811e-06, 'epoch': 0.11}
+{'loss': 0.5022, 'grad_norm': 6.884013471742098, 'learning_rate': 9.831079175709467e-06, 'epoch': 0.11}
+{'loss': 0.4869, 'grad_norm': 4.045813232543001, 'learning_rate': 9.830410681283203e-06, 'epoch': 0.11}
+{'loss': 0.5611, 'grad_norm': 8.052168397696702, 'learning_rate': 9.829740889522555e-06, 'epoch': 0.11}
+{'loss': 0.5257, 'grad_norm': 11.62022171924968, 'learning_rate': 9.829069800607418e-06, 'epoch': 0.11}
+{'loss': 0.4496, 'grad_norm': 2.945664744977779, 'learning_rate': 9.828397414718026e-06, 'epoch': 0.11}
+{'loss': 0.5665, 'grad_norm': 6.915938268430647, 'learning_rate': 9.827723732034972e-06, 'epoch': 0.11}
+{'loss': 0.4359, 'grad_norm': 6.199898407650464, 'learning_rate': 9.827048752739189e-06, 'epoch': 0.11}
+{'loss': 0.3362, 'grad_norm': 8.939392262168367, 'learning_rate': 9.826372477011956e-06, 'epoch': 0.11}
+{'loss': 0.3765, 'grad_norm': 8.174394508207508, 'learning_rate': 9.82569490503491e-06, 'epoch': 0.11}
+{'loss': 0.4175, 'grad_norm': 33.740961351999445, 'learning_rate': 9.825016036990029e-06, 'epoch': 0.11}
+{'loss': 0.3885, 'grad_norm': 7.5773680091890805, 'learning_rate': 9.824335873059643e-06, 'epoch': 0.11}
+{'loss': 0.4757, 'grad_norm': 4.513965685207646, 'learning_rate': 9.823654413426424e-06, 'epoch': 0.11}
+{'loss': 0.4921, 'grad_norm': 6.184312224448039, 'learning_rate': 9.8229716582734e-06, 'epoch': 0.11}
+{'loss': 0.3964, 'grad_norm': 13.18405053559106, 'learning_rate': 9.822287607783938e-06, 'epoch': 0.11}
+{'loss': 0.672, 'grad_norm': 7.3368940576376644, 'learning_rate': 9.821602262141762e-06, 'epoch': 0.11}
+{'loss': 0.4582, 'grad_norm': 24.37162636580234, 'learning_rate': 9.820915621530939e-06, 'epoch': 0.11}
+{'loss': 0.5838, 'grad_norm': 6.364304427556574, 'learning_rate': 9.820227686135885e-06, 'epoch': 0.11}
+{'loss': 0.5421, 'grad_norm': 8.149063914370386, 'learning_rate': 9.81953845614136e-06, 'epoch': 0.11}
+{'loss': 0.5493, 'grad_norm': 11.514316152475558, 'learning_rate': 9.81884793173248e-06, 'epoch': 0.11}
+{'loss': 0.7707, 'grad_norm': 29.319517989307972, 'learning_rate': 9.818156113094699e-06, 'epoch': 0.11}
+{'loss': 0.5, 'grad_norm': 2.364474158132695, 'learning_rate': 9.817463000413826e-06, 'epoch': 0.11}
+{'loss': 0.6441, 'grad_norm': 7.018003762238729, 'learning_rate': 9.816768593876012e-06, 'epoch': 0.11}
+{'loss': 0.4722, 'grad_norm': 6.271982543982685, 'learning_rate': 9.81607289366776e-06, 'epoch': 0.11}
+{'loss': 0.4201, 'grad_norm': 8.079582311732779, 'learning_rate': 9.81537589997592e-06, 'epoch': 0.11}
+{'loss': 0.6248, 'grad_norm': 97.1405402905021, 'learning_rate': 9.814677612987684e-06, 'epoch': 0.11}
+{'loss': 0.6296, 'grad_norm': 7.42215935217946, 'learning_rate': 9.8139780328906e-06, 'epoch': 0.11}
+{'loss': 0.277, 'grad_norm': 11.386217199808149, 'learning_rate': 9.813277159872556e-06, 'epoch': 0.11}
+{'loss': 0.5275, 'grad_norm': 9.37220934371978, 'learning_rate': 9.812574994121791e-06, 'epoch': 0.11}
+{'loss': 0.4497, 'grad_norm': 10.261793810012314, 'learning_rate': 9.81187153582689e-06, 'epoch': 0.12}
+{'loss': 0.2854, 'grad_norm': 9.689415250948855, 'learning_rate': 9.811166785176785e-06, 'epoch': 0.12}
+{'loss': 0.4126, 'grad_norm': 7.599331598709942, 'learning_rate': 9.810460742360755e-06, 'epoch': 0.12}
+{'loss': 0.209, 'grad_norm': 10.08085087051649, 'learning_rate': 9.809753407568427e-06, 'epoch': 0.12}
+{'loss': 0.5152, 'grad_norm': 9.510670492541157, 'learning_rate': 9.809044780989776e-06, 'epoch': 0.12}
+{'loss': 0.5406, 'grad_norm': 14.825454925135672, 'learning_rate': 9.80833486281512e-06, 'epoch': 0.12}
+{'loss': 0.5912, 'grad_norm': 4.250461160559225, 'learning_rate': 9.807623653235126e-06, 'epoch': 0.12}
+{'loss': 0.6244, 'grad_norm': 6.969741245511435, 'learning_rate': 9.80691115244081e-06, 'epoch': 0.12}
+{'loss': 0.3067, 'grad_norm': 84.97837121167296, 'learning_rate': 9.806197360623531e-06, 'epoch': 0.12}
+{'loss': 0.4777, 'grad_norm': 7.846012102203701, 'learning_rate': 9.805482277974999e-06, 'epoch': 0.12}
+{'loss': 0.471, 'grad_norm': 4.78152841614547, 'learning_rate': 9.804765904687269e-06, 'epoch': 0.12}
+{'loss': 0.422, 'grad_norm': 7.911939727718303, 'learning_rate': 9.804048240952736e-06, 'epoch': 0.12}
+{'loss': 0.4998, 'grad_norm': 20.80454987235262, 'learning_rate': 9.803329286964153e-06, 'epoch': 0.12}
+{'loss': 0.4023, 'grad_norm': 6.932384395983597, 'learning_rate': 9.802609042914614e-06, 'epoch': 0.12}
+{'loss': 0.5049, 'grad_norm': 40.16326155332, 'learning_rate': 9.801887508997558e-06, 'epoch': 0.12}
+{'loss': 0.5536, 'grad_norm': 8.714313267933301, 'learning_rate': 9.80116468540677e-06, 'epoch': 0.12}
+{'loss': 0.5338, 'grad_norm': 56.367378767100504, 'learning_rate': 9.800440572336388e-06, 'epoch': 0.12}
+{'loss': 0.5468, 'grad_norm': 4.388834704269227, 'learning_rate': 9.79971516998089e-06, 'epoch': 0.12}
+{'loss': 0.3385, 'grad_norm': 6.601434770755201, 'learning_rate': 9.798988478535098e-06, 'epoch': 0.12}
+{'loss': 0.4115, 'grad_norm': 5.838005853310045, 'learning_rate': 9.79826049819419e-06, 'epoch': 0.12}
+{'loss': 0.4356, 'grad_norm': 16.238507652702356, 'learning_rate': 9.797531229153682e-06, 'epoch': 0.12}
+{'loss': 0.531, 'grad_norm': 131.68508961507595, 'learning_rate': 9.796800671609436e-06, 'epoch': 0.12}
+{'loss': 0.5266, 'grad_norm': 13.088066261981893, 'learning_rate': 9.796068825757667e-06, 'epoch': 0.12}
+{'loss': 0.4204, 'grad_norm': 8.926797099539302, 'learning_rate': 9.795335691794929e-06, 'epoch': 0.12}
+{'loss': 0.5682, 'grad_norm': 27.945754848624336, 'learning_rate': 9.794601269918125e-06, 'epoch': 0.12}
+{'loss': 0.5565, 'grad_norm': 13.674830009138626, 'learning_rate': 9.793865560324503e-06, 'epoch': 0.12}
+{'loss': 0.4654, 'grad_norm': 10.117510401501107, 'learning_rate': 9.793128563211656e-06, 'epoch': 0.12}
+{'loss': 0.4949, 'grad_norm': 8.13585125006266, 'learning_rate': 9.792390278777527e-06, 'epoch': 0.12}
+{'loss': 0.5768, 'grad_norm': 46.25005431234283, 'learning_rate': 9.7916507072204e-06, 'epoch': 0.12}
+{'loss': 0.2898, 'grad_norm': 6.308491059304827, 'learning_rate': 9.790909848738907e-06, 'epoch': 0.12}
+{'loss': 0.3593, 'grad_norm': 4.906514571845508, 'learning_rate': 9.790167703532025e-06, 'epoch': 0.12}
+{'loss': 0.5218, 'grad_norm': 9.070987206626373, 'learning_rate': 9.789424271799075e-06, 'epoch': 0.12}
+{'loss': 0.5747, 'grad_norm': 6.693698689021614, 'learning_rate': 9.788679553739728e-06, 'epoch': 0.12}
+{'loss': 0.4639, 'grad_norm': 4.7426004343816, 'learning_rate': 9.787933549553996e-06, 'epoch': 0.12}
+{'loss': 0.4525, 'grad_norm': 35.12651207522574, 'learning_rate': 9.787186259442241e-06, 'epoch': 0.12}
+{'loss': 0.5002, 'grad_norm': 14.818155806708232, 'learning_rate': 9.786437683605161e-06, 'epoch': 0.12}
+{'loss': 0.6103, 'grad_norm': 12.592814115955743, 'learning_rate': 9.785687822243813e-06, 'epoch': 0.12}
+{'loss': 0.7054, 'grad_norm': 5.808980921481357, 'learning_rate': 9.78493667555959e-06, 'epoch': 0.12}
+{'loss': 0.5707, 'grad_norm': 14.642281172711037, 'learning_rate': 9.784184243754229e-06, 'epoch': 0.12}
+{'loss': 0.5079, 'grad_norm': 8.497404823156758, 'learning_rate': 9.783430527029818e-06, 'epoch': 0.12}
+{'loss': 0.687, 'grad_norm': 7.14966334002342, 'learning_rate': 9.782675525588787e-06, 'epoch': 0.12}
+{'loss': 0.4595, 'grad_norm': 22.84744032569647, 'learning_rate': 9.781919239633912e-06, 'epoch': 0.12}
+{'loss': 0.2946, 'grad_norm': 35.483093994661616, 'learning_rate': 9.781161669368316e-06, 'epoch': 0.12}
+{'loss': 0.5867, 'grad_norm': 7.652274855584501, 'learning_rate': 9.780402814995458e-06, 'epoch': 0.12}
+{'loss': 0.5622, 'grad_norm': 92.86098786813277, 'learning_rate': 9.779642676719155e-06, 'epoch': 0.12}
+{'loss': 0.3405, 'grad_norm': 34.592013481530614, 'learning_rate': 9.77888125474356e-06, 'epoch': 0.12}
+{'loss': 0.3997, 'grad_norm': 12.266606206674204, 'learning_rate': 9.77811854927317e-06, 'epoch': 0.12}
+{'loss': 0.6039, 'grad_norm': 11.3070629079396, 'learning_rate': 9.777354560512835e-06, 'epoch': 0.12}
+{'loss': 0.4643, 'grad_norm': 20.400762637662858, 'learning_rate': 9.77658928866774e-06, 'epoch': 0.12}
+{'loss': 0.5127, 'grad_norm': 134.80333065146598, 'learning_rate': 9.77582273394342e-06, 'epoch': 0.12}
+{'loss': 0.4074, 'grad_norm': 8.37236778000808, 'learning_rate': 9.775054896545755e-06, 'epoch': 0.12}
+{'loss': 0.5656, 'grad_norm': 19.164399840000577, 'learning_rate': 9.774285776680967e-06, 'epoch': 0.12}
+{'loss': 0.5478, 'grad_norm': 3.087783124935511, 'learning_rate': 9.773515374555623e-06, 'epoch': 0.12}
+{'loss': 0.5697, 'grad_norm': 5.77750353607921, 'learning_rate': 9.772743690376636e-06, 'epoch': 0.12}
+{'loss': 0.3774, 'grad_norm': 39.04596490617968, 'learning_rate': 9.77197072435126e-06, 'epoch': 0.12}
+{'loss': 0.6162, 'grad_norm': 12.960079287888211, 'learning_rate': 9.7711964766871e-06, 'epoch': 0.12}
+{'loss': 0.5128, 'grad_norm': 2.83154876473471, 'learning_rate': 9.770420947592096e-06, 'epoch': 0.12}
+{'loss': 0.4916, 'grad_norm': 4.473914735272329, 'learning_rate': 9.76964413727454e-06, 'epoch': 0.12}
+{'loss': 0.4703, 'grad_norm': 14.643599151824784, 'learning_rate': 9.76886604594306e-06, 'epoch': 0.12}
+{'loss': 0.6348, 'grad_norm': 14.248514444922872, 'learning_rate': 9.768086673806638e-06, 'epoch': 0.12}
+{'loss': 0.5473, 'grad_norm': 8.36090316633096, 'learning_rate': 9.767306021074593e-06, 'epoch': 0.12}
+{'loss': 0.6049, 'grad_norm': 12.219564483152128, 'learning_rate': 9.766524087956592e-06, 'epoch': 0.12}
+{'loss': 0.419, 'grad_norm': 18.957836743946075, 'learning_rate': 9.765740874662642e-06, 'epoch': 0.12}
+{'loss': 0.4665, 'grad_norm': 10.033361517316528, 'learning_rate': 9.764956381403095e-06, 'epoch': 0.13}
+{'loss': 0.4407, 'grad_norm': 2.4611262688066287, 'learning_rate': 9.764170608388648e-06, 'epoch': 0.13}
+{'loss': 0.6534, 'grad_norm': 13.602202418511583, 'learning_rate': 9.76338355583034e-06, 'epoch': 0.13}
+{'loss': 0.4456, 'grad_norm': 2.4465686453247844, 'learning_rate': 9.762595223939557e-06, 'epoch': 0.13}
+{'loss': 0.4158, 'grad_norm': 18.436721025663015, 'learning_rate': 9.761805612928025e-06, 'epoch': 0.13}
+{'loss': 0.4691, 'grad_norm': 12.088494433271919, 'learning_rate': 9.761014723007815e-06, 'epoch': 0.13}
+{'loss': 0.6214, 'grad_norm': 9.085709619432246, 'learning_rate': 9.760222554391343e-06, 'epoch': 0.13}
+{'loss': 0.6104, 'grad_norm': 14.515531888486583, 'learning_rate': 9.759429107291366e-06, 'epoch': 0.13}
+{'loss': 0.6462, 'grad_norm': 10.867188158963083, 'learning_rate': 9.758634381920982e-06, 'epoch': 0.13}
+{'loss': 0.3416, 'grad_norm': 11.55463944821475, 'learning_rate': 9.757838378493637e-06, 'epoch': 0.13}
+{'loss': 0.4412, 'grad_norm': 12.690567074851206, 'learning_rate': 9.757041097223123e-06, 'epoch': 0.13}
+{'loss': 0.3644, 'grad_norm': 30.26510927893467, 'learning_rate': 9.756242538323566e-06, 'epoch': 0.13}
+{'loss': 0.4446, 'grad_norm': 6.692887967037855, 'learning_rate': 9.755442702009443e-06, 'epoch': 0.13}
+{'loss': 0.364, 'grad_norm': 9.976798734316336, 'learning_rate': 9.75464158849557e-06, 'epoch': 0.13}
+{'loss': 0.46, 'grad_norm': 16.40991473432686, 'learning_rate': 9.753839197997105e-06, 'epoch': 0.13}
+{'loss': 0.3405, 'grad_norm': 36.94503798100461, 'learning_rate': 9.753035530729556e-06, 'epoch': 0.13}
+{'loss': 0.6171, 'grad_norm': 5.779539909165472, 'learning_rate': 9.752230586908767e-06, 'epoch': 0.13}
+{'loss': 0.4497, 'grad_norm': 7.040799218229177, 'learning_rate': 9.751424366750923e-06, 'epoch': 0.13}
+{'loss': 0.4867, 'grad_norm': 4.33001921109375, 'learning_rate': 9.75061687047256e-06, 'epoch': 0.13}
+{'loss': 0.7776, 'grad_norm': 6.891466773349716, 'learning_rate': 9.749808098290553e-06, 'epoch': 0.13}
+{'loss': 0.2651, 'grad_norm': 6.3196176741410515, 'learning_rate': 9.748998050422117e-06, 'epoch': 0.13}
+{'loss': 0.414, 'grad_norm': 3.013751144984064, 'learning_rate': 9.748186727084812e-06, 'epoch': 0.13}
+{'loss': 0.3801, 'grad_norm': 6.527123948181672, 'learning_rate': 9.747374128496541e-06, 'epoch': 0.13}
+{'loss': 0.5525, 'grad_norm': 24.635271092479286, 'learning_rate': 9.746560254875547e-06, 'epoch': 0.13}
+{'loss': 0.4811, 'grad_norm': 21.55559364200838, 'learning_rate': 9.745745106440422e-06, 'epoch': 0.13}
+{'loss': 0.4523, 'grad_norm': 26.668196658317218, 'learning_rate': 9.74492868341009e-06, 'epoch': 0.13}
+{'loss': 0.4576, 'grad_norm': 3.157061544316182, 'learning_rate': 9.744110986003826e-06, 'epoch': 0.13}
+{'loss': 0.527, 'grad_norm': 18.890433988520183, 'learning_rate': 9.743292014441243e-06, 'epoch': 0.13}
+{'loss': 0.3847, 'grad_norm': 12.001362005918635, 'learning_rate': 9.742471768942299e-06, 'epoch': 0.13}
+{'loss': 0.7081, 'grad_norm': 8.138456993150507, 'learning_rate': 9.741650249727292e-06, 'epoch': 0.13}
+{'loss': 0.487, 'grad_norm': 13.115335379769121, 'learning_rate': 9.740827457016863e-06, 'epoch': 0.13}
+{'loss': 0.3845, 'grad_norm': 8.866199028965399, 'learning_rate': 9.740003391031992e-06, 'epoch': 0.13}
+{'loss': 0.456, 'grad_norm': 8.78615756059739, 'learning_rate': 9.739178051994008e-06, 'epoch': 0.13}
+{'loss': 0.5798, 'grad_norm': 2.498184999111209, 'learning_rate': 9.738351440124573e-06, 'epoch': 0.13}
+{'loss': 0.5372, 'grad_norm': 3.2049409349025786, 'learning_rate': 9.7375235556457e-06, 'epoch': 0.13}
+{'loss': 0.5542, 'grad_norm': 9.89048828565295, 'learning_rate': 9.736694398779735e-06, 'epoch': 0.13}
+{'loss': 0.4959, 'grad_norm': 7.626874436050836, 'learning_rate': 9.735863969749373e-06, 'epoch': 0.13}
+{'loss': 0.5294, 'grad_norm': 7.683388245123858, 'learning_rate': 9.735032268777647e-06, 'epoch': 0.13}
+{'loss': 0.6196, 'grad_norm': 12.462913646301367, 'learning_rate': 9.734199296087932e-06, 'epoch': 0.13}
+{'loss': 0.3524, 'grad_norm': 26.085355185752302, 'learning_rate': 9.733365051903944e-06, 'epoch': 0.13}
+{'loss': 0.6151, 'grad_norm': 7.2089390027866855, 'learning_rate': 9.732529536449741e-06, 'epoch': 0.13}
+{'loss': 0.4089, 'grad_norm': 9.690837982059714, 'learning_rate': 9.731692749949726e-06, 'epoch': 0.13}
+{'loss': 0.4681, 'grad_norm': 31.79815323401363, 'learning_rate': 9.730854692628637e-06, 'epoch': 0.13}
+{'loss': 0.3223, 'grad_norm': 7.501957794109302, 'learning_rate': 9.730015364711558e-06, 'epoch': 0.13}
+{'loss': 0.6042, 'grad_norm': 11.843315301257608, 'learning_rate': 9.729174766423912e-06, 'epoch': 0.13}
+{'loss': 0.4104, 'grad_norm': 18.063441828787386, 'learning_rate': 9.728332897991463e-06, 'epoch': 0.13}
+{'loss': 0.3693, 'grad_norm': 26.09577104288663, 'learning_rate': 9.72748975964032e-06, 'epoch': 0.13}
+{'loss': 0.5999, 'grad_norm': 9.969341205627222, 'learning_rate': 9.726645351596926e-06, 'epoch': 0.13}
+{'loss': 0.4451, 'grad_norm': 8.805531640473983, 'learning_rate': 9.725799674088072e-06, 'epoch': 0.13}
+{'loss': 0.5987, 'grad_norm': 13.239375105499363, 'learning_rate': 9.724952727340886e-06, 'epoch': 0.13}
+{'loss': 0.4873, 'grad_norm': 43.8419511473241, 'learning_rate': 9.724104511582838e-06, 'epoch': 0.13}
+{'loss': 0.3986, 'grad_norm': 21.344738125893343, 'learning_rate': 9.72325502704174e-06, 'epoch': 0.13}
+{'loss': 0.523, 'grad_norm': 35.745624929103485, 'learning_rate': 9.72240427394574e-06, 'epoch': 0.13}
+{'loss': 0.5512, 'grad_norm': 16.46459075540938, 'learning_rate': 9.721552252523334e-06, 'epoch': 0.13}
+{'loss': 0.4681, 'grad_norm': 3.0070245015615207, 'learning_rate': 9.720698963003351e-06, 'epoch': 0.13}
+{'loss': 0.3821, 'grad_norm': 21.123443390256586, 'learning_rate': 9.719844405614971e-06, 'epoch': 0.13}
+{'loss': 0.4001, 'grad_norm': 12.842184208134995, 'learning_rate': 9.7189885805877e-06, 'epoch': 0.13}
+{'loss': 0.5678, 'grad_norm': 14.206001353769144, 'learning_rate': 9.718131488151399e-06, 'epoch': 0.13}
+{'loss': 0.4972, 'grad_norm': 12.263406912441559, 'learning_rate': 9.717273128536259e-06, 'epoch': 0.13}
+{'loss': 0.5993, 'grad_norm': 11.020151476411472, 'learning_rate': 9.716413501972815e-06, 'epoch': 0.13}
+{'loss': 0.4817, 'grad_norm': 10.962864857676738, 'learning_rate': 9.715552608691944e-06, 'epoch': 0.13}
+{'loss': 0.4134, 'grad_norm': 33.98222678223302, 'learning_rate': 9.714690448924863e-06, 'epoch': 0.13}
+{'loss': 0.4859, 'grad_norm': 3.481815767727989, 'learning_rate': 9.713827022903124e-06, 'epoch': 0.14}
+{'loss': 0.5183, 'grad_norm': 16.10040127738963, 'learning_rate': 9.712962330858626e-06, 'epoch': 0.14}
+{'loss': 0.2807, 'grad_norm': 54.464338104081925, 'learning_rate': 9.712096373023603e-06, 'epoch': 0.14}
+{'loss': 0.6064, 'grad_norm': 10.802123400329188, 'learning_rate': 9.711229149630634e-06, 'epoch': 0.14}
+{'loss': 0.3534, 'grad_norm': 78.21183997985277, 'learning_rate': 9.710360660912629e-06, 'epoch': 0.14}
+{'loss': 0.7177, 'grad_norm': 36.378710107553914, 'learning_rate': 9.709490907102849e-06, 'epoch': 0.14}
+{'loss': 0.5118, 'grad_norm': 31.142504153030647, 'learning_rate': 9.708619888434887e-06, 'epoch': 0.14}
+{'loss': 0.56, 'grad_norm': 44.74445959666529, 'learning_rate': 9.707747605142676e-06, 'epoch': 0.14}
+{'loss': 0.4595, 'grad_norm': 11.204688280779404, 'learning_rate': 9.706874057460497e-06, 'epoch': 0.14}
+{'loss': 0.5794, 'grad_norm': 27.24998820022356, 'learning_rate': 9.705999245622958e-06, 'epoch': 0.14}
+{'loss': 0.5655, 'grad_norm': 252.9530192674201, 'learning_rate': 9.705123169865016e-06, 'epoch': 0.14}
+{'loss': 0.4836, 'grad_norm': 63.2560487259279, 'learning_rate': 9.704245830421963e-06, 'epoch': 0.14}
+{'loss': 0.4946, 'grad_norm': 6.418148502783797, 'learning_rate': 9.703367227529432e-06, 'epoch': 0.14}
+{'loss': 0.5912, 'grad_norm': 11.579374006830024, 'learning_rate': 9.702487361423395e-06, 'epoch': 0.14}
+{'loss': 0.4406, 'grad_norm': 10.831377671716705, 'learning_rate': 9.701606232340165e-06, 'epoch': 0.14}
+{'loss': 0.4271, 'grad_norm': 46.548708115257696, 'learning_rate': 9.70072384051639e-06, 'epoch': 0.14}
+{'loss': 0.4875, 'grad_norm': 11.852494778146673, 'learning_rate': 9.699840186189061e-06, 'epoch': 0.14}
+{'loss': 0.3827, 'grad_norm': 8.836830187641093, 'learning_rate': 9.698955269595505e-06, 'epoch': 0.14}
+{'loss': 0.426, 'grad_norm': 13.058030147901178, 'learning_rate': 9.698069090973391e-06, 'epoch': 0.14}
+{'loss': 0.6767, 'grad_norm': 24.15525083080531, 'learning_rate': 9.697181650560727e-06, 'epoch': 0.14}
+{'loss': 0.5937, 'grad_norm': 11.700707334214774, 'learning_rate': 9.696292948595857e-06, 'epoch': 0.14}
+{'loss': 0.6904, 'grad_norm': 6.409910579637935, 'learning_rate': 9.695402985317467e-06, 'epoch': 0.14}
+{'loss': 0.6433, 'grad_norm': 13.136335804507333, 'learning_rate': 9.694511760964578e-06, 'epoch': 0.14}
+{'loss': 0.5496, 'grad_norm': 14.075370128261987, 'learning_rate': 9.693619275776552e-06, 'epoch': 0.14}
+{'loss': 0.6074, 'grad_norm': 15.195348380152833, 'learning_rate': 9.69272552999309e-06, 'epoch': 0.14}
+{'loss': 0.41, 'grad_norm': 10.041995417901179, 'learning_rate': 9.691830523854231e-06, 'epoch': 0.14}
+{'loss': 0.5073, 'grad_norm': 20.195524613747875, 'learning_rate': 9.690934257600353e-06, 'epoch': 0.14}
+{'loss': 0.4321, 'grad_norm': 14.864221095050759, 'learning_rate': 9.690036731472172e-06, 'epoch': 0.14}
+{'loss': 0.6219, 'grad_norm': 101.33297962482298, 'learning_rate': 9.689137945710742e-06, 'epoch': 0.14}
+{'loss': 0.6622, 'grad_norm': 11.226983483570303, 'learning_rate': 9.688237900557455e-06, 'epoch': 0.14}
+{'loss': 0.6194, 'grad_norm': 19.877839075250936, 'learning_rate': 9.687336596254045e-06, 'epoch': 0.14}
+{'loss': 0.3364, 'grad_norm': 8.407575312212199, 'learning_rate': 9.686434033042575e-06, 'epoch': 0.14}
+{'loss': 0.3906, 'grad_norm': 9.549949909727053, 'learning_rate': 9.685530211165459e-06, 'epoch': 0.14}
+{'loss': 0.4733, 'grad_norm': 18.830967262441348, 'learning_rate': 9.684625130865437e-06, 'epoch': 0.14}
+{'loss': 0.4804, 'grad_norm': 7.76973454958596, 'learning_rate': 9.683718792385595e-06, 'epoch': 0.14}
+{'loss': 0.4371, 'grad_norm': 10.364274661631296, 'learning_rate': 9.682811195969355e-06, 'epoch': 0.14}
+{'loss': 0.4445, 'grad_norm': 7.690039987220435, 'learning_rate': 9.681902341860471e-06, 'epoch': 0.14}
+{'loss': 0.5819, 'grad_norm': 18.306807512205317, 'learning_rate': 9.680992230303046e-06, 'epoch': 0.14}
+{'loss': 0.3729, 'grad_norm': 15.801974112877359, 'learning_rate': 9.680080861541511e-06, 'epoch': 0.14}
+{'loss': 0.649, 'grad_norm': 2.8565104932795573, 'learning_rate': 9.67916823582064e-06, 'epoch': 0.14}
+{'loss': 0.552, 'grad_norm': 2.845857472162546, 'learning_rate': 9.678254353385538e-06, 'epoch': 0.14}
+{'loss': 0.6167, 'grad_norm': 10.908971429909435, 'learning_rate': 9.677339214481661e-06, 'epoch': 0.14}
+{'loss': 0.4853, 'grad_norm': 8.629843847005546, 'learning_rate': 9.676422819354785e-06, 'epoch': 0.14}
+{'loss': 0.5818, 'grad_norm': 7.962120447773612, 'learning_rate': 9.675505168251038e-06, 'epoch': 0.14}
+{'loss': 0.5612, 'grad_norm': 96.43441143086405, 'learning_rate': 9.674586261416874e-06, 'epoch': 0.14}
+{'loss': 0.5036, 'grad_norm': 13.160478603173681, 'learning_rate': 9.673666099099095e-06, 'epoch': 0.14}
+{'loss': 0.6235, 'grad_norm': 13.188007054923515, 'learning_rate': 9.672744681544834e-06, 'epoch': 0.14}
+{'loss': 0.339, 'grad_norm': 13.675726537425843, 'learning_rate': 9.67182200900156e-06, 'epoch': 0.14}
+{'loss': 0.4315, 'grad_norm': 7.7013605688029285, 'learning_rate': 9.670898081717079e-06, 'epoch': 0.14}
+{'loss': 0.3526, 'grad_norm': 304.71238586152487, 'learning_rate': 9.669972899939542e-06, 'epoch': 0.14}
+{'loss': 0.4879, 'grad_norm': 25.330809929579313, 'learning_rate': 9.669046463917427e-06, 'epoch': 0.14}
+{'loss': 0.4029, 'grad_norm': 10.217581853114213, 'learning_rate': 9.668118773899554e-06, 'epoch': 0.14}
+{'loss': 0.4206, 'grad_norm': 27.056546779464128, 'learning_rate': 9.667189830135078e-06, 'epoch': 0.14}
+{'loss': 0.5693, 'grad_norm': 3.0885063283302343, 'learning_rate': 9.666259632873494e-06, 'epoch': 0.14}
+{'loss': 0.6215, 'grad_norm': 9.437852059784657, 'learning_rate': 9.665328182364627e-06, 'epoch': 0.14}
+{'loss': 0.4437, 'grad_norm': 5.788073624178921, 'learning_rate': 9.664395478858645e-06, 'epoch': 0.14}
+{'loss': 0.5149, 'grad_norm': 35.64475226076799, 'learning_rate': 9.663461522606049e-06, 'epoch': 0.14}
+{'loss': 0.4059, 'grad_norm': 9.632178693663214, 'learning_rate': 9.662526313857678e-06, 'epoch': 0.14}
+{'loss': 0.441, 'grad_norm': 8.772876130912683, 'learning_rate': 9.66158985286471e-06, 'epoch': 0.14}
+{'loss': 0.495, 'grad_norm': 10.695322455051768, 'learning_rate': 9.66065213987865e-06, 'epoch': 0.14}
+{'loss': 0.2878, 'grad_norm': 8.69275804397787, 'learning_rate': 9.659713175151352e-06, 'epoch': 0.14}
+{'loss': 0.3426, 'grad_norm': 7.576903144118498, 'learning_rate': 9.658772958934997e-06, 'epoch': 0.14}
+{'loss': 0.4137, 'grad_norm': 8.301375335591885, 'learning_rate': 9.657831491482103e-06, 'epoch': 0.14}
+{'loss': 0.49, 'grad_norm': 13.354942581600259, 'learning_rate': 9.65688877304553e-06, 'epoch': 0.15}
+{'loss': 0.5532, 'grad_norm': 21.95220124378433, 'learning_rate': 9.655944803878467e-06, 'epoch': 0.15}
+{'loss': 0.3161, 'grad_norm': 10.079562920985538, 'learning_rate': 9.654999584234444e-06, 'epoch': 0.15}
+{'loss': 0.3487, 'grad_norm': 13.671127264682434, 'learning_rate': 9.654053114367321e-06, 'epoch': 0.15}
+{'loss': 0.577, 'grad_norm': 7.632414453110026, 'learning_rate': 9.653105394531302e-06, 'epoch': 0.15}
+{'loss': 0.7576, 'grad_norm': 6.210662538145477, 'learning_rate': 9.65215642498092e-06, 'epoch': 0.15}
+{'loss': 0.4178, 'grad_norm': 9.039862212846137, 'learning_rate': 9.651206205971045e-06, 'epoch': 0.15}
+{'loss': 0.4152, 'grad_norm': 9.487903743544999, 'learning_rate': 9.650254737756883e-06, 'epoch': 0.15}
+{'loss': 0.5874, 'grad_norm': 13.931244606109217, 'learning_rate': 9.64930202059398e-06, 'epoch': 0.15}
+{'loss': 0.3926, 'grad_norm': 5.013781329692758, 'learning_rate': 9.648348054738208e-06, 'epoch': 0.15}
+{'loss': 0.5002, 'grad_norm': 9.094499697052846, 'learning_rate': 9.647392840445784e-06, 'epoch': 0.15}
+{'loss': 0.366, 'grad_norm': 33.478824063892276, 'learning_rate': 9.646436377973253e-06, 'epoch': 0.15}
+{'loss': 0.4953, 'grad_norm': 43.588120262684946, 'learning_rate': 9.645478667577502e-06, 'epoch': 0.15}
+{'loss': 0.659, 'grad_norm': 10.387772435062905, 'learning_rate': 9.644519709515746e-06, 'epoch': 0.15}
+{'loss': 0.4291, 'grad_norm': 27.30789716206084, 'learning_rate': 9.64355950404554e-06, 'epoch': 0.15}
+{'loss': 0.7269, 'grad_norm': 5.322014803249604, 'learning_rate': 9.642598051424772e-06, 'epoch': 0.15}
+{'loss': 0.3007, 'grad_norm': 8.772810809025946, 'learning_rate': 9.641635351911664e-06, 'epoch': 0.15}
+{'loss': 0.3371, 'grad_norm': 4.4500672842448274, 'learning_rate': 9.640671405764777e-06, 'epoch': 0.15}
+{'loss': 0.6968, 'grad_norm': 12.689169725467357, 'learning_rate': 9.639706213243004e-06, 'epoch': 0.15}
+{'loss': 0.5538, 'grad_norm': 48.946764407060016, 'learning_rate': 9.638739774605572e-06, 'epoch': 0.15}
+{'loss': 0.453, 'grad_norm': 6.969653390831872, 'learning_rate': 9.637772090112043e-06, 'epoch': 0.15}
+{'loss': 0.259, 'grad_norm': 10.140321641886796, 'learning_rate': 9.636803160022314e-06, 'epoch': 0.15}
+{'loss': 0.5411, 'grad_norm': 8.543963261441663, 'learning_rate': 9.63583298459662e-06, 'epoch': 0.15}
+{'loss': 0.5347, 'grad_norm': 9.3611512859179, 'learning_rate': 9.634861564095525e-06, 'epoch': 0.15}
+{'loss': 0.5226, 'grad_norm': 54.717794067105736, 'learning_rate': 9.633888898779928e-06, 'epoch': 0.15}
+{'loss': 0.5792, 'grad_norm': 12.061037112178543, 'learning_rate': 9.632914988911066e-06, 'epoch': 0.15}
+{'loss': 0.49, 'grad_norm': 5.421039050198794, 'learning_rate': 9.631939834750509e-06, 'epoch': 0.15}
+{'loss': 0.3056, 'grad_norm': 6.132896215082767, 'learning_rate': 9.63096343656016e-06, 'epoch': 0.15}
+{'loss': 0.3863, 'grad_norm': 19.06432352218299, 'learning_rate': 9.629985794602253e-06, 'epoch': 0.15}
+{'loss': 0.5212, 'grad_norm': 10.469556502365034, 'learning_rate': 9.629006909139363e-06, 'epoch': 0.15}
+{'loss': 0.4202, 'grad_norm': 10.585543239591477, 'learning_rate': 9.628026780434397e-06, 'epoch': 0.15}
+{'loss': 0.5419, 'grad_norm': 24.79225005483575, 'learning_rate': 9.62704540875059e-06, 'epoch': 0.15}
+{'loss': 0.3251, 'grad_norm': 9.393152103668262, 'learning_rate': 9.626062794351518e-06, 'epoch': 0.15}
+{'loss': 0.3923, 'grad_norm': 17.714057080323816, 'learning_rate': 9.625078937501089e-06, 'epoch': 0.15}
+{'loss': 0.5563, 'grad_norm': 7.898216767177474, 'learning_rate': 9.624093838463541e-06, 'epoch': 0.15}
+{'loss': 0.4519, 'grad_norm': 3.026243339395492, 'learning_rate': 9.62310749750345e-06, 'epoch': 0.15}
+{'loss': 0.2857, 'grad_norm': 12.009629542221894, 'learning_rate': 9.622119914885725e-06, 'epoch': 0.15}
+{'loss': 0.338, 'grad_norm': 16.089536202179808, 'learning_rate': 9.621131090875603e-06, 'epoch': 0.15}
+{'loss': 0.479, 'grad_norm': 18.72736839393788, 'learning_rate': 9.620141025738665e-06, 'epoch': 0.15}
+{'loss': 0.5387, 'grad_norm': 40.35087963141923, 'learning_rate': 9.619149719740817e-06, 'epoch': 0.15}
+{'loss': 0.4292, 'grad_norm': 14.742107220658093, 'learning_rate': 9.618157173148298e-06, 'epoch': 0.15}
+{'loss': 0.5453, 'grad_norm': 26.50206352538795, 'learning_rate': 9.617163386227683e-06, 'epoch': 0.15}
+{'loss': 0.335, 'grad_norm': 9.892349480443896, 'learning_rate': 9.61616835924588e-06, 'epoch': 0.15}
+{'loss': 0.385, 'grad_norm': 17.286902571713824, 'learning_rate': 9.615172092470134e-06, 'epoch': 0.15}
+{'loss': 0.5466, 'grad_norm': 11.012137453626176, 'learning_rate': 9.614174586168012e-06, 'epoch': 0.15}
+{'loss': 0.3553, 'grad_norm': 5.899334034733753, 'learning_rate': 9.613175840607428e-06, 'epoch': 0.15}
+{'loss': 0.4336, 'grad_norm': 2.335635909367543, 'learning_rate': 9.612175856056614e-06, 'epoch': 0.15}
+{'loss': 0.5228, 'grad_norm': 8.906814676899245, 'learning_rate': 9.611174632784147e-06, 'epoch': 0.15}
+{'loss': 0.4363, 'grad_norm': 11.522666018776592, 'learning_rate': 9.610172171058929e-06, 'epoch': 0.15}
+{'loss': 0.5352, 'grad_norm': 1141.0048305669304, 'learning_rate': 9.609168471150202e-06, 'epoch': 0.15}
+{'loss': 0.5377, 'grad_norm': 13.027496079652138, 'learning_rate': 9.608163533327532e-06, 'epoch': 0.15}
+{'loss': 0.3504, 'grad_norm': 8.640208382021067, 'learning_rate': 9.607157357860823e-06, 'epoch': 0.15}
+{'loss': 0.3858, 'grad_norm': 9.424014354016647, 'learning_rate': 9.60614994502031e-06, 'epoch': 0.15}
+{'loss': 0.339, 'grad_norm': 8.74915422283847, 'learning_rate': 9.605141295076561e-06, 'epoch': 0.15}
+{'loss': 0.5004, 'grad_norm': 10.86335832771723, 'learning_rate': 9.604131408300474e-06, 'epoch': 0.15}
+{'loss': 0.5602, 'grad_norm': 9.132172015580577, 'learning_rate': 9.603120284963284e-06, 'epoch': 0.15}
+{'loss': 0.6166, 'grad_norm': 13.116906244636501, 'learning_rate': 9.60210792533655e-06, 'epoch': 0.15}
+{'loss': 0.5491, 'grad_norm': 6.7074240336976345, 'learning_rate': 9.601094329692173e-06, 'epoch': 0.15}
+{'loss': 0.5071, 'grad_norm': 39.217979932691705, 'learning_rate': 9.600079498302375e-06, 'epoch': 0.15}
+{'loss': 0.5873, 'grad_norm': 3.4521826522917367, 'learning_rate': 9.599063431439721e-06, 'epoch': 0.15}
+{'loss': 0.4669, 'grad_norm': 53.4056788374358, 'learning_rate': 9.598046129377101e-06, 'epoch': 0.15}
+{'loss': 0.4372, 'grad_norm': 9.66792675816795, 'learning_rate': 9.597027592387739e-06, 'epoch': 0.15}
+{'loss': 0.6283, 'grad_norm': 50.54507145613711, 'learning_rate': 9.596007820745188e-06, 'epoch': 0.16}
+{'loss': 0.5974, 'grad_norm': 11.85060626311545, 'learning_rate': 9.594986814723335e-06, 'epoch': 0.16}
+{'loss': 0.4495, 'grad_norm': 27.30385305425442, 'learning_rate': 9.593964574596399e-06, 'epoch': 0.16}
+{'loss': 0.4925, 'grad_norm': 5.274811066778247, 'learning_rate': 9.59294110063893e-06, 'epoch': 0.16}
+{'loss': 0.5852, 'grad_norm': 41.73173948065662, 'learning_rate': 9.59191639312581e-06, 'epoch': 0.16}
+{'loss': 0.442, 'grad_norm': 38.76877603027452, 'learning_rate': 9.590890452332249e-06, 'epoch': 0.16}
+{'loss': 0.5176, 'grad_norm': 9.791953536203202, 'learning_rate': 9.58986327853379e-06, 'epoch': 0.16}
+{'loss': 0.5914, 'grad_norm': 13.046554167021178, 'learning_rate': 9.588834872006308e-06, 'epoch': 0.16}
+{'loss': 0.5646, 'grad_norm': 17.244253974748272, 'learning_rate': 9.587805233026011e-06, 'epoch': 0.16}
+{'loss': 0.5531, 'grad_norm': 6.473469888463659, 'learning_rate': 9.586774361869436e-06, 'epoch': 0.16}
+{'loss': 0.509, 'grad_norm': 17.77189179833952, 'learning_rate': 9.585742258813447e-06, 'epoch': 0.16}
+{'loss': 0.5655, 'grad_norm': 21.041729337412956, 'learning_rate': 9.584708924135245e-06, 'epoch': 0.16}
+{'loss': 0.5165, 'grad_norm': 5.786642606131394, 'learning_rate': 9.583674358112357e-06, 'epoch': 0.16}
+{'loss': 0.5671, 'grad_norm': 22.209693223537457, 'learning_rate': 9.582638561022646e-06, 'epoch': 0.16}
+{'loss': 0.6838, 'grad_norm': 13.722989583537977, 'learning_rate': 9.581601533144302e-06, 'epoch': 0.16}
+{'loss': 0.5537, 'grad_norm': 14.013112331512025, 'learning_rate': 9.580563274755848e-06, 'epoch': 0.16}
+{'loss': 0.304, 'grad_norm': 16.557759461260734, 'learning_rate': 9.57952378613613e-06, 'epoch': 0.16}
+{'loss': 0.3513, 'grad_norm': 8.964953714090186, 'learning_rate': 9.578483067564335e-06, 'epoch': 0.16}
+{'loss': 0.7122, 'grad_norm': 9.427543661037664, 'learning_rate': 9.577441119319974e-06, 'epoch': 0.16}
+{'loss': 0.2832, 'grad_norm': 8.810622397596262, 'learning_rate': 9.576397941682891e-06, 'epoch': 0.16}
+{'loss': 0.3081, 'grad_norm': 6.186745223969814, 'learning_rate': 9.575353534933256e-06, 'epoch': 0.16}
+{'loss': 0.6544, 'grad_norm': 14.019141254484245, 'learning_rate': 9.574307899351574e-06, 'epoch': 0.16}
+{'loss': 0.5719, 'grad_norm': 8.46155432284253, 'learning_rate': 9.57326103521868e-06, 'epoch': 0.16}
+{'loss': 0.5246, 'grad_norm': 14.573094373083348, 'learning_rate': 9.572212942815734e-06, 'epoch': 0.16}
+{'loss': 0.4478, 'grad_norm': 5.836195612875295, 'learning_rate': 9.571163622424226e-06, 'epoch': 0.16}
+{'loss': 0.5317, 'grad_norm': 3.9631296740807684, 'learning_rate': 9.570113074325986e-06, 'epoch': 0.16}
+{'loss': 0.5699, 'grad_norm': 8.74345933378759, 'learning_rate': 9.569061298803162e-06, 'epoch': 0.16}
+{'loss': 0.3446, 'grad_norm': 32.75285594370068, 'learning_rate': 9.568008296138238e-06, 'epoch': 0.16}
+{'loss': 0.3834, 'grad_norm': 40.461748530481614, 'learning_rate': 9.566954066614023e-06, 'epoch': 0.16}
+{'loss': 0.4418, 'grad_norm': 11.238498654554844, 'learning_rate': 9.565898610513661e-06, 'epoch': 0.16}
+{'loss': 0.2909, 'grad_norm': 34.359688273572964, 'learning_rate': 9.56484192812062e-06, 'epoch': 0.16}
+{'loss': 0.4603, 'grad_norm': 3.0065862499455185, 'learning_rate': 9.563784019718704e-06, 'epoch': 0.16}

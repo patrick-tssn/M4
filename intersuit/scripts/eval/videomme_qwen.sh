@@ -7,13 +7,14 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/videomme-sub-eval.out
-#SBATCH --error=./slurm_logs/videomme-sub-eval.error.out
+#SBATCH --output=./slurm_logs/videomme-longva-qwen2.5.out
+#SBATCH --error=./slurm_logs/videomme-longva-qwen2.5.error.out
 
 
 
-LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
+# LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct"
+LLM_VERSION="checkpoints/Qwen2.5-7B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
@@ -22,8 +23,8 @@ VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_freezeclip"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_unfreezeclip"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-dpo_llavanext"
-# MID_RUN_NAME="longva7b-llavanextsub100k-qwen2-rev"
-MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-NRS211"
+# MID_RUN_NAME="longva7b-llavanext-qwen25"
+MID_RUN_NAME="longva7b-llavanext-qwen25-dpo"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 

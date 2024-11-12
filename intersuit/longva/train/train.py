@@ -566,7 +566,7 @@ def preprocess_qwen(sources, tokenizer: transformers.PreTrainedTokenizer, has_im
     special_image_token_index = tokenizer.convert_tokens_to_ids("<image>")
     special_video_token_index = tokenizer.convert_tokens_to_ids("<image>")
 
-    im_start, im_end = tokenizer.additional_special_tokens_ids
+    im_start, im_end = tokenizer.additional_special_tokens_ids[:2]
     nl_tokens = tokenizer("\n").input_ids
     _system = tokenizer("system").input_ids + nl_tokens
     _user = tokenizer("user").input_ids + nl_tokens
@@ -586,10 +586,6 @@ def preprocess_qwen(sources, tokenizer: transformers.PreTrainedTokenizer, has_im
         for j, sentence in enumerate(source):
             role = roles[sentence["from"]]
             
-            print("*"*20)
-            print(has_image)
-            print(sentence["value"])
-            print("*"*20)
             
             if has_image and "<image>" in sentence["value"]:
                 # # TODO maybe this should be changed for interleaved data?
@@ -646,14 +642,18 @@ def preprocess_llama3(
     sources,
     tokenizer: transformers.PreTrainedTokenizer,
     has_image: bool = False,
-    max_len=2048,
+    max_len=8192,
     system_message: str = "You are a helpful language and vision assistant. You are able to understand the visual content that the user provides, and assist the user with a variety of tasks using natural language.",
 ) -> Dict:
     # roles = {"human": "<|start_header_id|>user<|end_header_id|>", "gpt": "<|start_header_id|>assistant<|end_header_id|>"}
     roles = {"human": "user", "gpt": "assistant"}
 
     # Add image tokens to tokenizer as a special tokens
-    tokenizer.add_tokens(["<image>"], special_tokens=True)
+    # Use a deepcopy of tokenizer so that we don't modify on the tokenizer
+    tokenizer = copy.deepcopy(tokenizer)
+    # When there is actually an image, we add the image tokens as a special token
+    if has_image:
+        tokenizer.add_tokens(["<image>"], special_tokens=True)
     image_token_index = tokenizer.convert_tokens_to_ids("<image>")
     bos_token_id = tokenizer.convert_tokens_to_ids("<|begin_of_text|>")
     start_header_id = tokenizer.convert_tokens_to_ids("<|start_header_id|>")

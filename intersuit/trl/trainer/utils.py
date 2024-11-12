@@ -532,6 +532,9 @@ def pad_to_length(tensor: torch.Tensor, length: int, pad_value: Union[int, float
     if tensor.size(dim) >= length:
         return tensor
     else:
+        # HACK
+        if pad_value is None:
+            pad_value = 0
         pad_size = list(tensor.shape)
         pad_size[dim] = length - tensor.size(dim)
         return torch.cat(

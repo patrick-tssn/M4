@@ -275,6 +275,9 @@ class LlavaMetaForCausalLM(ABC):
                 raise ValueError(f"Unexpected mm_patch_merge_type: {self.config.mm_patch_merge_type}")
         else:
             
+            
+            print("this is pretraining")
+            
             # # pretraining
             # image_features = self.encode_images(images) # nfr, npt, dim
             # image_features = [image_features.flatten(0,1)]

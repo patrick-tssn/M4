@@ -6,8 +6,8 @@
 #SBATCH --time=5:00:00
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-sub-eval10k.out
-#SBATCH --error=./slurm_logs/finetune-longva-sub-eval10k.error.out
+#SBATCH --output=./slurm_logs/videomme-sub-eval10k.out
+#SBATCH --error=./slurm_logs/videomme-sub-eval10k.error.out
 
 
 
@@ -21,7 +21,9 @@ VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_freezeclip"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_unfreezeclip"
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-dpo_llavanext"
-MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-rev"
+# MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-rev"
+# MID_RUN_NAME="longva7b-llavanextsub40k-qwen2-ORNS"
+MID_RUN_NAME="longva7b-llavanextsub20k-qwen2-ORNS2111"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -66,4 +68,5 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python scripts/eval/eval_acc.py --src $output_file --dst $output_dir/evaluation.json
+
 

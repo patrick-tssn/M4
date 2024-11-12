@@ -1,21 +1,20 @@
 #!/bin/bash
-#SBATCH --job-name=revLVsub
+#SBATCH --job-name=lm3FT
 #SBATCH --partition=HGX,DGX
 #SBATCH --account=research
 #SBATCH --qos=lv1
-#SBATCH --time=12:00:00
+#SBATCH --time=3-00:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-sub.out
-#SBATCH --error=./slurm_logs/finetune-longva-sub.error.out
+#SBATCH --output=./slurm_logs/finetune-longva-llama3.1.out
+#SBATCH --error=./slurm_logs/finetune-longva-llama3.1.error.out
 
 
 export OMP_NUM_THREADS=4
 export NCCL_IB_DISABLE=0
-export NCCL_IB_GID_INDEX=3
+export NCCL_IB_GID_INDEX=4
 # export NCCL_SOCKET_IFNAME=eth0
-export NCCL_DEBUG=INFO
+# export NCCL_DEBUG=INFO
 
 # nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
 # nodes_array=($nodes)
@@ -38,7 +37,8 @@ echo $PYTHONPATH
 
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct"
-LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
+# LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
+LLM_VERSION="checkpoints/Meta-Llama-3.1-8B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
@@ -47,13 +47,13 @@ VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 
 # --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}"
 
-PROMPT_VERSION=qwen_1_5
+PROMPT_VERSION=llava_llama_3
 
 BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-pretrain_blip558k_plain"
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
-MID_RUN_NAME="longva7b-llavanextsub100k-qwen2-rev"
+MID_RUN_NAME="longva7b-llavanext-llama31"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -67,8 +67,9 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-100k-rev.json \
+    --data_path inputs/texts/llava-next.json \
     --image_folder inputs/images/llava-next \
+    --pretrain_mm_mlp_adapter "checkpoints/projectors/${BASE_RUN_NAME}/mm_projector.bin" \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
     --vision_tower ${VISION_MODEL_VERSION} \
@@ -97,7 +98,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 32000 \
+    --model_max_length 12800 \
     --gradient_checkpointing True \
     --dataloader_num_workers 16 \
     --lazy_preprocess True \
