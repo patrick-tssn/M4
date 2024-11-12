@@ -30,7 +30,7 @@ def clean_text(text):
     text = text.replace("-", "to")
     return text.replace("<image>\n", "").replace("\n", " ")
 
-def text_to_speech(item_id, idx, text, output_dir="/ceph/home/songchun01/hengli/patrick/data/speech"):
+def text_to_speech(item_id, idx, text, output_dir="/home/patrick/data/speech"):
     """将文本转为语音并保存为指定路径的音频文件。"""
     os.makedirs(output_dir, exist_ok=True)
     audio_filename = f"{item_id}_{idx}.wav" 
@@ -50,6 +50,7 @@ def text_to_speech(item_id, idx, text, output_dir="/ceph/home/songchun01/hengli/
     except:
         torchaudio.save(audio_path, torch.from_numpy(wav), 24000)
     
+    torch.cuda.empty_cache()
     
     return audio_filename
 
@@ -72,7 +73,6 @@ def process_conversation(items):
         if len(speech_files) == 0:
             continue
         item["speech"] = speech_files
-        torch.cuda.empty_cache()
     return item
 
 def split_into_batches(data, num_batches):
@@ -97,13 +97,13 @@ def main():
     # 解析命令行参数
     parser = argparse.ArgumentParser(description="Process data batches.")
     parser.add_argument('--batch_id', type=int, required=True, help="ID of the batch to process.")
-    parser.add_argument('--num_batch', type=int, required=True, help="ID of the batch to process.")
+    parser.add_argument('--num_batches', type=int, required=True, help="ID of the batch to process.")
     args = parser.parse_args()
 
     with open("llava-next-sub-10k-ORNS1111.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     
-    num_batches = args.num_batch
+    num_batches = args.num_batches
     batches = split_into_batches(data, num_batches)
     # 处理指定的批次
     batch = batches[args.batch_id]

@@ -15,7 +15,8 @@ LLaVA-NeXT
 slurm_logs
 local_demo
 visualization
-preprocess/tts/llava-next-sub-10k-ORNS1111.json
+preprocess/tts/*.json
+preprocess/tts/asset
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -97,7 +97,7 @@ def main():
     parser.add_argument('--batch_id', type=int, required=True, help="ID of the batch to process.")
     args = parser.parse_args()
 
-    with open("llava-next-sub-10k.json", "r", encoding="utf-8") as f:
+    with open("llava-next-sub-10k-ORNS1111.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     
     num_batches = 5
