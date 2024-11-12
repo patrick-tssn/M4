@@ -71,6 +71,7 @@ def process_conversation(items):
         if len(speech_files) == 0:
             continue
         item["speech"] = speech_files
+        torch.cuda.empty_cache()
     return item
 
 def split_into_batches(data, num_batches):
@@ -100,7 +101,7 @@ def main():
     with open("llava-next-sub-10k-ORNS1111.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     
-    num_batches = 5
+    num_batches = 4
     batches = split_into_batches(data, num_batches)
     # 处理指定的批次
     batch = batches[args.batch_id]
