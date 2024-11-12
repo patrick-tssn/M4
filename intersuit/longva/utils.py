@@ -5,6 +5,8 @@ import os
 import sys
 import numpy as np
 
+import torch
+
 import requests
 
 from longva.constants import LOGDIR
@@ -18,8 +20,9 @@ import torch.distributed as dist
 
 try:
     import av
+    import whisper
 except ImportError:
-    print("Please install pyav to use video processing functions.")
+    print("Please install pyav to use video processing functions, whisper to use speech processing functions.")
 
 
 def process_video_with_pyav(video_file, data_args):
@@ -45,6 +48,18 @@ def process_video_with_pyav(video_file, data_args):
     video = np.stack(video_frames)
     return video
 
+
+def process_audio_with_whisper(speech_path, input_type="mel", norm=True, mel_size=128):
+    speech = whisper.load_audio(speech_path)
+    if input_type == "raw":
+        speech = torch.from_numpy(speech)
+        if norm:
+            speech = torch.nn.functional.layer_norm(speech, speech.shape)
+    elif input_type == "mel":
+        speech = whisper.pad_or_trim(speech)
+        speech = whisper.log_mel_spectrogram(speech, n_mels=mel_size).permute(1, 0)
+
+    return speech
 
 def rank0_print(*args):
     if dist.is_initialized():
@@ -166,3 +181,10 @@ def pretty_print_semaphore(semaphore):
     if semaphore is None:
         return "None"
     return f"Semaphore(value={semaphore._value}, locked={semaphore.locked()})"
+
+
+def lengths_to_padding_mask(lens):
+    bsz, max_lens = lens.size(0), torch.max(lens).item()
+    mask = torch.arange(max_lens).to(lens.device).view(1, max_lens)
+    mask = mask.expand(bsz, -1) >= lens.view(bsz, 1).expand(-1, max_lens)
+    return mask

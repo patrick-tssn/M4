@@ -10,7 +10,7 @@ from decord import VideoReader, cpu
 # decord.bridge.set_bridge('torch')
 import numpy as np
 from PIL import Image
-
+import whisper
 
 
 
@@ -116,3 +116,14 @@ def load_video(
         raise NameError('video_decode_backend should specify in (pytorchvideo, decord, opencv)')
     return video_data
 
+def load_whisper(speech_path, input_type="raw", norm=True, mel_size=128):
+    speech = whisper.load_audio(speech_path)
+    if input_type == "raw":
+        speech = torch.from_numpy(speech)
+        if norm:
+            speech = torch.nn.functional.layer_norm(speech, speech.shape)
+    elif input_type == "mel":
+        speech = whisper.pad_or_trim(speech)
+        speech = whisper.log_mel_spectrogram(speech, n_mels=mel_size).permute(1, 0)
+
+    return speech

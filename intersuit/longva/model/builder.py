@@ -22,6 +22,7 @@ import torch
 from longva.model import *
 from longva.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from longva.utils import rank0_print
+from longva.model.speech_encoder.builder import build_speech_encoder
 
 
 def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, load_4bit=False, device_map="auto", attn_implementation="flash_attention_2", customized_config=None, overwrite_config=None, **kwargs):
@@ -276,6 +277,10 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         if device_map != "auto":
             vision_tower.to(device="cuda", dtype=torch.float16)
         image_processor = vision_tower.image_processor
+        
+        # load speech encoder: freeze encoder
+        model.get_model().speech_encoder = build_speech_encoder(model.config)
+        model.get_model().speech_encoder.to(device=device_map, dtype=torch.float16)
 
     if hasattr(model.config, "max_sequence_length"):
         context_len = model.config.max_sequence_length

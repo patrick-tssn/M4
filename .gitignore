@@ -4,6 +4,8 @@
 *.mkv
 *.vtt
 *.jsonl
+*.wav
+*.mp3
 videos
 inputs
 checkpoints
@@ -13,6 +15,7 @@ LLaVA-NeXT
 slurm_logs
 local_demo
 visualization
+preprocess/tts/llava-next-sub-10k-ORNS1111.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
