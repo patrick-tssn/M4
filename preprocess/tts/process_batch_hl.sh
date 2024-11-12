@@ -2,12 +2,12 @@
 #SBATCH --partition=IAI_SLURM_HGX
 #SBATCH --job-name=preproc
 #SBATCH --ntasks=1
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:6
 #SBATCH --qos=16gpu-hgx
-#SBATCH --time 72:00:00
+#SBATCH --time 24:00:00
 
 # 批次数量
-num_batches=8
+num_batches=6
 
 
 gpu_list="${CUDA_VISIBLE_DEVICES:-0}"
