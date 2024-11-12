@@ -4,7 +4,6 @@
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:8
 #SBATCH --qos=16gpu-hgx
-#SBATCH --cpus-per-task=64
 #SBATCH --time 72:00:00
 
 # 批次数量
