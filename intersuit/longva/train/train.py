@@ -99,6 +99,7 @@ class ModelArguments:
     mm_qformer_latents: Optional[int] = field(default=32)
     mm_qformer_pretrained: Optional[str] = field(default=None)
     
+    pretrain_speech_projector: Optional[str] = field(default=None)
     speech_encoder: Optional[str] = field(default=None)
     speech_encoder_ds_rate: Optional[int] = field(default=5)
     speech_encoder_hidden_size: Optional[int] = field(default=1280)
@@ -1437,8 +1438,8 @@ class DataCollatorForSupervisedDataset(object):
         # gather speech
         if "speech" in instances[0]:
             speeches = [instance["speech"] for instance in instances]
-            batch["speech_lengths"] = torch.stack([sp[1] for sp in speeches], dim=0)
-            batch["speeches"] = torch.stack([sp[0] for sp in speeches], dim=0)
+            batch["speech_lengths"] = torch.stack([sp[1] for speech in speeches for sp in speech], dim=0)
+            batch["speeches"] = torch.stack([sp[0] for speech in speeches for sp in speech], dim=0)
 
         if "prompt" in instances[0]:
             batch["prompts"] = [instance["prompt"] for instance in instances]

@@ -3,19 +3,19 @@
 #SBATCH --partition=HGX,DGX
 #SBATCH --account=research
 #SBATCH --qos=lv1
-#SBATCH --time=12:00:00
+#SBATCH --time=5:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-sub10k-speech.out
-#SBATCH --error=./slurm_logs/finetune-longva-sub10k-speech.error.out
+#SBATCH --output=./slurm_logs/finetune-longva-sub10k-ORNS-speech.out
+#SBATCH --error=./slurm_logs/finetune-longva-sub10k-ORNS-speech.error.out
 
 
-export OMP_NUM_THREADS=2
+export OMP_NUM_THREADS=4
 export NCCL_IB_DISABLE=0
 export NCCL_IB_GID_INDEX=3
 # export NCCL_SOCKET_IFNAME=eth0
-# export NCCL_DEBUG=INFO
+export NCCL_DEBUG=INFO
 
 # nodes=( $( scontrol show hostnames $SLURM_JOB_NODELIST ) )
 # nodes_array=($nodes)
@@ -28,7 +28,7 @@ export NCCL_IB_GID_INDEX=3
 # export PORT=$MASTER_PORT
 # export ADDR=$head_node_ip
 
-export NUM_GPUS=2
+export NUM_GPUS=4
 MASTER_PORT=$(expr $RANDOM + 1000)
 export PORT=$MASTER_PORT
 
@@ -42,8 +42,6 @@ LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
-# SPEECH_MODEL_VERSION="checkpoints/whisper/base.pt"
-# SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3-turbo.pt"
 # SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
 SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
 SPEECH_MODEL_VERSION_CLEAN="whisper-large"
@@ -58,7 +56,7 @@ BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
-MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-speech"
+MID_RUN_NAME="longva7b-llavanextsub10k-ORNS-qwen2-speech"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -72,7 +70,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-10k-ORNS1111-speech.json \
+    --data_path inputs/texts/llava-next-sub-10k-ORNS1111-speech-1.json \
     --image_folder inputs/images/llava-next \
     --speech_folder inputs/speech/interinst \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,speech_projector,mm_language_model" \
@@ -105,15 +103,15 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 32000 \
+    --model_max_length 8192 \
     --gradient_checkpointing True \
     --dataloader_num_workers 16 \
     --lazy_preprocess True \
     --report_to tensorboard \
     --torch_compile True \
     --torch_compile_backend "inductor" \
-    --dataloader_drop_last True 
-    # --attn_implementation sdpa
+    --dataloader_drop_last True \
+    --attn_implementation sdpa
 
 # You can delete the sdpa attn_implementation if you want to use flash attn
 

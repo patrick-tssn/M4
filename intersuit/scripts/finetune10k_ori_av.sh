@@ -11,7 +11,7 @@
 #SBATCH --error=./slurm_logs/finetune-longva-sub10k-speech.error.out
 
 
-export OMP_NUM_THREADS=2
+export OMP_NUM_THREADS=4
 export NCCL_IB_DISABLE=0
 export NCCL_IB_GID_INDEX=3
 # export NCCL_SOCKET_IFNAME=eth0
@@ -28,7 +28,7 @@ export NCCL_IB_GID_INDEX=3
 # export PORT=$MASTER_PORT
 # export ADDR=$head_node_ip
 
-export NUM_GPUS=2
+export NUM_GPUS=4
 MASTER_PORT=$(expr $RANDOM + 1000)
 export PORT=$MASTER_PORT
 
@@ -72,9 +72,9 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-10k-ORNS1111-speech.json \
+    --data_path inputs/texts/llava-next-sub-10k-speech.json \
     --image_folder inputs/images/llava-next \
-    --speech_folder inputs/speech/interinst \
+    --speech_folder inputs/speech/llavanext \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,speech_projector,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
     --vision_tower ${VISION_MODEL_VERSION} \

@@ -5,6 +5,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import whisper
+from whisper.model import Whisper, ModelDimensions
+
+from transformers import WhisperModel
 
 class WhisperWrappedEncoder:
     
@@ -22,7 +26,37 @@ class WhisperWrappedEncoder:
                 else:
                     replace_layer_norm(child)
 
-        import whisper
-        encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
+        
+        # # load by hand
+        # checkpoint_file = model_config.speech_encoder
+        # checkpoint = torch.load(checkpoint_file, map_location="cpu")
+        # dims = ModelDimensions(**checkpoint["dims"])
+        # whisper_model = Whisper(dims)
+        # # encoder = whisper_model.load_state_dict(checkpoint["model_state_dict"]).encoder
+        # # encoder = whisper_model.load_state_dict(checkpoint["model_state_dict"])
+        
+        # def load(module: nn.Module, prefix=""):
+        #     # because zero3 puts placeholders in model params, this context
+        #     # manager gathers (unpartitions) the params of the current layer, then loads from
+        #     # the state dict and then re-partitions them again
+        #     with deepspeed.zero.GatheredParameters(list(module.parameters(recurse=False)), modifier_rank=0):
+        #         if deepspeed.comm.get_rank() == 0:
+        #             # module._load_from_state_dict(checkpoint["model_state_dict"], prefix)
+        #             module.load_state_dict(checkpoint["model_state_dict"])
+
+        #     for name, child in module._modules.items():
+        #         if child is not None:
+        #             load(child, prefix + name + ".")
+        # whisper_model = load(whisper_model)
+        # encoder = whisper_model.encoder
+        
+        
+        if ".pt" in model_config.speech_encoder:
+            # # zero3 x
+            encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
+        else:
+            # zero2 or zero3
+            encoder = WhisperModel.from_pretrained(model_config.speech_encoder, torch_dtype=torch.bfloat16).encoder
+        
         replace_layer_norm(encoder)
         return encoder
