@@ -30,6 +30,7 @@ for _, item in tqdm(enumerate(items), total=len(items)):
             # 记录音频文件路径
             speech_files.append(audio_filename)
             if count in speech_indices:
+            # if count == 0:
                 if convo["value"].startswith("<image>\n"):
                     convo["value"] = "<image>\n<speech>\n"
                 elif convo["value"].endswith("<image>\n"):
@@ -43,6 +44,7 @@ for _, item in tqdm(enumerate(items), total=len(items)):
     cnt += count
     assert len(speech_files) == len(item["conversations"])//2
     
+# with open(f"llava-next-sub-10k-speech-{max_speech}_start.json", "w") as jp:
 with open(f"llava-next-sub-10k-speech-{max_speech}.json", "w") as jp:
     json.dump(items, jp, indent=4)
 print(len(missing), cnt)

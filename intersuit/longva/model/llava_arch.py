@@ -258,7 +258,8 @@ class LlavaMetaForCausalLM(ABC):
         #     else:
         #         # transformers @ huggingface
         #         encoder_outs = speech_encoder(speech.permute(0, 2, 1)).last_hidden_state
-            encoder_outs = speech_encoder(speech.permute(0, 2, 1))
+            # encoder_outs = speech_encoder(speech.permute(0, 2, 1))
+            encoder_outs = speech_encoder(speech.permute(0, 2, 1)).last_hidden_state
             speech_lengths = (speech_lengths + 1) // 2
         else:
             raise ValueError(f'Unknown speech encoder: {speech_encoder}')
@@ -616,6 +617,11 @@ class LlavaMetaForCausalLM(ABC):
         # print(speech_features[0].shape)
         # print(speech_lengths)
         # print("debug*"*30)
+        
+        # print("inputs*"*20)
+        # print(input_ids)
+        # print(labels)
+        # print("inputs*"*20)
         
         _labels = labels
         _position_ids = position_ids

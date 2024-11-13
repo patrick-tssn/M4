@@ -2,7 +2,7 @@
 #SBATCH --partition=IAI_SLURM_HGX
 #SBATCH --job-name=permute2
 #SBATCH --ntasks=1
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:8
 #SBATCH --qos=16gpu-hgx
 #SBATCH --cpus-per-task=64
 #SBATCH --time 72:00:00
@@ -10,7 +10,7 @@
 #SBATCH --error=./slurm_logs/finetune-longva-sub10k-ORNS-speech-1.error.out
 
 
-export OMP_NUM_THREADS=6
+export OMP_NUM_THREADS=8
 export NCCL_IB_DISABLE=0
 export NCCL_IB_GID_INDEX=3
 # export NCCL_SOCKET_IFNAME=eth0
@@ -27,7 +27,7 @@ export NCCL_DEBUG=INFO
 # export PORT=$MASTER_PORT
 # export ADDR=$head_node_ip
 
-export NUM_GPUS=6
+export NUM_GPUS=8
 MASTER_PORT=$(expr $RANDOM + 1000)
 export PORT=$MASTER_PORT
 
@@ -41,8 +41,8 @@ LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
-SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
-# SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
+# SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
+SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
 SPEECH_MODEL_VERSION_CLEAN="whisper-large"
 
 ############### Finetune ################
@@ -66,7 +66,7 @@ module add cuda11.8
 # ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}" --master_port="${PORT}" \
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
     longva/train/train_mem.py \
-    --deepspeed scripts/zero2.json \
+    --deepspeed scripts/zero1.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
     --data_path inputs/texts/llava-next-sub-10k-ORNS1111-speech-1.json \
@@ -109,8 +109,8 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --report_to tensorboard \
     --torch_compile True \
     --torch_compile_backend "inductor" \
-    --dataloader_drop_last True \
-    --attn_implementation sdpa
+    --dataloader_drop_last True
+    # --attn_implementation sdpa
 
 # You can delete the sdpa attn_implementation if you want to use flash attn
 
