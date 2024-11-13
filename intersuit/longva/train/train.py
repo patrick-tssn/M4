@@ -1192,7 +1192,7 @@ class LazySupervisedDataset(Dataset):
         length_list = []
         for sample in self.list_data_dict:
             cur_len = sum(len(conv["value"].split()) for conv in sample["conversations"])
-            cur_len = cur_len if ("image" in sample) or ("video" in sample) else -cur_len
+            cur_len = cur_len if ("image" in sample) or ("video" in sample) or ("speech" in sample) else -cur_len
             length_list.append(cur_len)
         return length_list
 
@@ -1827,7 +1827,7 @@ def train(attn_implementation=None):
                     p.requires_grad = True
             if "mm_language_model" in tunable_parts:
                 for name, param in model.named_parameters():
-                    if "vision_tower" not in name and "mm_projector" not in name and "vision_resampler" not in name:
+                    if "vision_tower" not in name and "mm_projector" not in name and "vision_resampler" not in name and "speech_encoder" not in name and "speech_projector" not in name:
                         param.requires_grad_(True)
 
         total_params = sum(p.ds_numel if hasattr(p, "ds_numel") else p.numel() for p in model.parameters())

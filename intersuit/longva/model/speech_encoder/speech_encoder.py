@@ -50,8 +50,9 @@ class WhisperWrappedEncoder:
         # whisper_model = load(whisper_model)
         # encoder = whisper_model.encoder
         
-        # encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
-        encoder = WhisperModel.from_pretrained(model_config.speech_encoder, torch_dtype=torch.bfloat16).encoder
+        encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
+        # encoder = WhisperModel.from_pretrained(model_config.speech_encoder, torch_dtype=torch.bfloat16).encoder
+        # encoder.requires_grad_(False)
         
         # if ".pt" in model_config.speech_encoder:
         #     # # zero3 not available
