@@ -19,7 +19,7 @@ CHUNKS=${#GPULIST[@]}
 python_script="./process_text_hl.py"
 
 # 循环启动 10 个 Python 进程，每个进程处理一个批次
-for i in $(seq 0 $((num_batches-1))); do
+for i in $(seq 0 $((num_batches))); do
     # 启动一个后台 Python 进程来处理每个批次
    CUDA_VISIBLE_DEVICES=${GPULIST[$i]}  python3 $python_script --batch_id $i --num_batch $num_batches & 
 done
