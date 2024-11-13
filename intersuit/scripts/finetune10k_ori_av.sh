@@ -44,8 +44,8 @@ VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 # SPEECH_MODEL_VERSION="checkpoints/whisper/base.pt"
 # SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3-turbo.pt"
-# SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
-SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
+SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
+# SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
 SPEECH_MODEL_VERSION_CLEAN="whisper-large"
 
 ############### Finetune ################
@@ -69,10 +69,10 @@ module add cuda11.8
 # ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}" --master_port="${PORT}" \
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
     longva/train/train_mem.py \
-    --deepspeed scripts/zero3.json \
+    --deepspeed scripts/zero2.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-10k-speech.json \
+    --data_path inputs/texts/llava-next-sub-10k-speech-1.json \
     --image_folder inputs/images/llava-next \
     --speech_folder inputs/speech/llavanext \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,speech_projector,mm_language_model" \

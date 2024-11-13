@@ -250,13 +250,15 @@ class LlavaMetaForCausalLM(ABC):
     def encode_speech(self, speech, speech_lengths):
         speech_encoder_type = self.config.speech_encoder_type
         speech_encoder = self.get_speech_encoder()
+        
         if "whisper" in speech_encoder_type.lower():
-            if ".pt" in self.config.speech_encoder:
-                # whisper
-                encoder_outs = speech_encoder(speech.permute(0, 2, 1))
-            else:
-                # transformers @ huggingface
-                encoder_outs = speech_encoder(speech.permute(0, 2, 1)).last_hidden_state
+        #     if ".pt" in self.config.speech_encoder:
+        #         # whisper
+        #         encoder_outs = speech_encoder(speech.permute(0, 2, 1))
+        #     else:
+        #         # transformers @ huggingface
+        #         encoder_outs = speech_encoder(speech.permute(0, 2, 1)).last_hidden_state
+            encoder_outs = speech_encoder(speech.permute(0, 2, 1))
             speech_lengths = (speech_lengths + 1) // 2
         else:
             raise ValueError(f'Unknown speech encoder: {speech_encoder}')

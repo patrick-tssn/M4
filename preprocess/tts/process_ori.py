@@ -26,17 +26,18 @@ for _, item in tqdm(enumerate(items), total=len(items)):
                 # raise ValueError("error")
                 missing.append(item_id)
                 speech_files.append("")
-            count+=1
+            
             # 记录音频文件路径
             speech_files.append(audio_filename)
-            len_limit = 15
-            if count < len_limit:
+            if count in speech_indices:
                 if convo["value"].startswith("<image>\n"):
                     convo["value"] = "<image>\n<speech>\n"
                 elif convo["value"].endswith("<image>\n"):
                     convo["value"] = "<speech>\n<image>\n"
                 else:
                     convo["value"] = "<speech>\n"
+            
+            count+=1
             
     item["speech"] = speech_files
     cnt += count
