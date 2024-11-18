@@ -39,14 +39,14 @@ import deepspeed
 
 from transformers import AutoConfig
 from torch.utils.data import Dataset
-from longva.constants import IGNORE_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX
-from longva.constants import SPEECH_TOKEN_INDEX, DEFAULT_SPEECH_TOKEN
-from longva.train.llava_trainer import LLaVATrainer
+from intersuit.constants import IGNORE_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX
+from intersuit.constants import SPEECH_TOKEN_INDEX, DEFAULT_SPEECH_TOKEN
+from intersuit.train.llava_trainer import LLaVATrainer
 
-from longva import conversation as conversation_lib
-from longva.model import *
-from longva.mm_utils import process_highres_image, process_anyres_image, process_highres_image_crop_split, tokenizer_image_token
-from longva.utils import rank0_print, process_video_with_pyav, process_audio_with_whisper
+from intersuit import conversation as conversation_lib
+from intersuit.model import *
+from intersuit.mm_utils import process_highres_image, process_anyres_image, process_highres_image_crop_split, tokenizer_image_token
+from intersuit.utils import rank0_print, process_video_with_pyav, process_audio_with_whisper
 
 torch.multiprocessing.set_sharing_strategy("file_system")
 
@@ -1248,6 +1248,8 @@ class LazySupervisedDataset(Dataset):
                 # sleep 1s in case it is a cloud disk issue
                 print(f"[Try #{attempt_idx}] Failed to fetch sample {i}. Exception:", e)
                 time.sleep(1)
+            # sample = self._get_item(i)
+            # return sample
 
         # try other samples, in case it is file corruption issue
         for attempt_idx in range(num_base_retries):
@@ -1284,12 +1286,13 @@ class LazySupervisedDataset(Dataset):
                     speech_size = torch.LongTensor([speech_tensor.shape[0]])
                     speech.append((speech_tensor, speech_size))
                 # speech = [process_audio_with_whisper(s) for s in speech_file]
-            else:
+            else: # HACK: voice instruction
                 speech_file = os.path.join(speech_dir, speech_file)
                 speech_tensor = process_audio_with_whisper(speech_file)
                 speech_size = torch.LongTensor([speech_tensor.shape[0]])
                 speech = [(speech_tensor, speech_size)]
                 # speech = [process_audio_with_whisper(speech_file)]
+                # sources = preprocess_multimodal_av(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
                 
                 
 
@@ -1299,7 +1302,7 @@ class LazySupervisedDataset(Dataset):
                 image = [self.process_image(f) for f in image_file]
             else:
                 image = [self.process_image(image_file)]
-            # image only
+            # # image only
             # sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
             # with speech
             sources = preprocess_multimodal_av(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
@@ -1358,9 +1361,12 @@ class LazySupervisedDataset(Dataset):
                 print(f"Failed to read video file: {video_file}")
                 return self._get_item(i + 1)
         else:
-            sources = copy.deepcopy([e["conversations"] for e in sources])
+            if 'speech' in sources[0]:
+                sources = preprocess_multimodal_av(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+            else:
+                sources = copy.deepcopy([e["conversations"] for e in sources])
 
-        has_image = ("image" in self.list_data_dict[i]) or ("video" in self.list_data_dict[i])
+        has_image = ("image" in self.list_data_dict[i]) or ("video" in self.list_data_dict[i] or ("speech" in self.list_data_dict[i]))
         data_dict = preprocess(sources, self.tokenizer, has_image=has_image)
 
         if "prompt" in data_dict:

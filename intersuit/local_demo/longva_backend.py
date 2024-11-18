@@ -42,18 +42,18 @@ warnings.filterwarnings("ignore")
 from loguru import logger as eval_logger
 
 try:
-    from longva.constants import (
+    from intersuit.constants import (
         IMAGE_TOKEN_INDEX,
         DEFAULT_IMAGE_TOKEN,
     )
-    from longva.conversation import conv_templates, SeparatorStyle
-    from longva.mm_utils import (
+    from intersuit.conversation import conv_templates, SeparatorStyle
+    from intersuit.mm_utils import (
         get_model_name_from_path,
         process_images,
         tokenizer_image_token,
         KeywordsStoppingCriteria,
     )
-    from longva.model.builder import load_pretrained_model
+    from intersuit.model.builder import load_pretrained_model
 except Exception as e:
     eval_logger.debug(
         "LongVA is not installed. Please install LongVA to use this model.\nError: %s" % e

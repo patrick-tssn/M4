@@ -6,7 +6,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "longva"
+name = "intersuit"
 version = "1.7.0.dev0"
 description = "Towards GPT-4 like large language and visual assistant."
 readme = "README.md"
@@ -25,7 +25,7 @@ standalone = [
 ]
 
 train = [
-    "longva[standalone]",
+    "intersuit[standalone]",
     "open_clip_torch",
     "fastapi",
     "gradio",
@@ -59,7 +59,7 @@ train = [
 
 
 [tool.setuptools.packages.find]
-include = ["longva*", "trl*"]
+include = ["intersuit*", "trl*"]
 exclude = [
     "assets*",
     "benchmark*",

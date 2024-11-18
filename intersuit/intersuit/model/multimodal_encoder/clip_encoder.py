@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from longva.utils import rank0_print
+from intersuit.utils import rank0_print
 from transformers import CLIPVisionModel, CLIPImageProcessor, CLIPVisionConfig
 
 try:

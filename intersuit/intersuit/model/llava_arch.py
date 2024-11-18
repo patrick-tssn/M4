@@ -27,10 +27,10 @@ from .multimodal_projector.builder import build_vision_projector
 from .speech_encoder.builder import build_speech_encoder
 from .speech_projector.builder import  build_speech_projector
 
-from longva.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
-from longva.constants import SPEECH_TOKEN_INDEX, DEFAULT_SPEECH_TOKEN
-from longva.mm_utils import get_anyres_image_grid_shape
-from longva.utils import rank0_print, lengths_to_padding_mask
+from intersuit.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
+from intersuit.constants import SPEECH_TOKEN_INDEX, DEFAULT_SPEECH_TOKEN
+from intersuit.mm_utils import get_anyres_image_grid_shape
+from intersuit.utils import rank0_print, lengths_to_padding_mask
 import random
 
 
@@ -51,7 +51,7 @@ class LlavaMetaModel:
         # speech encoder     
         if hasattr(config, "speech_encoder"):
             self.speech_encoder = build_speech_encoder(config)
-            self.speeech_projector = build_speech_projector(config)
+            self.speech_projector = build_speech_projector(config)
 
     def get_vision_tower(self):
         vision_tower = getattr(self, "vision_tower", None)
@@ -508,99 +508,102 @@ class LlavaMetaForCausalLM(ABC):
 
     def prepare_inputs_labels_for_multimodal_av(self, input_ids, position_ids, attention_mask, past_key_values, labels, images, modalities=["image"], image_sizes=None, speeches=None, speech_lengths=None):
         
+        
         # preprocess <image>
         vision_tower = self.get_vision_tower()
-        if vision_tower is None or images is None or input_ids.shape[1] == 1:
-            return input_ids, position_ids, attention_mask, past_key_values, None, labels
-        if type(images) is list or images.ndim == 5:
-            if type(images) is list:
-                images = [x.unsqueeze(0) if x.ndim == 3 else x for x in images]
+        if images is None and speeches is None:
+            if vision_tower is None or images is None or input_ids.shape[1] == 1:
+                return input_ids, position_ids, attention_mask, past_key_values, None, labels
+        if images is not None:
+            if type(images) is list or images.ndim == 5:
+                if type(images) is list:
+                    images = [x.unsqueeze(0) if x.ndim == 3 else x for x in images]
 
-            video_idx_in_batch = []
-            for _ in range(len(modalities)):
-                if modalities[_] == "video":
-                    video_idx_in_batch.append(_)
+                video_idx_in_batch = []
+                for _ in range(len(modalities)):
+                    if modalities[_] == "video":
+                        video_idx_in_batch.append(_)
 
-            images_list = []
-            for image in images:
-                if image.ndim == 4:
-                    images_list.append(image)
-                else:
-                    images_list.append(image.unsqueeze(0))
-
-            concat_images = torch.cat([image for image in images_list], dim=0)
-            split_sizes = [image.shape[0] for image in images_list]
-
-            image_features = self.encode_multimodals(concat_images, video_idx_in_batch, split_sizes)
-            # image_features = torch.split(image_features, split_sizes, dim=0)
-            mm_patch_merge_type = getattr(self.config, "mm_patch_merge_type", "flat")
-            image_aspect_ratio = getattr(self.config, "image_aspect_ratio", "square")
-
-            if mm_patch_merge_type == "flat":
-                image_features = [x.flatten(0, 1) for x in image_features]
-            
-            elif mm_patch_merge_type== "unires":
-                new_image_features = []
-                for image_idx, image_feature in enumerate(image_features):
-                    # rank0_print(f"Initial feature size : {image_feature.shape}")
-                    if image_idx in video_idx_in_batch:  # video operations
-                        image_feature = image_feature.flatten(0, 1)
-                    elif image_feature.shape[0] > 1:
-                        # base image feature is never used in unires
-                        base_image_feature = image_feature[0]
-                        image_feature = image_feature[1:]
-                        # rank0_print(f"Before pool : {image_feature.shape}")
-                        height = width = self.get_vision_tower().num_patches_per_side
-                        assert height * width == base_image_feature.shape[0]
-                        if hasattr(self.get_vision_tower(), "image_size"):
-                            vision_tower_image_size = self.get_vision_tower().image_size
-                        else:
-                            raise ValueError("vision_tower_image_size is not found in the vision tower.")
-                        num_patch_width, num_patch_height = get_anyres_image_grid_shape(image_sizes[image_idx], self.config.image_grid_pinpoints, vision_tower_image_size)
-                        image_feature = image_feature.view(num_patch_height, num_patch_width, height, width, -1)
-                        # Assume 2*2 patches
-                        # After this, [2,2, 24,24, 4096]
-                        kernel_size = mm_patch_merge_type.split("avgpool")[-1].split("x")[-1]
-                        kernel_size = 2
-                        image_feature = image_feature.view(num_patch_height * num_patch_width, height, width, -1) # [4, 24, 24, 4096]
-                        image_feature = image_feature.permute(0, 3, 1, 2).contiguous() # [4, 4096, 24, 24]
-                        image_feature = nn.functional.avg_pool2d(image_feature, kernel_size) # [4, 4096, 12, 12]
-                        image_feature = image_feature.flatten(2, 3) # [4, 4096, 144]
-                        image_feature = image_feature.permute(0, 2, 1).contiguous() # [4, 144, 4096]
-                        image_feature = image_feature.flatten(0, 1) # [576, 4096]
-                        # rank0_print(f"After pool : {image_feature.shape}")
+                images_list = []
+                for image in images:
+                    if image.ndim == 4:
+                        images_list.append(image)
                     else:
-                        # for text only data, there is a placeholder image feature that is actually never used. 
-                        image_feature = image_feature[0]
-                        # rank0_print(f"After here : {image_feature.shape}")
-                    new_image_features.append(image_feature) # npt * nfr, dim
-                #     print("*"*20)
-                #     print(image_feature.shape)
-                #     print("*"*20)
-                # raise ValueError("debug")
+                        images_list.append(image.unsqueeze(0))
 
-                image_features = new_image_features
-            else:
-                raise ValueError(f"Unexpected mm_patch_merge_type: {self.config.mm_patch_merge_type}")
-        else:
-            
-            
-            print("this is pretraining")
-            
-            # # pretraining
-            # image_features = self.encode_images(images) # nfr, npt, dim
-            # image_features = [image_features.flatten(0,1)]
-            
-            error_message = """
-            Something is wrong with the input shape. Most likely, you did not wrap the video input in a list:
-            This is correct:
-                model.generate(input_ids, images=[video_tensor],  modalities=["video"], **gen_kwargs)
-            This is wrong:
-                model.generate(input_ids, images=video_tensor,  modalities=["video"], **gen_kwargs)
-            """
-            raise ValueError(error_message)
-            # image_features = self.encode_images(images)
+                concat_images = torch.cat([image for image in images_list], dim=0)
+                split_sizes = [image.shape[0] for image in images_list]
+
+                image_features = self.encode_multimodals(concat_images, video_idx_in_batch, split_sizes)
+                # image_features = torch.split(image_features, split_sizes, dim=0)
+                mm_patch_merge_type = getattr(self.config, "mm_patch_merge_type", "flat")
+                image_aspect_ratio = getattr(self.config, "image_aspect_ratio", "square")
+
+                if mm_patch_merge_type == "flat":
+                    image_features = [x.flatten(0, 1) for x in image_features]
                 
+                elif mm_patch_merge_type== "unires":
+                    new_image_features = []
+                    for image_idx, image_feature in enumerate(image_features):
+                        # rank0_print(f"Initial feature size : {image_feature.shape}")
+                        if image_idx in video_idx_in_batch:  # video operations
+                            image_feature = image_feature.flatten(0, 1)
+                        elif image_feature.shape[0] > 1:
+                            # base image feature is never used in unires
+                            base_image_feature = image_feature[0]
+                            image_feature = image_feature[1:]
+                            # rank0_print(f"Before pool : {image_feature.shape}")
+                            height = width = self.get_vision_tower().num_patches_per_side
+                            assert height * width == base_image_feature.shape[0]
+                            if hasattr(self.get_vision_tower(), "image_size"):
+                                vision_tower_image_size = self.get_vision_tower().image_size
+                            else:
+                                raise ValueError("vision_tower_image_size is not found in the vision tower.")
+                            num_patch_width, num_patch_height = get_anyres_image_grid_shape(image_sizes[image_idx], self.config.image_grid_pinpoints, vision_tower_image_size)
+                            image_feature = image_feature.view(num_patch_height, num_patch_width, height, width, -1)
+                            # Assume 2*2 patches
+                            # After this, [2,2, 24,24, 4096]
+                            kernel_size = mm_patch_merge_type.split("avgpool")[-1].split("x")[-1]
+                            kernel_size = 2
+                            image_feature = image_feature.view(num_patch_height * num_patch_width, height, width, -1) # [4, 24, 24, 4096]
+                            image_feature = image_feature.permute(0, 3, 1, 2).contiguous() # [4, 4096, 24, 24]
+                            image_feature = nn.functional.avg_pool2d(image_feature, kernel_size) # [4, 4096, 12, 12]
+                            image_feature = image_feature.flatten(2, 3) # [4, 4096, 144]
+                            image_feature = image_feature.permute(0, 2, 1).contiguous() # [4, 144, 4096]
+                            image_feature = image_feature.flatten(0, 1) # [576, 4096]
+                            # rank0_print(f"After pool : {image_feature.shape}")
+                        else:
+                            # for text only data, there is a placeholder image feature that is actually never used. 
+                            image_feature = image_feature[0]
+                            # rank0_print(f"After here : {image_feature.shape}")
+                        new_image_features.append(image_feature) # npt * nfr, dim
+                    #     print("*"*20)
+                    #     print(image_feature.shape)
+                    #     print("*"*20)
+                    # raise ValueError("debug")
+
+                    image_features = new_image_features
+                else:
+                    raise ValueError(f"Unexpected mm_patch_merge_type: {self.config.mm_patch_merge_type}")
+            else:
+                
+                
+                print("this is pretraining")
+                
+                # # pretraining
+                # image_features = self.encode_images(images) # nfr, npt, dim
+                # image_features = [image_features.flatten(0,1)]
+                
+                error_message = """
+                Something is wrong with the input shape. Most likely, you did not wrap the video input in a list:
+                This is correct:
+                    model.generate(input_ids, images=[video_tensor],  modalities=["video"], **gen_kwargs)
+                This is wrong:
+                    model.generate(input_ids, images=video_tensor,  modalities=["video"], **gen_kwargs)
+                """
+                raise ValueError(error_message)
+                # image_features = self.encode_images(images)
+                    
         # TODO: image start / end is not implemented here to support pretraining.
         if getattr(self.config, "tune_mm_mlp_adapter", False) and getattr(self.config, "mm_use_im_start_end", False):
             raise NotImplementedError

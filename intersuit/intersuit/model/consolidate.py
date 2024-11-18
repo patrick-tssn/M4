@@ -7,8 +7,8 @@ import argparse
 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from longva.model import *
-from longva.model.utils import auto_upgrade
+from intersuit.model import *
+from intersuit.model.utils import auto_upgrade
 
 
 def consolidate_ckpt(src_path, dst_path):

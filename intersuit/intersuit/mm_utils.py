@@ -6,7 +6,7 @@ import ast
 import re
 import torch
 from transformers import StoppingCriteria
-from longva.constants import IMAGE_TOKEN_INDEX
+from intersuit.constants import IMAGE_TOKEN_INDEX
 
 
 def resize_and_center_crop(image, shortest_edge_length):

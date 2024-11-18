@@ -24,7 +24,7 @@ if is_accelerate_available():
 if is_datasets_available():
     import datasets
 
-from longva.utils import rank0_print
+from intersuit.utils import rank0_print
 
 
 def maybe_zero_3(param, ignore_status=False, name=None):

@@ -35,17 +35,17 @@ import torch
 import transformers
 import tokenizers
 
-from longva.constants import IGNORE_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX
+from intersuit.constants import IGNORE_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX
 from torch.utils.data import Dataset
-from longva.train.llava_trainer import LLaVADPOTrainer
-from longva.data_processing.utils import load_jsonl, load_json
-from longva import conversation as conversation_lib
-from longva.model import *
-from longva.model.language_model.llava_qwen import LlavaQwenConfig
-from longva.model.language_model.llava_llama import LlavaConfig
-from longva.model.language_model.llava_mistral import LlavaMistralConfig
-from longva.mm_utils import process_highres_image, process_anyres_image, process_highres_image_crop_split, tokenizer_image_token
-from longva.utils import rank0_print
+from intersuit.train.llava_trainer import LLaVADPOTrainer
+from intersuit.data_processing.utils import load_jsonl, load_json
+from intersuit import conversation as conversation_lib
+from intersuit.model import *
+from intersuit.model.language_model.llava_qwen import LlavaQwenConfig
+from intersuit.model.language_model.llava_llama import LlavaConfig
+from intersuit.model.language_model.llava_mistral import LlavaMistralConfig
+from intersuit.mm_utils import process_highres_image, process_anyres_image, process_highres_image_crop_split, tokenizer_image_token
+from intersuit.utils import rank0_print
 from transformers import AutoConfig
 import pickle
 

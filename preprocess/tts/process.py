@@ -22,13 +22,13 @@ for _, item in tqdm(enumerate(items), total=len(items)):
             audio_filename = f"{item_id}_{count}.wav" 
             audio_path = os.path.join(output_dir, audio_filename)
             if not os.path.exists(audio_path):
-                # print("no existing file: ", audio_path)
-                # raise ValueError("error")
-                missing.append(item_id)
-                speech_files.append("")
+                print("no existing file: ", audio_path)
+                raise ValueError("error")
+                # missing.append(item_id)
+                # speech_files.append("")
             
             # 记录音频文件路径
-            speech_files.append(audio_filename)
+            # speech_files.append(audio_filename)
             if count in speech_indices:    
             # if count == 0:
                 if convo["value"].startswith("<image>\n"):
@@ -37,7 +37,7 @@ for _, item in tqdm(enumerate(items), total=len(items)):
                     convo["value"] = "<speech>\n<image>\n"
                 else:
                     convo["value"] = "<speech>\n"
-            
+                speech_files.append(audio_filename)
             count+=1
             
     item["speech"] = speech_files

@@ -7,7 +7,9 @@
 *.wav
 *.mp3
 videos
-inputs
+images
+speech
+intersuit/inputs/texts/*.json
 checkpoints
 preprocess/llava-next
 preprocess/llava-onevision
