@@ -126,6 +126,42 @@ def get_modality_length_grouped_indices(lengths, batch_size, world_size, generat
     return [i for megabatch in megabatches for i in megabatch]
 
 
+def get_modality_length_grouped_indices_mm(lengths, batch_size, world_size, generator=None):
+    """
+    Return a list of indices so that each slice of `batch_size` consecutive indices correspond to elements of similar
+    lengths. To do this, the indices are:
+
+    - update: we add modality tag to group different modality to prevent errors in torch
+    - randomly permuted
+    - grouped in mega-batches of size `mega_batch_mult * batch_size`
+    - reorder by length in each mega-batch
+
+    The result is the concatenation of all mega-batches, with the batch of `batch_size` containing the element of
+    maximum length placed first, so that an OOM happens sooner rather than later.
+    """
+
+    # We need to use torch for the random part as a distributed sampler will set the random seed for torch.
+    assert all(l[1] != 0 for l in lengths), "Should not have zero length."
+    modalities = sorted(list(set([l[0] for l in lengths])))
+    if len(modalities)==1:
+        # all samples are of same modalities
+        return get_length_grouped_indices([l[1] for l in lengths], batch_size, world_size, generator=generator)
+    megabatch_size = world_size * batch_size
+    megabatches = []
+    last_megabatches = []
+    # print(modalities)
+    for modality in modalities:
+        m_indices, m_lengths = zip(*[(i, l) for i, (k, l) in enumerate(lengths) if k == modality])
+        m_shuffle = [m_indices[i] for i in get_length_grouped_indices(m_lengths, batch_size, world_size, generator=None)]
+        modality_megabatches = [m_shuffle[i:i+megabatch_size] for i in range(0, len(m_shuffle), megabatch_size)]
+        megabatches += modality_megabatches[:-1]
+        last_megabatches.append(modality_megabatches[-1])
+    megabatch_indices = torch.randperm(len(megabatches), generator=generator)
+    megabatches = [megabatches[i] for i in megabatch_indices]
+    
+    return [i for megabatch in megabatches for i in megabatch]
+
+
 def get_length_grouped_indices(lengths, batch_size, world_size, generator=None, merge=True):
     """
     Return a list of indices so that each slice of `batch_size` consecutive indices correspond to elements of similar
@@ -207,6 +243,7 @@ class LengthGroupedSampler(Sampler):
         generator=None,
         variable_length: bool = False,
         group_by_modality: bool = False,
+        group_by_modality_mm: bool = False,
         group_by_modality_auto: bool = False,
     ):
         if lengths is None:
@@ -218,6 +255,7 @@ class LengthGroupedSampler(Sampler):
         self.generator = generator
         self.variable_length = variable_length
         self.group_by_modality = group_by_modality
+        self.group_by_modality_mm = group_by_modality_mm
         self.group_by_modality_auto = group_by_modality_auto
 
     def __len__(self):
@@ -230,6 +268,8 @@ class LengthGroupedSampler(Sampler):
         else:
             if self.group_by_modality:
                 indices = get_modality_length_grouped_indices(self.lengths, self.batch_size, self.world_size, generator=self.generator)
+            elif self.group_by_modality_mm:
+                indices = get_modality_length_grouped_indices_mm(self.lengths, self.batch_size, self.world_size, generator=self.generator)
             elif self.group_by_modality_auto:
                 indices = get_modality_length_grouped_indices_auto(self.lengths, self.batch_size, self.world_size, generator=self.generator)
             else:
@@ -292,6 +332,16 @@ class LLaVATrainer(Trainer):
                 world_size=self.args.world_size * self.args.gradient_accumulation_steps,  # TODO: seems that this may work?
                 lengths=lengths,
                 group_by_modality=True,
+            )
+        elif self.args.group_by_modality_length_mm:
+            lengths = self.train_dataset.modality_lengths
+            return LengthGroupedSampler(
+                # self.args.train_batch_size * self.args.gradient_accumulation_steps, # TODO: seems that we should not have gradient_accumulation_steps
+                self.args.train_batch_size,
+                # world_size=self.args.world_size,
+                world_size=self.args.world_size * self.args.gradient_accumulation_steps,  # TODO: seems that this may work?
+                lengths=lengths,
+                group_by_modality_mm=True,
             )
         elif self.args.group_by_modality_length_auto:
             lengths = self.train_dataset.modality_lengths

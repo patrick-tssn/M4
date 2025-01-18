@@ -1,5 +1,0 @@
-sbatch process_batch_1_ori_1.sh
-sbatch process_batch_1_ori_2.sh
-sbatch process_batch_1_ori_3.sh
-sbatch process_batch_1_ori_4.sh
-sbatch process_batch_1_ori_5.sh

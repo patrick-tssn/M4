@@ -57,7 +57,7 @@ BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
-MID_RUN_NAME="longva7b-llavanextsub10k-ORNS-qwen2-speech-va-ns-0"
+MID_RUN_NAME="longva7b-llavanextsub10k-ORNS-qwen2-speech-va"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 

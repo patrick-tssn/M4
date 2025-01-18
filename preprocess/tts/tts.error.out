@@ -1,219 +1,0 @@
-  0%|          | 0/2491 [00:00<?, ?it/s]found invalid characters: {'?'}
-  0%|          | 0/2491 [00:00<?, ?it/s]found invalid characters: {'?'}
-  0%|          | 0/2491 [00:00<?, ?it/s]found invalid characters: {'?'}
-  0%|          | 0/2490 [00:00<?, ?it/s]found invalid characters: {'?'}
-
-text:   0%|          | 0/384(max) [00:00, ?it/s][A
-text:   0%|          | 0/384(max) [00:00, ?it/s][A
-text:   0%|          | 0/384(max) [00:00, ?it/s][A
-text:   0%|          | 0/384(max) [00:00, ?it/s][AWe detected that you are passing `past_key_values` as a tuple and this is deprecated and will be removed in v4.43. Please use an appropriate `Cache` class (https://huggingface.co/docs/transformers/v4.41.3/en/internal/generation_utils#transformers.Cache)
-We detected that you are passing `past_key_values` as a tuple and this is deprecated and will be removed in v4.43. Please use an appropriate `Cache` class (https://huggingface.co/docs/transformers/v4.41.3/en/internal/generation_utils#transformers.Cache)
-We detected that you are passing `past_key_values` as a tuple and this is deprecated and will be removed in v4.43. Please use an appropriate `Cache` class (https://huggingface.co/docs/transformers/v4.41.3/en/internal/generation_utils#transformers.Cache)
-We detected that you are passing `past_key_values` as a tuple and this is deprecated and will be removed in v4.43. Please use an appropriate `Cache` class (https://huggingface.co/docs/transformers/v4.41.3/en/internal/generation_utils#transformers.Cache)
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
-  warnings.warn(
-
-text:   0%|          | 1/384(max) [00:26, 26.09s/it][A
-text:   0%|          | 1/384(max) [00:26, 26.11s/it][A
-text:   0%|          | 1/384(max) [00:26, 26.18s/it][A
-text:   0%|          | 1/384(max) [00:26, 26.51s/it][A
-text:   1%|          | 2/384(max) [00:43, 21.07s/it][A
-text:   1%|          | 2/384(max) [00:43, 21.15s/it][A
-text:   1%|          | 2/384(max) [00:43, 21.15s/it][A
-text:   1%|          | 2/384(max) [00:44, 21.31s/it][A
-text:   1%|          | 3/384(max) [00:59, 18.89s/it][A
-text:   1%|          | 3/384(max) [01:00, 19.14s/it][A
-text:   1%|          | 3/384(max) [01:00, 19.23s/it][A
-text:   1%|          | 3/384(max) [01:01, 19.39s/it][A
-text:   2%|▏         | 6/384(max) [01:14,  9.55s/it][A
-text:   5%|▌         | 21/384(max) [01:14,  1.67s/it][Atext:   8%|▊         | 29/384(max) [01:14,  2.57s/it]
-
-code:   0%|          | 0/2048(max) [00:00, ?it/s][A
-code:   1%|          | 14/2048(max) [00:00, 134.75it/s][A
-code:   1%|▏         | 28/2048(max) [00:00, 136.25it/s][A
-text:   2%|▏         | 8/384(max) [01:15,  6.68s/it][A
-code:   2%|▏         | 42/2048(max) [00:00, 136.70it/s][A
-text:   6%|▌         | 23/384(max) [01:15,  1.57s/it][A
-code:   3%|▎         | 56/2048(max) [00:00, 137.00it/s][Atext:   7%|▋         | 27/384(max) [01:15,  2.79s/it]
-
-code:   0%|          | 0/2048(max) [00:00, ?it/s][A
-text:   2%|▏         | 7/384(max) [01:14,  7.91s/it][A
-code:   3%|▎         | 70/2048(max) [00:00, 136.43it/s][A
-text:   6%|▌         | 22/384(max) [01:15,  1.63s/it][A
-code:   4%|▍         | 84/2048(max) [00:00, 136.76it/s][Atext:   7%|▋         | 27/384(max) [01:15,  2.78s/it]
-
-code:   0%|          | 0/2048(max) [00:00, ?it/s][A
-code:   5%|▍         | 98/2048(max) [00:00, 137.08it/s][A
-code:   5%|▌         | 112/2048(max) [00:00, 136.53it/s][A
-code:   6%|▌         | 126/2048(max) [00:00, 137.24it/s][A
-text:   2%|▏         | 6/384(max) [01:15,  9.73s/it][A
-code:   7%|▋         | 140/2048(max) [00:01, 137.35it/s][A
-text:   5%|▌         | 21/384(max) [01:15,  1.71s/it][A
-code:   8%|▊         | 154/2048(max) [00:01, 136.59it/s][Atext:   8%|▊         | 31/384(max) [01:15,  2.44s/it]
-
-code:   0%|          | 0/2048(max) [00:00, ?it/s][A
-code:   8%|▊         | 168/2048(max) [00:01, 137.12it/s][A
-code:   9%|▉         | 182/2048(max) [00:01, 137.60it/s][A
-code:  10%|▉         | 196/2048(max) [00:01, 137.48it/s][Acode:  10%|▉         | 199/2048(max) [00:01, 135.89it/s]
-  0%|          | 0/2490 [01:22<?, ?it/s]
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 49, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav).unsqueeze(0), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/2372219_0.wav and format None.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 111, in <module>
-    main()
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 108, in main
-    new = process_conversation(batch)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 66, in process_conversation
-    audio_filename = text_to_speech(item["id"], count, clean_value)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 51, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/2372219_0.wav and format None.
-
-code:   0%|          | 1/2048(max) [00:20, 20.21s/it][A
-code:   0%|          | 1/2048(max) [00:19, 19.50s/it][A
-code:   0%|          | 1/2048(max) [00:20, 20.05s/it][A
-code:   1%|          | 13/2048(max) [00:20,  1.12s/it][A
-code:   1%|          | 15/2048(max) [00:19,  1.07it/s][A
-code:   1%|          | 15/2048(max) [00:20,  1.04it/s][A
-code:   1%|▏         | 27/2048(max) [00:20,  2.27it/s][A
-code:   1%|▏         | 29/2048(max) [00:19,  2.50it/s][A
-code:   1%|▏         | 29/2048(max) [00:20,  2.43it/s][A
-code:   2%|▏         | 41/2048(max) [00:20,  4.20it/s][A
-code:   2%|▏         | 43/2048(max) [00:19,  4.48it/s][A
-code:   2%|▏         | 43/2048(max) [00:20,  4.36it/s][A
-code:   3%|▎         | 55/2048(max) [00:20,  6.85it/s][A
-code:   3%|▎         | 57/2048(max) [00:19,  7.22it/s][A
-code:   3%|▎         | 57/2048(max) [00:20,  7.03it/s][A
-code:   3%|▎         | 69/2048(max) [00:20, 10.46it/s][A
-code:   3%|▎         | 71/2048(max) [00:20, 10.92it/s][A
-code:   3%|▎         | 71/2048(max) [00:20, 10.66it/s][A
-code:   4%|▍         | 83/2048(max) [00:20, 15.24it/s][A
-code:   4%|▍         | 85/2048(max) [00:20, 15.86it/s][A
-code:   4%|▍         | 85/2048(max) [00:20, 15.51it/s][A
-code:   5%|▍         | 97/2048(max) [00:20, 21.49it/s][A
-code:   5%|▍         | 99/2048(max) [00:20, 22.29it/s][A
-code:   5%|▍         | 99/2048(max) [00:20, 21.81it/s][A
-code:   5%|▌         | 111/2048(max) [00:21, 29.38it/s][A
-code:   6%|▌         | 113/2048(max) [00:20, 30.34it/s][A
-code:   6%|▌         | 113/2048(max) [00:20, 29.70it/s][A
-code:   6%|▌         | 125/2048(max) [00:21, 38.97it/s][A
-code:   6%|▌         | 127/2048(max) [00:20, 40.11it/s][A
-code:   6%|▌         | 127/2048(max) [00:20, 39.31it/s][A
-code:   7%|▋         | 139/2048(max) [00:21, 50.05it/s][A
-code:   7%|▋         | 141/2048(max) [00:20, 51.14it/s][A
-code:   7%|▋         | 141/2048(max) [00:21, 50.46it/s][A
-code:   7%|▋         | 153/2048(max) [00:21, 61.85it/s][A
-code:   8%|▊         | 155/2048(max) [00:20, 63.25it/s][A
-code:   8%|▊         | 155/2048(max) [00:21, 61.82it/s][A
-code:   8%|▊         | 167/2048(max) [00:21, 74.29it/s][A
-code:   8%|▊         | 169/2048(max) [00:20, 75.59it/s][A
-code:   8%|▊         | 169/2048(max) [00:21, 74.23it/s][A
-code:   9%|▉         | 181/2048(max) [00:21, 86.34it/s][A
-code:   9%|▉         | 183/2048(max) [00:20, 87.45it/s][A
-code:   9%|▉         | 183/2048(max) [00:21, 86.21it/s][A
-code:  10%|▉         | 195/2048(max) [00:21, 97.29it/s][Acode:  10%|▉         | 196/2048(max) [00:21,  9.12it/s]
-
-code:  10%|▉         | 197/2048(max) [00:20, 95.82it/s][A
-code:  10%|█         | 209/2048(max) [00:21, 105.09it/s][Acode:  10%|█         | 211/2048(max) [00:21,  9.69it/s] 
-
-code:  10%|█         | 211/2048(max) [00:21, 104.88it/s][A
-code:  11%|█         | 225/2048(max) [00:21, 113.03it/s][A
-code:  12%|█▏        | 239/2048(max) [00:21, 119.53it/s][A
-code:  12%|█▏        | 253/2048(max) [00:21, 124.27it/s][Acode:  13%|█▎        | 263/2048(max) [00:21, 12.26it/s] 
-  0%|          | 0/2491 [01:41<?, ?it/s]
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 49, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav).unsqueeze(0), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/000000501138_0.wav and format None.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 111, in <module>
-    main()
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 108, in main
-    new = process_conversation(batch)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 66, in process_conversation
-    audio_filename = text_to_speech(item["id"], count, clean_value)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 51, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/000000501138_0.wav and format None.
-  0%|          | 0/2491 [01:41<?, ?it/s]
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 49, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav).unsqueeze(0), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/2323717_0.wav and format None.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 111, in <module>
-    main()
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 108, in main
-    new = process_conversation(batch)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 66, in process_conversation
-    audio_filename = text_to_speech(item["id"], count, clean_value)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 51, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/2323717_0.wav and format None.
-  0%|          | 0/2491 [01:41<?, ?it/s]
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 49, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav).unsqueeze(0), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/1943968004_0.wav and format None.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 111, in <module>
-    main()
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 108, in main
-    new = process_conversation(batch)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 66, in process_conversation
-    audio_filename = text_to_speech(item["id"], count, clean_value)
-  File "/scratch/nlp/patrick/codes/OminousLLM/preprocess/tts/./process_text.py", line 51, in text_to_speech
-    torchaudio.save(audio_path, torch.from_numpy(wav), 24000)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 312, in save
-    backend = dispatcher(uri, format, backend)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torchaudio/_backend/utils.py", line 222, in dispatcher
-    raise RuntimeError(f"Couldn't find appropriate backend to handle uri {uri} and format {format}.")
-RuntimeError: Couldn't find appropriate backend to handle uri /scratch/nlp/data/interinst/orns/1943968004_0.wav and format None.

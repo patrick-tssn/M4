@@ -7,8 +7,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-sub10k-ORNS2111.out
-#SBATCH --error=./slurm_logs/finetune-longva-sub10k-ORNS2111.error.out
+#SBATCH --output=./slurm_logs/finetune-longva-sub10k-ORNS1111.out
+#SBATCH --error=./slurm_logs/finetune-longva-sub10k-ORNS1111.error.out
 
 
 export OMP_NUM_THREADS=4
@@ -38,7 +38,7 @@ echo $PYTHONPATH
 
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct-224K"
 # LLM_VERSION="checkpoints/Qwen2-7B-Instruct"
-LLM_VERSION="checkpoints/LongVA-Qwen2-7B-Instruct"
+LLM_VERSION="checkpoints/LongVA-7B-Qwen2"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
@@ -53,7 +53,7 @@ BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
 
 # MID_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-finetune_llavanext_sub"
-MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-NRS211"
+MID_RUN_NAME="longva7b-llavanextsub10k-qwen2-ORNS1111"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -63,11 +63,11 @@ module add cuda11.8
 
 # ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}" --master_port="${PORT}" \
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
-    longva/train/train_mem.py \
+    intersuit/train/train_mem.py \
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next-sub-10k-NRS211.json \
+    --data_path inputs/texts/llava-next-sub-10k-ORNS1111-qwen.json \
     --image_folder inputs/images/llava-next \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \

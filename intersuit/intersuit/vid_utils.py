@@ -72,7 +72,7 @@ def load_video(
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             video_data.append(frame)
         cv2_vr.release()
-        video_data = np.stack(video_data, dim=0) # (T, H, W, C)
+        video_data = np.stack(video_data, axis=0) # (T, H, W, C)
 
     elif video_decode_backend == 'av':
         av_vr = av.open(video_path)

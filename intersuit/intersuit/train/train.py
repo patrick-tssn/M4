@@ -132,6 +132,8 @@ class DataArguments:
     frames_upbound: Optional[int] = field(default=0)
     
     speech_folder: Optional[str] = field(default=None)
+    
+    is_mop: bool = False
 
 
 @dataclass
@@ -166,6 +168,7 @@ class TrainingArguments(transformers.TrainingArguments):
     
     group_by_varlen: bool = field(default=False)
     group_by_modality_length: bool = field(default=False)
+    group_by_modality_length_mm: bool = field(default=False)
     group_by_modality_length_auto: bool = field(default=False)
     auto_find_batch_size: bool = field(default=False)
     gradient_checkpointing: bool = field(default=True)
@@ -1192,8 +1195,20 @@ class LazySupervisedDataset(Dataset):
         length_list = []
         for sample in self.list_data_dict:
             cur_len = sum(len(conv["value"].split()) for conv in sample["conversations"])
-            cur_len = cur_len if ("image" in sample) or ("video" in sample) or ("speech" in sample) else -cur_len
-            length_list.append(cur_len)
+            if not self.data_args.is_mop:
+                cur_len = cur_len if ("image" in sample) or ("video" in sample) or ("speech" in sample) else -cur_len
+                length_list.append(cur_len)
+            else:
+                if ("image" in sample) or ("video" in sample):
+                    if "speech" not in sample:
+                        modality = "image"
+                    else:
+                        modality = "image-speech"
+                elif "speech" in sample:
+                    modality = "speech"
+                else:
+                    modality = "language"
+                length_list.append((modality, cur_len))
         return length_list
 
     def process_image(self, image_file):

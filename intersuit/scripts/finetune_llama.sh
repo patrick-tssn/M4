@@ -63,11 +63,11 @@ module add cuda11.8
 
 # ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NNODES}" --node_rank="${RANK}" --master_addr="${ADDR}" --master_port="${PORT}" \
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
-    longva/train/train_mem.py \
+    intersuit/train/train_mem.py \
     --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/llava-next.json \
+    --data_path inputs/texts/llava_next.json \
     --image_folder inputs/images/llava-next \
     --pretrain_mm_mlp_adapter "checkpoints/projectors/${BASE_RUN_NAME}/mm_projector.bin" \
     --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \

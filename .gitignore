@@ -9,16 +9,23 @@
 videos
 images
 speech
+texts
+cache
+assets
+themes
 intersuit/inputs/texts/*.json
 checkpoints
 preprocess/llava-next
 preprocess/llava-onevision
+preprocess/TTS
 LLaVA-NeXT
+CosyVoice
 slurm_logs
-local_demo
 visualization
 preprocess/tts/*.json
 preprocess/tts/asset
+backups
+samples
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
