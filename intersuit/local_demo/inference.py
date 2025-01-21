@@ -64,6 +64,9 @@ class LiveInfer:
         
         # self.model, self.tokenizer = build_model_and_tokenizer(is_training=False, set_vision_inside=True, **asdict(args))
         # self.model.to('cuda')
+        
+        # file
+        self.video_file = args.video_file
 
         # visual
         # self.hidden_size = self.model.config.hidden_size
@@ -100,17 +103,17 @@ class LiveInfer:
 
     @torch.no_grad()
     def _call_for_response(self, video_time, query):
-        # if query is not None:
-        #     self.last_ids = self.tokenizer.apply_chat_template([{'role': 'user', 'content': query}], add_stream_query_prompt=True, add_generation_prompt=True, return_tensors='pt').to('cuda')
-        # else:
-        #     assert self.last_ids == 933, f'{self.last_ids} != 933' # HACK, 933 = ]\n
-        #     self.last_ids = self._added_stream_generation_ids
+        # when there is a query, just add it to the LLM prompt
         if query is not None:
-            self.conv.messages[-1][-1] = self.current_output
+            if self.conv.messages:
+                self.conv.messages[-1][-1] = self.current_output
             self.conv.append_message(self.conv.roles[0], '\n'+query)
             self.conv.append_message(self.conv.roles[1], None)
+            query = f'(Current Time = {video_time}s) User: {query}'
+            return query, None
         prompt = self.conv.get_prompt()
         inputs_ids = tokenizer_image_token(prompt, self.tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt").to(self.device)
+        
         # TODO: support batch inference
         # input_ids = [tokenizer_image_token(prompt, self.tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt")]
         # pad_token_ids = (
@@ -124,11 +127,12 @@ class LiveInfer:
         # keywords = [stop_str]
         # stopping_criteria = KeywordsStoppingCriteria(keywords, self.tokenizer, input_ids)
         
-        # TODO: support interleaved multi-turn
+        # TODO: support interleaved image multi-turn
         # split input query: 
         # single turn: ['<|im_start|>', 'system', 'Ċ', 'You', 'Ġare', 'Ġa', 'Ġhelpful', 'Ġassistant', '.', '<|im_end|>', 'Ċ', '<|im_start|>', 'user', 'Ċ', None, 'query', '<|im_end|>', 'Ċ', '<|im_start|>', 'assistant', 'Ċ']
         # mutlip turn: ['<|im_start|>', 'system', 'Ċ', 'You', 'Ġare', 'Ġa', 'Ġhelpful', 'Ġassistant', '.', '<|im_end|>', 'Ċ', '<|im_start|>', 'user', 'Ċ', None, 'Ċ', 'query', '<|im_end|>', 'Ċ', '<|im_start|>', 'assistant', 'Ċ', 'yes', '<|im_end|>', 'Ċ', '<|im_start|>', 'user', 'Ċ', 'query2', '<|im_end|>', 'Ċ', '<|im_start|>', 'assistant', 'Ċ']
         # print(inputs_ids)
+        
         # print("##before: ", self.tokenizer.decode(inputs_ids))
         inputs_ids = inputs_ids[self.vis_index:]
         # print("##after: ", self.tokenizer.decode(inputs_ids))
@@ -146,19 +150,23 @@ class LiveInfer:
         
         self.query_inputs_ids = inputs_ids
         if query:
-            query = f'(Video Time = {video_time}s) User: {query}'
-        response = f'(Video Time = {video_time}s) Assistant:{output_text}'
+            query = f'(Current Time = {video_time}s) User: {query}'
+        if type(video_time) is tuple:
+            response = f'(Current Time = {video_time[0]}s) Assistant: REQUIREMENT MEET AT {video_time[1]}s '
+        else:
+            response = f'(Current Time = {video_time}s) Assistant:{output_text}'
         return query, response
     
     @torch.no_grad()
     def _call_for_streaming(self, ):
         while self.frame_embeds_queue:
-            # 1. if query is before next frame, print query
+            # 1. encouter first query: add it to text prompt, print the query 
             if self.query_queue and self.frame_embeds_queue[0][0] > self.query_queue[0][0]:
                 video_time, query = self.query_queue.popleft()
                 return video_time, query
             video_time, frame_embeds = self.frame_embeds_queue.popleft() # frame_embeds, N_patch, H
             
+            # add new frame to KVCache
             if self.past_key_values is None: # initialize
                 # prefix_prompt
                 # qwen -> CHATML
@@ -196,13 +204,13 @@ class LiveInfer:
             )
             self.past_key_values.crop(self.past_key_values.get_seq_length() - self.query_inputs_ids.shape[-1])
             
-            # 2. if the same time, response after frame at that time
+            # 2. encouter new query, add it to the text prompt of the LLM
             if self.query_queue and video_time >= self.query_queue[0][0]:
                 video_time, query = self.query_queue.popleft()
                 return video_time, query
             
-            # 3. grounding 
-            if self.frame_count > 2:
+            # 3. grounding to future
+            if self.frame_count > 4:
                 attentions = outputs.attentions[-1].squeeze(0)
                 # print("nan shape: ", torch.nonzero(torch.isnan(attentions), as_tuple=False))
                 non_nan_mask = ~torch.isnan(attentions)
@@ -230,10 +238,12 @@ class LiveInfer:
                 if self.salient.heap:
                     sa, cnt = self.salient.peek_max()
                     # print(self.salient.entry_finder)
-                    print(sa, cnt)
-                    if cnt > 4 and sa not in self.highlight_points: # forward step
+                    # print(sa, cnt) # debug score
+                    # delay 4 seconds to improve the accuracy of the grounding
+                    if cnt > max(4, self.frame_fps * 3) and sa not in self.highlight_points: # forward step
                         self.highlight_points.append(sa)
-                        return video_time, None
+                        # return video_time, None
+                        return (video_time, sa / self.frame_fps), None
                 
                 def visualize_attention(attention_weights, idx=None):
                     """
@@ -275,6 +285,7 @@ class LiveInfer:
                     else:
                         plt.savefig("visualization/attn_debug.png")
                 
+                # # attention visualization
                 # if self.frame_count == 30:
                 #     attentions = attentions.mean(0)[-self.query_inputs_ids.shape[-1]:, :]
                 #     attentions = attentions[:, self.vis_index:self.vis_index+144*self.frame_count]

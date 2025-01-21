@@ -1,21 +1,21 @@
 #!/bin/bash
-#SBATCH --job-name=voiceassistant
+#SBATCH --job-name=m4
 #SBATCH --partition=HGX,DGX
 #SBATCH --account=research
-#SBATCH --qos=lv1
-#SBATCH --time=3-00:00:00
+#SBATCH --qos=lv0b
+#SBATCH --time=4:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
-#SBATCH --output=./slurm_logs/finetune-longva-voiceassistant.out
-#SBATCH --error=./slurm_logs/finetune-longva-voiceassistant.error.out
+#SBATCH --output=./slurm_logs/finetune-m4.out
+#SBATCH --error=./slurm_logs/finetune-m4.error.out
 
 
 export OMP_NUM_THREADS=4
 export NCCL_IB_DISABLE=0
 export NCCL_IB_GID_INDEX=3
 # export NCCL_SOCKET_IFNAME=eth0
-# export NCCL_DEBUG=INFO
+export NCCL_DEBUG=INFO
 
 
 export NUM_GPUS=4
@@ -30,16 +30,13 @@ LLM_VERSION="checkpoints/LongVA-7B-Qwen2"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
 VISION_MODEL_VERSION="checkpoints/clip-vit-large-patch14-336"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
-SPEECH_MODEL_VERSION="checkpoints/whisper/large-v3.pt"
-# SPEECH_MODEL_VERSION="checkpoints/whisper/whisper-large-v3"
-SPEECH_MODEL_VERSION_CLEAN="whisper-large"
 
 
 PROMPT_VERSION=qwen_1_5
 
 BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-pretrain_blip558k_plain"
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
-MID_RUN_NAME="LongVA-7B-Qwen2-VoiceAssistant"
+MID_RUN_NAME="M4-LongVA-7B-Qwen2"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -49,19 +46,16 @@ module add cuda11.8
 
 ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port="${PORT}" \
     intersuit/train/train_mem.py \
-    --deepspeed scripts/zero2_offload.json \
+    --deepspeed scripts/zero3.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/voiceassistant.json \
+    --data_path inputs/texts/m4-it-qwen.json \
     --image_folder inputs/images/llava-next \
-    --speech_folder inputs/speech/voiceassistant \
-    --mm_tunable_parts "speech_projector,mm_language_model" \
+    --mm_tunable_parts "mm_vision_tower,mm_mlp_adapter,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
     --vision_tower ${VISION_MODEL_VERSION} \
-    --speech_encoder ${SPEECH_MODEL_VERSION} \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
-    --speech_projector_type linear \
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
     --group_by_modality_length True \
@@ -74,7 +68,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --num_train_epochs 1 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 4 \
-    --gradient_accumulation_steps 8 \
+    --gradient_accumulation_steps 4 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 500 \
@@ -85,7 +79,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 8192 \
+    --model_max_length 32000 \
     --gradient_checkpointing True \
     --dataloader_num_workers 16 \
     --lazy_preprocess True \

@@ -23,6 +23,7 @@ from intersuit.model import *
 from intersuit.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from intersuit.utils import rank0_print
 from intersuit.model.speech_encoder.builder import build_speech_encoder
+from intersuit.model.speech_projector.builder import  build_speech_projector
 
 
 def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, load_4bit=False, device_map="auto", attn_implementation="flash_attention_2", customized_config=None, overwrite_config=None, **kwargs):
@@ -34,7 +35,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         kwargs["load_in_4bit"] = True
         kwargs["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True, bnb_4bit_quant_type="nf4")
     else:
-        if "qwen2" in model_path and attn_implementation == "eager":
+        if "qwen2" in model_path.lower() and attn_implementation == "eager":
             # qwen2 precision issue: https://github.com/huggingface/transformers/pull/33312
             kwargs["torch_dtype"] = torch.bfloat16
         else:
@@ -282,6 +283,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         if getattr(model.config, "speech_encoder_type", None) is not None:
             model.get_model().speech_encoder = build_speech_encoder(model.config)
             model.get_model().speech_encoder.to(device=device_map, dtype=torch.float16)
+            model.get_model().speech_projector.to(device=device_map, dtype=torch.float16)
 
     if hasattr(model.config, "max_sequence_length"):
         context_len = model.config.max_sequence_length

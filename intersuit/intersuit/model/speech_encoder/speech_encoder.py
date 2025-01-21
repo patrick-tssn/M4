@@ -27,13 +27,13 @@ class WhisperWrappedEncoder:
                     replace_layer_norm(child)
 
         
-        # # load by hand
-        # checkpoint_file = model_config.speech_encoder
-        # checkpoint = torch.load(checkpoint_file, map_location="cpu")
-        # dims = ModelDimensions(**checkpoint["dims"])
-        # whisper_model = Whisper(dims)
-        # # encoder = whisper_model.load_state_dict(checkpoint["model_state_dict"]).encoder
-        # # encoder = whisper_model.load_state_dict(checkpoint["model_state_dict"])
+        # load by hand
+        checkpoint_file = model_config.speech_encoder
+        checkpoint = torch.load(checkpoint_file, map_location="cpu")
+        dims = ModelDimensions(**checkpoint["dims"])
+        whisper_model = Whisper(dims)
+        whisper_model.load_state_dict(checkpoint["model_state_dict"])
+        encoder = whisper_model.encoder
         
         # def load(module: nn.Module, prefix=""):
         #     # because zero3 puts placeholders in model params, this context
@@ -50,7 +50,7 @@ class WhisperWrappedEncoder:
         # whisper_model = load(whisper_model)
         # encoder = whisper_model.encoder
         
-        encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
+        # encoder = whisper.load_model(name=model_config.speech_encoder, device='cpu').encoder
         # encoder = WhisperModel.from_pretrained(model_config.speech_encoder, torch_dtype=torch.bfloat16).encoder
         # encoder.requires_grad_(False)
         

@@ -8,7 +8,7 @@
 
    Option 1: [ChatTTS](https://github.com/2noise/ChatTTS)
 
-   Option 2: [CosyVoice](https://github.com/FunAudioLLM/CosyVoice)
+   Option 2: [CosyVoice](https://github.com/FunAudioLLM/CosyVoice) (recommend)
 
 3. **Randomly Select the Audio Prompt and Synthesize the Audio Instruction**
 

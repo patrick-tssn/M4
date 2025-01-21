@@ -6,7 +6,7 @@ import ast
 import re
 import torch
 from transformers import StoppingCriteria
-from intersuit.constants import IMAGE_TOKEN_INDEX
+from intersuit.constants import IMAGE_TOKEN_INDEX, SPEECH_TOKEN_INDEX
 
 
 def resize_and_center_crop(image, shortest_edge_length):
@@ -352,6 +352,48 @@ def tokenizer_image_token(prompt, tokenizer, image_token_index=IMAGE_TOKEN_INDEX
 
     for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
         input_ids.extend(x[offset:])
+
+    if return_tensors is not None:
+        if return_tensors == "pt":
+            return torch.tensor(input_ids, dtype=torch.long)
+        raise ValueError(f"Unsupported tensor type: {return_tensors}")
+    return input_ids
+
+def tokenizer_image_speech_tokens(prompt, tokenizer, image_token_index=IMAGE_TOKEN_INDEX, speech_token_index=SPEECH_TOKEN_INDEX, return_tensors=None):
+    # Split the prompt into chunks based on <image> and <speech> placeholders
+    prompt_chunks = []
+    token_indices = []
+    last_position = 0
+
+    for token, index in [("<image>", image_token_index), ("<speech>", speech_token_index)]:
+        start = 0
+        while True:
+            start = prompt.find(token, start)
+            if start == -1:
+                break
+            prompt_chunks.append(tokenizer(prompt[last_position:start]).input_ids)
+            token_indices.append(index)
+            last_position = start + len(token)
+            start = last_position
+
+    # Add the remaining part of the prompt
+    prompt_chunks.append(tokenizer(prompt[last_position:]).input_ids)
+
+    def insert_separator(chunks, indices):
+        result = []
+        for i in range(len(chunks) - 1):
+            result.extend(chunks[i])
+            result.append(indices[i])
+        result.extend(chunks[-1])
+        return result
+
+    input_ids = []
+    offset = 0
+    if len(prompt_chunks) > 0 and len(prompt_chunks[0]) > 0 and prompt_chunks[0][0] == tokenizer.bos_token_id:
+        offset = 1
+        input_ids.append(prompt_chunks[0][0])
+
+    input_ids.extend(insert_separator(prompt_chunks, token_indices)[offset:])
 
     if return_tensors is not None:
         if return_tensors == "pt":

@@ -25,6 +25,7 @@ from transformers.modeling_outputs import CausalLMOutputWithPast
 from transformers.generation.utils import GenerateOutput
 
 # from ...constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
+from intersuit.constants import IMAGE_TOKEN_INDEX, SPEECH_TOKEN_INDEX
 from intersuit.model.llava_arch import LlavaMetaModel, LlavaMetaForCausalLM
 from transformers import Qwen2Config, Qwen2Model, Qwen2ForCausalLM
 
@@ -205,11 +206,26 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         new_query = kwargs.pop("new_query", None)
         new_query_str = kwargs.pop("new_query_str", None)
         query_str = kwargs.pop("query_str", None)
+        new_query_pos = kwargs.pop("new_query_pos", 0)
+        new_speeches = kwargs.pop("new_speeches", None)
+        new_speech_lengths = kwargs.pop("new_speech_lengths", None)
         if query_str is not None:
             query_str = query_str.split("<image>\n")[-1]
             print(f"Human: {query_str}")
-        if new_query is not None:
-            new_inputs_embeds = self.get_model().embed_tokens(new_query)
+        if new_query is not None or new_speeches is not None:
+            if new_speeches is not None:
+                # HACK batch_size = 1
+                assert new_query.shape[0] == 1
+                speech_token_indice = torch.where(new_query[0] == SPEECH_TOKEN_INDEX)[0].tolist()[0]
+                new_inputs_embeds_1 = self.get_model().embed_tokens(new_query[:,:speech_token_indice])
+                new_inputs_embeds_2 = self.get_model().embed_tokens(new_query[:,speech_token_indice+1:])
+                speech_features = self.encode_speech(new_speeches, new_speech_lengths)
+                speech_features = [speech_feature.to(dtype=new_inputs_embeds_1.dtype) for speech_feature in speech_features]
+                speech_features = torch.stack(speech_features)
+                new_inputs_embeds = torch.cat([new_inputs_embeds_1, speech_features, new_inputs_embeds_2], dim=1)
+                
+            else:
+                new_inputs_embeds = self.get_model().embed_tokens(new_query)
         else:
             new_inputs_embeds = None
         bsz, seq = inputs_embeds.shape[:-1]
@@ -237,13 +253,16 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         for idx in range(max_new_tokens):
             
             # discern noise
-            if idx == 20:
+            if idx == new_query_pos:
                 print()
-                print(f"Human: {new_query_str}")
+                if new_query_str is not None:
+                    print(f"Human: {new_query_str}")
+                else:
+                    print(f"Human: <new query>")
                 # # encounter new query 
                 # new_attention_mask = create_mask(transition_attention_mask, 1, 1, bsz, seq)
                 
-                outputs_ids = torch.cat([outputs_ids, new_query], dim=-1)
+                # outputs_ids = torch.cat([outputs_ids, new_query], dim=-1)
                 
                 ori_length = attention_mask.shape[1]
                 
@@ -370,7 +389,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
                 
             if next_token_ids.squeeze(0)[0].item() == tokenizer.eos_token_id:
                 print()
-                # print("="*20,"COMPLETE","="*20)
+                print("="*20,"COMPLETE","="*20)
                 break
 
         return outputs_ids

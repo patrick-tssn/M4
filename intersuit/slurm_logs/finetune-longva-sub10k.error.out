@@ -1,92 +1,0 @@
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:49: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
-  def forward(ctx, input, weight, bias=None):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:49: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
-  def forward(ctx, input, weight, bias=None):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:49: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
-  def forward(ctx, input, weight, bias=None):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:49: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
-  def forward(ctx, input, weight, bias=None):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:67: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
-  def backward(ctx, grad_output):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:67: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
-  def backward(ctx, grad_output):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:67: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
-  def backward(ctx, grad_output):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/deepspeed/runtime/zero/linear.py:67: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
-  def backward(ctx, grad_output):
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/transformers/training_args.py:1525: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/transformers/training_args.py:1525: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/transformers/training_args.py:1525: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
-  warnings.warn(
-/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/transformers/training_args.py:1525: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
-  warnings.warn(
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.02it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.81it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.58it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.99s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.99s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:06,  3.00s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:17<00:53, 17.84s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:23<00:10, 10.13s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:23<00:10, 10.12s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:23<00:10, 10.13s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:37<00:38, 19.16s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:56<00:18, 18.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 19.98s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 14.72s/it]
-Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 19.98s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 14.73s/it]
-Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 19.99s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:58<00:00, 14.73s/it]
-[rank3]: Traceback (most recent call last):
-[rank3]:   File "/scratch/nlp/patrick/codes/OminousLLM/intersuit/longva/train/train_mem.py", line 4, in <module>
-[rank3]:     train()
-[rank3]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1665, in train
-[rank3]:     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
-[rank3]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1272, in make_supervised_data_module
-[rank3]:     train_dataset = LazySupervisedDataset(tokenizer=tokenizer, data_path=data_args.data_path, data_args=data_args)
-[rank3]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1023, in __init__
-[rank3]:     with open(data_path, "r") as file:
-[rank3]: FileNotFoundError: [Errno 2] No such file or directory: 'inputs/texts/llava-next-sub-10k-ONRS1111.json'
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/scratch/nlp/patrick/codes/OminousLLM/intersuit/longva/train/train_mem.py", line 4, in <module>
-[rank1]:     train()
-[rank1]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1665, in train
-[rank1]:     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
-[rank1]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1272, in make_supervised_data_module
-[rank1]:     train_dataset = LazySupervisedDataset(tokenizer=tokenizer, data_path=data_args.data_path, data_args=data_args)
-[rank1]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1023, in __init__
-[rank1]:     with open(data_path, "r") as file:
-[rank1]: FileNotFoundError: [Errno 2] No such file or directory: 'inputs/texts/llava-next-sub-10k-ONRS1111.json'
-[rank2]: Traceback (most recent call last):
-[rank2]:   File "/scratch/nlp/patrick/codes/OminousLLM/intersuit/longva/train/train_mem.py", line 4, in <module>
-[rank2]:     train()
-[rank2]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1665, in train
-[rank2]:     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
-[rank2]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1272, in make_supervised_data_module
-[rank2]:     train_dataset = LazySupervisedDataset(tokenizer=tokenizer, data_path=data_args.data_path, data_args=data_args)
-[rank2]:   File "/home/wangyuxuan1/codes/OminousLLM/intersuit/longva/train/train.py", line 1023, in __init__
-[rank2]:     with open(data_path, "r") as file:
-[rank2]: FileNotFoundError: [Errno 2] No such file or directory: 'inputs/texts/llava-next-sub-10k-ONRS1111.json'
-W1111 16:16:55.945000 2874681 /scratch/nlp/patrick/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2874686 closing signal SIGTERM
-E1111 16:16:56.836000 2874681 /scratch/nlp/patrick/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 2874689) of binary: /scratch/wangyuxuan1/.conda/envs/longva/bin/python
-Traceback (most recent call last):
-  File "/scratch/wangyuxuan1/.conda/envs/longva/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
-    run(args)
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
-    elastic_launch(
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/scratch/wangyuxuan1/.conda/envs/longva/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-longva/train/train_mem.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2024-11-11_16:16:55
-  host      : hgx-hyperplane08.cm.cluster
-  rank      : 3 (local_rank: 3)
-  exitcode  : 1 (pid: 2874689)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================

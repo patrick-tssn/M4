@@ -615,6 +615,7 @@ class LlavaMetaForCausalLM(ABC):
         
         # preprocess <speech>
         speech_features = self.encode_speech(speeches, speech_lengths)
+        speech_features = [speech_feature.to(dtype=image_features[0].dtype) for speech_feature in speech_features]
         # print("debug*"*30)
         # print(image_features[0].shape)
         # print(len(image_features))

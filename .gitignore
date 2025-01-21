@@ -6,12 +6,12 @@
 *.jsonl
 *.wav
 *.mp3
+*.out
 videos
 images
 speech
 texts
 cache
-assets
 themes
 intersuit/inputs/texts/*.json
 checkpoints
@@ -26,6 +26,8 @@ preprocess/tts/*.json
 preprocess/tts/asset
 backups
 samples
+scripts_debug
+asset
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
