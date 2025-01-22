@@ -36,6 +36,9 @@
   - [Start Training](#training-1)
 - [Usage](#usage)
 - [Evaluation](#evaluation)
+- [Roadmap](#roadmap)
+- [Acknowledgement](#acknowledgement)
+- [Citation](#citation)
 
 ## M4
 
@@ -129,7 +132,7 @@ pip install -r requirements.txt
 Download [M4-IT](https://huggingface.co/datasets/ColorfulAI/M4-IT) and organize it in the following format. To enhance audio instruction-following performance, you may also download [VoiceAssistant-400K](https://huggingface.co/datasets/gpt-omni/VoiceAssistant-400K) and sample a portion of this dataset based on your computational resources.
 
 ```
-intersuit/inputs          
+intersuit/inputs        
     ├── images/ # images
       └── llava-next/
         ├── ...
@@ -152,7 +155,7 @@ intersuit/inputs
 Download the pretrained large video language model weights [LongVA-7B](https://huggingface.co/lmms-lab/LongVA-7B) and the pretrained audio encoder weights [Whisper](https://github.com/openai/whisper), and place them in the `intersuit/checkpoints` directory.
 
 ```
-intersuit/checkpoints          
+intersuit/checkpoints        
     ├── LongVA-7B-Qwen2
     └── whisper/large-v3.pt
 ```
@@ -244,6 +247,10 @@ python -m local_demo.turntaking_audio_cli --video_path local_demo/assets/water.m
 ## Evaluation
 
 To evaluate the interaction ability of **M4** in streaming video contexts, you are encouraged to try our [OmniMMI](https://github.com/bigai-nlco/OmniMMI)!
+
+## Roadmap
+
+- [ ] This work does not cover audio decoding. I am developing an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources. 😞
 
 ## Acknowledgement
 
