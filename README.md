@@ -22,7 +22,7 @@
 
 <!-- - [] Paper Release, check it on [Arxiv](https://arxiv.org/pdf/xxxx.xxxxx.pdf).  -->
 
-- **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a video language model at minimal cost.
+- **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
 
 **Table of Contents**
 
@@ -32,6 +32,7 @@
 - [Train](#training)
   - [Installation](#installation)
   - [Data Preparation](#data-preparation)
+  - [Backbone Preparation](#pretrained-backbone-preparation)
   - [Start Training](#training-1)
 - [Usage](#usage)
 - [Evaluation](#evaluation)
@@ -118,12 +119,17 @@ pip install packaging &&  pip install ninja && pip install flash-attn==2.5.0 --n
 pip install -r requirements.txt
 ```
 
-#### Data Preparation
+*optional*
+
+- [ChatTTS](https://github.com/2noise/ChatTTS)
+- [CosyVoice](https://github.com/FunAudioLLM/CosyVoice)
+
+### Data Preparation
 
 Download [M4-IT](https://huggingface.co/datasets/ColorfulAI/M4-IT) and organize it in the following format. To enhance audio instruction-following performance, you may also download [VoiceAssistant-400K](https://huggingface.co/datasets/gpt-omni/VoiceAssistant-400K) and sample a portion of this dataset based on your computational resources.
 
 ```
-intersuit/inputs              
+intersuit/inputs          
     ├── images/ # images
       └── llava-next/
         ├── ...
@@ -141,12 +147,12 @@ intersuit/inputs
       └── m4-it-qwen-audio.json
 ```
 
-#### Pretrained Backbone Preparation
+### Pretrained Backbone Preparation
 
 Download the pretrained large video language model weights [LongVA-7B](https://huggingface.co/lmms-lab/LongVA-7B) and the pretrained audio encoder weights [Whisper](https://github.com/openai/whisper), and place them in the `intersuit/checkpoints` directory.
 
 ```
-intersuit/checkpoints              
+intersuit/checkpoints          
     ├── LongVA-7B-Qwen2
     └── whisper/large-v3.pt
 ```
@@ -159,9 +165,9 @@ bash lvlm_finetune.sh
 bash lvlm_dpo.sh
 ```
 
-#### Start Training
+### Start Training
 
-Our training logic is essentially the same as the visual instruction tuning. The training process takes ~2 hours on 4 NVIDIA A800-80G.
+Our training logic is essentially the same as the visual instruction tuning. (The training process takes ~2 hours on 4 NVIDIA A800-80G)
 
 ```bash
 cd intersuit
@@ -171,13 +177,23 @@ bash scripts/finetune_m4.sh
 bash scripts/finetune_m4_audio.sh
 ```
 
-Before fine-tuning the audio version, you are encouraged to tune the vision-language model on audio instructions to improve the generality of audio understanding.
+Before fine-tuning the audio version, you are encouraged to tune the vision-language model on audio instructions to improve the generality of audio understanding. (This process takes ~100 hours on 4 A800 GPU)
 
 ```bash
 bash scripts/finetune_voiceassistant.sh
 ```
 
 To assist those with limited computational resources, we also provide an off-the-shelf checkpoint. Check it out at [![Model](https://img.shields.io/badge/%F0%9F%A4%97-LongVA--7B--Qwen2--VoiceAssistant-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-VoiceAssistant)
+
+To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [LLaVA-NeXT-Audio](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Audio) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
+
+```bash
+bash scripts/finetune_llavanextaudio.sh
+```
+
+For those with limited computational resources, we also provide a ready-to-use checkpoint. You can access it here: [![Model](https://img.shields.io/badge/%F0%9F%A4%97-LongVA--7B--Qwen2--Audio-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-Audio)
+
+Try the visual-audio base model through `python -m local_demo.baseline_audio_cli --video_path local_demo/assets/water.mp4 --question_audio "local_demo/wav/water.mp4.wav"`
 
 ## Usage
 
@@ -204,7 +220,7 @@ python -m local_demo.turntaking_cli --video_path local_demo/assets/water.mp4 --q
 python -m local_demo.turntaking_cli --video_path local_demo/assets/water.mp4 --question "Can you describe the video?" --new_query "Okay, I see." --new_query_pos 20
 ```
 
-*audio input* 
+*audio input*
 
 For better visualization, you can input text, and ChatTTS will automatically convert it into audio. You can then find the generated audio in `local_demo/wav`.
 

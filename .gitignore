@@ -1,10 +1,8 @@
 # this project
-*.mp4
 *.webm
 *.mkv
 *.vtt
 *.jsonl
-*.wav
 *.mp3
 *.out
 videos
