@@ -190,11 +190,13 @@ To assist those with limited computational resources, we also provide an off-the
 
 To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [LLaVA-NeXT-Audio](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Audio) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
 
+> NOTE: We find that this process is more prone to collapse than audio instruction tuning alone, so we provide it just for further study.
+
 ```bash
 bash scripts/finetune_llavanextaudio.sh
 ```
 
-For those with limited computational resources, we also provide a ready-to-use checkpoint. You can access it here [![Model](https://img.shields.io/badge/%F0%9F%A4%97Model-LongVA--7B--Qwen2--Audio-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-Audio)
+For those with limited computational resources, we also provide a ready-to-use checkpoint (17500 step). You can access it here [![Model](https://img.shields.io/badge/%F0%9F%A4%97Model-LongVA--7B--Qwen2--Audio-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-Audio)
 
 Try the visual-audio base model through `python -m local_demo.baseline_audio_cli --video_path local_demo/assets/water.mp4 --question_audio "local_demo/wav/water.mp4.wav"`
 
@@ -250,7 +252,7 @@ To evaluate the interaction ability of **M4** in streaming video contexts, you a
 
 ## Roadmap
 
-- [ ] This work does not cover audio decoding. I am developing an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources. 😞
+- [ ] This work does not cover audio decoding. I am working on an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources😞. *For those lacking computational resources, I believe a streaming TTS could serve as an alternative without significant delay.* 
 
 ## Acknowledgement
 
