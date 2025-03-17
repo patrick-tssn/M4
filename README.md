@@ -3,6 +3,13 @@
     <a href="https://arxiv.org/abs/xxxx.xxxxx">
             <img alt="Build" src="http://img.shields.io/badge/cs.CV-arXiv%3Axxxx.xxxxx-B31B1B.svg">
     </a>
+    <a href="https://omnimmi.github.io/m4">
+        <img alt="Build" src="https://img.shields.io/badge/M4-page-blue">
+    </a>
+    <a href="https://cvpr.thecvf.com/Conferences/2025">
+            <img alt="Build" src="http://img.shields.io/badge/CVPR-2025-4b44ce.svg">
+    </a>
+    <br>
     <a href="https://huggingface.co/ColorfulAI/M4-LongVA-7B-Qwen2">
         <img alt="Build" src="https://img.shields.io/badge/🤗 Model-M4--7B-yellow">
     </a>
@@ -14,14 +21,14 @@
     </a>
 </p>
 
-[![Conference](http://img.shields.io/badge/CVPR-2025-4b44ce.svg)](https://cvpr.thecvf.com/Conferences/2025)
+<!-- [![Conference](http://img.shields.io/badge/CVPR-2025-4b44ce.svg)](https://cvpr.thecvf.com/Conferences/2025) -->
 
 ![image](assets/framework.png)
 
 ## Updates
 
 <!-- - [] Paper Release, check it on [Arxiv](https://arxiv.org/pdf/xxxx.xxxxx.pdf).  -->
-- `2025` **Meet [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
+- `2025` **Evaluate on [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
 - `2025` **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
 
 **Table of Contents**
@@ -188,7 +195,7 @@ bash scripts/finetune_voiceassistant.sh
 
 To assist those with limited computational resources, we also provide an off-the-shelf checkpoint. Check it out at [![Model](https://img.shields.io/badge/%F0%9F%A4%97Model-LongVA--7B--Qwen2--VoiceAssistant-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-VoiceAssistant)
 
-To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [LLaVA-NeXT-Audio](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Audio) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
+To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97Dataset-LLaVA--NeXT--Audio-yellow)](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Audio) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
 
 > NOTE: We find that this process is more prone to collapse than audio instruction tuning alone, so we provide it just for further study.
 
@@ -252,7 +259,7 @@ To evaluate the interaction ability of **M4** in streaming video contexts, you a
 
 ## Roadmap
 
-- [ ] This work does not cover audio decoding. I am working on an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources😞. *For those lacking computational resources, I believe a streaming TTS could serve as an alternative without significant delay.* 
+- [ ] This work does not cover audio decoding. I am working on an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources😞. *However, for those lacking computational resources too, I believe a streaming TTS could serve as an alternative without significant delay.* 
 
 ## Acknowledgement
 
