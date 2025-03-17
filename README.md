@@ -14,15 +14,15 @@
     </a>
 </p>
 
-<!-- [![Conference](http://img.shields.io/badge/AnyConference-year-4b44ce.svg)](https://<CONFERENCE>) -->
+[![Conference](http://img.shields.io/badge/CVPR-2025-4b44ce.svg)](https://cvpr.thecvf.com/Conferences/2025)
 
 ![image](assets/framework.png)
 
 ## Updates
 
 <!-- - [] Paper Release, check it on [Arxiv](https://arxiv.org/pdf/xxxx.xxxxx.pdf).  -->
-
-- **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
+- `2025` **Meet [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
+- `2025` **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
 
 **Table of Contents**
 
