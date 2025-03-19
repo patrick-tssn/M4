@@ -122,10 +122,10 @@ If you are interested in the process of the construction of audio instruction, y
 This codebase is tested on CUDA 11.8 and A800-80G.
 
 ```bash
-conda create -n intersuit python=3.10 -y && conda activate intersuit
-pip install torch==2.1.2 torchvision --index-url https://download.pytorch.org/whl/cu118
-pip install -e "intersuit/.[train]"
-pip install packaging &&  pip install ninja && pip install flash-attn==2.5.0 --no-build-isolation --no-cache-dir
+conda create -n open_gpt4o python=3.10 -y && conda activate open_gpt4o
+pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118
+pip install -e "src/.[train]"
+pip install packaging &&  pip install ninja && pip install flash-attn==2.6.3 --no-build-isolation --no-cache-dir
 pip install -r requirements.txt
 ```
 
