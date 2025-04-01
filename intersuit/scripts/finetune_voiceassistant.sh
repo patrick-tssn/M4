@@ -2,8 +2,8 @@
 #SBATCH --job-name=voiceassistant
 #SBATCH --partition=HGX,DGX
 #SBATCH --account=research
-#SBATCH --qos=lv1
-#SBATCH --time=3-00:00:00
+#SBATCH --qos=lv0b
+#SBATCH --time=1-00:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:4
@@ -39,7 +39,7 @@ PROMPT_VERSION=qwen_1_5
 
 BASE_RUN_NAME="llavanext-${VISION_MODEL_VERSION_CLEAN}-${LLM_VERSION_CLEAN}-mlp2x_gelu-pretrain_blip558k_plain"
 echo "BASE_RUN_NAME: ${BASE_RUN_NAME}"
-MID_RUN_NAME="LongVA-7B-Qwen2-VoiceAssistant"
+MID_RUN_NAME="LongVA-7B-Qwen2-VoiceAssistant-400K-all"
 echo "MID_RUN_NAME: ${MID_RUN_NAME}"
 
 
@@ -52,9 +52,9 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --master_port=
     --deepspeed scripts/zero2_offload.json \
     --model_name_or_path ${CKPT_PATH} \
     --version ${PROMPT_VERSION} \
-    --data_path inputs/texts/voiceassistant.json \
+    --data_path inputs/texts/VoiceAssistant.json \
     --image_folder inputs/images/llava-next \
-    --speech_folder inputs/speech/voiceassistant \
+    --speech_folder inputs/speech/VoiceAssistant \
     --mm_tunable_parts "speech_projector,mm_language_model" \
     --mm_vision_tower_lr=2e-6 \
     --vision_tower ${VISION_MODEL_VERSION} \

@@ -1,7 +1,7 @@
 <h1 align="center">Multi-modal Multiplexing Modeling</h1>
 <p align="center">
-    <a href="https://arxiv.org/abs/xxxx.xxxxx">
-            <img alt="Build" src="http://img.shields.io/badge/cs.CV-arXiv%3Axxxx.xxxxx-B31B1B.svg">
+    <a href="https://arxiv.org/abs/2503.22952">
+            <img alt="Build" src="http://img.shields.io/badge/cs.CV-arXiv%3A2503.22952-B31B1B.svg">
     </a>
     <a href="https://omnimmi.github.io/m4">
         <img alt="Build" src="https://img.shields.io/badge/M4-page-blue">
@@ -28,8 +28,8 @@
 ## Updates
 
 <!-- - [] Paper Release, check it on [Arxiv](https://arxiv.org/pdf/xxxx.xxxxx.pdf).  -->
-- `2025` **Evaluate on [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
-- `2025` **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
+- `2025-04-01` **Evaluate on [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
+- `2025-04-01` **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
 
 **Table of Contents**
 
@@ -195,9 +195,9 @@ bash scripts/finetune_voiceassistant.sh
 
 To assist those with limited computational resources, we also provide an off-the-shelf checkpoint. Check it out at [![Model](https://img.shields.io/badge/%F0%9F%A4%97Model-LongVA--7B--Qwen2--VoiceAssistant-yellow)](https://huggingface.co/ColorfulAI/LongVA-7B-Qwen2-VoiceAssistant)
 
-To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97Dataset-LLaVA--NeXT--Audio-yellow)](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Audio) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
+To enhance the model's visual-audio understanding capabilities, we offer a script to fine-tune it using the [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97Dataset-LLaVA--NeXT--Speech-yellow)](https://huggingface.co/datasets/ColorfulAI/LLaVA-NeXT-Speech) dataset. This aims to improve visual-audio alignment performance. (This process takes ~140 hours on 4 A800 GPU)
 
-> NOTE: We find that this process is more prone to collapse than audio instruction tuning alone, so we provide it just for further study.
+> NOTE: We find that this process is more prone to collapse than audio instruction tuning alone, so we provide a model just for further study.
 
 ```bash
 bash scripts/finetune_llavanextaudio.sh
