@@ -28,6 +28,7 @@
 ## Updates
 
 <!-- - [] Paper Release, check it on [Arxiv](https://arxiv.org/pdf/xxxx.xxxxx.pdf).  -->
+- `2025-04-02` **First Release [Open-Omni-Nexus](https://github.com/patrick-tssn/Open-Omni-Nexus)**. a fully open-source implementation of a GPT-4o-like speech-to-speech video understanding model.
 - `2025-04-01` **Evaluate on [OmniMMI](https://github.com/bigai-nlco/OmniMMI)**. A comprehensive multi-modal interaction benchmark in streaming video context.
 - `2025-04-01` **First Release [M4](https://github.com/patrick-tssn/M4)**. M4 enables multiplexed modeling capabilities for a visual language model at minimal cost.
 
@@ -259,7 +260,9 @@ To evaluate the interaction ability of **M4** in streaming video contexts, you a
 
 ## Roadmap
 
-- [ ] This work does not cover audio decoding. I am working on an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources😞. *However, for those lacking computational resources too, I believe a streaming TTS could serve as an alternative without significant delay.* 
+- [x] This work does not cover audio decoding. I am working on an end-to-end interactive omni-language model (visual/speech-to-speech) and actively seeking additional computational resources😞. *However, for those lacking computational resources too, I believe a streaming TTS could serve as an alternative without significant delay.* 
+
+**Check [Open-Omni-Nexus](https://github.com/patrick-tssn/Open-Omni-Nexus)!**
 
 ## Acknowledgement
 
